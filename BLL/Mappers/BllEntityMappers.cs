@@ -28,5 +28,57 @@ namespace BLL.Mappers
                 Password = dalUser.Password
             };
         }
+
+        public static DalProfile ToDalProfile(this ProfileEntity profileEntity)
+        {
+            return new DalProfile
+            {
+                Id = profileEntity.Id,
+                FirstName = profileEntity.FirstName,
+                LastName = profileEntity.LastName,
+                Age = profileEntity.Age,
+                LastUpdateDate = profileEntity.LastUpdateDate
+            };
+        }
+
+        public static ProfileEntity ToBllProfile(this DalProfile dalProfile)
+        {
+            return new ProfileEntity
+            {
+                Id = dalProfile.Id,
+                FirstName = dalProfile.FirstName,
+                LastName = dalProfile.LastName,
+                Age = dalProfile.Age,
+                LastUpdateDate = dalProfile.LastUpdateDate
+            };
+        }
+
+        public static RoleEntity ToBllRole(this DalRole role)
+        {
+            var roleEntity = new RoleEntity
+            {
+                Id = role.Id,
+                Name = role.Name
+            };
+            foreach (var item in role.Users)
+            {
+                roleEntity.Users.Add(item.ToBllUser());
+            }
+            return roleEntity;
+        }
+
+        public static DalRole ToBllRole(this RoleEntity role)
+        {
+            var dalRole = new DalRole
+            {
+                Id = role.Id,
+                Name = role.Name
+            };
+            foreach (var item in role.Users)
+            {
+                dalRole.Users.Add(item.ToDalUser());
+            }
+            return dalRole;
+        }
     }
 }

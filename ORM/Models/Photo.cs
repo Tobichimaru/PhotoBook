@@ -14,10 +14,16 @@ namespace ORM.Models
         
         [Key]
         public int PhotoId { get; set; }
+
+        [MaxLength(250)] 
         public string Description { get; set; }
+
+        [Required]
         public byte[] Picture { get; set; }
 
+        [Required]
         public int UserId { get; set; }
+
         [ForeignKey("UserId")]
         public virtual User PublisherUser { get; set; }
 

@@ -8,7 +8,10 @@ namespace ORM.Models
         [Key]
         public int LikeId { get; set; }
 
+        [Required]
         public int PhotoId { get; set; }
+
+        [Required]
         public virtual Photo LikedPhoto { get; set; }
 
     }

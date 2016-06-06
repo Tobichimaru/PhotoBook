@@ -17,10 +17,9 @@ namespace MvcPL.Controllers
 
         public ActionResult Index()
         {
-            var model = _Service.GetAllUserEntities().Select(u => new UserViewModel
+            var model = _Service.GetAllEntities().Select(u => new UserViewModel
             {
-                Email = u.Email,
-                CreationDate = u.CreationDate
+                Email = u.Email
             });
 
             return View(model);
@@ -48,10 +47,9 @@ namespace MvcPL.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult UsersEdit()
         {
-            var model = _Service.GetAllUserEntities().Select(u => new UserViewModel
+            var model = _Service.GetAllEntities().Select(u => new UserViewModel
             {
-                Email = u.Email,
-                CreationDate = u.CreationDate
+                Email = u.Email
             });
 
             return View(model);

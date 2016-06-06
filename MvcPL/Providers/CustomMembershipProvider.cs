@@ -42,7 +42,6 @@ namespace MvcPL.Providers
                 Email = email,
                 Password = Crypto.HashPassword(password),
                 //http://msdn.microsoft.com/ru-ru/library/system.web.helpers.crypto(v=vs.111).aspx
-                CreationDate = DateTime.Now,
                 RoleId = 1
             };
 
@@ -52,7 +51,7 @@ namespace MvcPL.Providers
             //    user.RoleId = role.Id;
             //}
 
-            UserService.CreateUser(user);
+            UserService.Create(user);
             var membershipUser = GetUser(email, false);
             return membershipUser;
         }
@@ -77,7 +76,7 @@ namespace MvcPL.Providers
 
             var memberUser = new MembershipUser("CustomMembershipProvider", user.Email,
                 null, null, null, null,
-                false, false, user.CreationDate,
+                false, false, default(DateTime), 
                 DateTime.MinValue, DateTime.MinValue,
                 DateTime.MinValue, DateTime.MinValue);
 
@@ -93,7 +92,7 @@ namespace MvcPL.Providers
 
             var memberUser = new MembershipUser("CustomMembershipProvider", user.Email,
                 null, null, null, null,
-                false, false, user.CreationDate,
+                false, false, default(DateTime),
                 DateTime.MinValue, DateTime.MinValue,
                 DateTime.MinValue, DateTime.MinValue);
 

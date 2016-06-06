@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using BLL.Interfacies.Services;
@@ -68,7 +70,7 @@ namespace MvcPL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel viewModel)
         {
-            var anyUser = _Service.GetAllUserEntities().FirstOrDefault(u => u.Email == viewModel.Email);
+            var anyUser = _Service.GetAllEntities().FirstOrDefault(u => u.Email == viewModel.Email);
 
             //if (ReferenceEquals(anyUser, null))
             //{
@@ -97,5 +99,7 @@ namespace MvcPL.Controllers
         {
             return PartialView("_LoginPartial");
         }
+
+        
     }
 }

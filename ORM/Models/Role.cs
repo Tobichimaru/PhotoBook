@@ -12,6 +12,9 @@ namespace ORM.Models
 
         [Key]
         public int RoleId { get; set; }
+
+        [Required]
+        [MaxLength(50), MinLength(3)]
         public string Name { get; set; }
 
         public virtual ICollection<User> Users { get; set; }

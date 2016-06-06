@@ -49,7 +49,9 @@
     <Compile Include="Entities\ProfileEntity.cs" />
     <Compile Include="Entities\RoleEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Services\IProfileService.cs" />
     <Compile Include="Services\IRoleService.cs" />
+    <Compile Include="Services\IService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

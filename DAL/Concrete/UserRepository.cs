@@ -1,67 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
 using DAL.Interfacies.Repository;
+using DAL.Mappers;
 using ORM.Models;
 
 namespace DAL.Concrete
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DbContext context;
-
-        public UserRepository(DbContext uow)
+        private readonly UnitOfWork _unitOfWork; //not interface
+        public UserRepository(UnitOfWork uow)
         {
-            context = uow;
+            _unitOfWork = uow;
         }
 
         public IEnumerable<DalUser> GetAll()
         {
-            return context.Set<User>().Select(user => new DalUser
-            {
-                Id = user.UserId,
-                Email = user.Email,
-                Password = user.Password,
-                RoleId = user.RoleId,
-                ProfileId = user.UserProfileId
-            });
+            return _unitOfWork.Context.Set<User>().Select(user => user.ToDalUser());
         }
 
         public DalUser GetById(int key)
         {
-            var ormuser = context.Set<User>().FirstOrDefault(user => user.UserId == key);
+            var ormuser = _unitOfWork.Context.Set<User>().FirstOrDefault(user => user.UserId == key);
             if (!ReferenceEquals(ormuser, null))
-                return new DalUser
-                {
-                    Id = ormuser.UserId,
-                    Email = ormuser.Email,
-                    Password = ormuser.Password,
-                    RoleId = ormuser.RoleId,
-                    ProfileId = ormuser.UserProfileId
-                };
-            return new DalUser();
+                return ormuser.ToDalUser();
+            return null;
         }
 
         public DalUser GetByEmail(string email)
         {
-            var ormuser = context.Set<User>().FirstOrDefault(user => user.Email == email);
+            var ormuser = _unitOfWork.Context.Set<User>().FirstOrDefault(user => user.Email == email);
             if (!ReferenceEquals(ormuser, null))
             {
-                var user = new DalUser
-                {
-                    Id = ormuser.UserId,
-                    Email = ormuser.Email,
-                    Password = ormuser.Password,
-                    //RolesIds = new[] { ormuser.Roles.GetEnumerator().Current.RoleId }, //TO DO: replace
-                    ProfileId = ormuser.UserProfileId
-                };
-                return user;
+                return ormuser.ToDalUser();
             }
-            return new DalUser();
+            return null;
         }
 
         public DalUser GetByPredicate(Expression<Func<DalUser, bool>> f)
@@ -72,40 +48,24 @@ namespace DAL.Concrete
 
         public void Create(DalUser e)
         {
-            Debug.WriteLine("UserRepository");
-            var user = new User
-            {
-                UserId = e.Id,
-                Email = e.Email,
-                Password = e.Password,
-                UserProfileId = e.ProfileId,
-                RoleId = e.RoleId,
-                Role = context.Set<Role>().Find(e.RoleId)
-            };
-            var profile = new Profile
-            {
-                LastUpdateDate = DateTime.Now
-            };
-            context.Set<Profile>().Add(profile);
-            context.SaveChanges();
-
-            user.UserProfile = profile;
-            user.UserProfileId = profile.ProfileId;
-            context.Set<User>().Add(user);
-            context.SaveChanges();
+            var user = e.ToOrmUser();
+            user.UserProfile = _unitOfWork.Context.Set<Profile>().Find(e.ProfileId);
+            user.Role = _unitOfWork.Context.Set<Role>().Find(e.RoleId);
+            
+            _unitOfWork.Context.Set<User>().Add(user);
+            _unitOfWork.Commit();
         }
 
-        public void Delete(DalUser e)
+        public void Delete(DalUser e) //implement 
         {
-            var user = context.Set<User>().Single(u => u.UserId == e.Id);
-            context.Set<User>().Remove(user);
+            var user = _unitOfWork.Context.Set<User>().Single(u => u.UserId == e.Id);
+            _unitOfWork.Context.Set<User>().Remove(user);
+            _unitOfWork.Commit();
         }
 
         public void Update(DalUser entity)
         {
             throw new NotImplementedException();
         }
-
-        
     }
 }

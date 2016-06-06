@@ -10,8 +10,7 @@ namespace MvcPL.Infrastructure.Mappers
         {
             return new UserViewModel
             {
-                Email = userEntity.Email,
-                CreationDate = userEntity.CreationDate
+                Email = userEntity.Email
             };
         }
 
@@ -20,7 +19,6 @@ namespace MvcPL.Infrastructure.Mappers
             var user = new UserEntity
             {
                 Email = userViewModel.Email,
-                CreationDate = userViewModel.CreationDate,
                 RoleId = userViewModel.RoleId
             };
             return user;

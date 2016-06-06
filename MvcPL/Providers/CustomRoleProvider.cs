@@ -27,11 +27,11 @@ namespace MvcPL.Providers
 
         public override bool IsUserInRole(string email, string roleName)
         {
-            UserEntity user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Email == email);
+            UserEntity user = UserService.GetAllEntities().FirstOrDefault(u => u.Email == email);
 
             if (user == null) return false;
 
-            RoleEntity userRole = RoleService.GetRoleEntity(user.RoleId);
+            RoleEntity userRole = RoleService.GetById(user.RoleId);
 
             if (userRole != null && userRole.Name == roleName)
             {
@@ -44,7 +44,7 @@ namespace MvcPL.Providers
         public override string[] GetRolesForUser(string email)
         {
             var roles = new string[] {};
-            var user = UserService.GetAllUserEntities().FirstOrDefault(u => u.Email == email);
+            var user = UserService.GetAllEntities().FirstOrDefault(u => u.Email == email);
 
             if (user == null) return roles;
 
@@ -55,7 +55,7 @@ namespace MvcPL.Providers
         public override void CreateRole(string roleName)
         {
             var newRole = new RoleEntity {Name = roleName};
-            RoleService.CreateRole(newRole);
+            RoleService.Create(newRole);
         }
 
         #region Stabs

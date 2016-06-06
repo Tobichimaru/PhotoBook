@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
@@ -19,34 +18,31 @@ namespace BLL.Services
             userRepository = repository;
         }
 
-        public UserEntity GetUserEntity(int id)
+        public UserEntity GetById(int id)
         {
             return userRepository.GetById(id).ToBllUser();
         }
-
 
         public UserEntity GetUserByEmail(string email)
         {
             return userRepository.GetByEmail(email).ToBllUser();
         }
 
-        public IEnumerable<UserEntity> GetAllUserEntities()
+        public IEnumerable<UserEntity> GetAllEntities()
         {
             return userRepository.GetAll().Select(user => user.ToBllUser());
         }
 
-        public void CreateUser(UserEntity user)
+        public void Create(UserEntity user)
         {
-            Debug.WriteLine("UserService");
             userRepository.Create(user.ToDalUser());
             uow.Commit();
         }
 
-        public void DeleteUser(UserEntity user)
+        public void Delete(UserEntity user)
         {
             userRepository.Delete(user.ToDalUser());
             uow.Commit();
         }
-
     }
 }

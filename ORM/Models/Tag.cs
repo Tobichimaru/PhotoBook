@@ -13,6 +13,9 @@ namespace ORM.Models
 
         [Key]
         public int TagId { get; set; }
+
+        [Required]
+        [MaxLength(50), MinLength(3)]
         public string Name { get; set; }
 
         public virtual ICollection<Photo> Photos { get; set; }

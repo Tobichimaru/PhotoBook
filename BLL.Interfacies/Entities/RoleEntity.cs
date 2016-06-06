@@ -6,11 +6,11 @@ namespace BLL.Interfacies.Entities
     {
         public RoleEntity()
         {
-            UsersIds = new HashSet<int>();
+            Users = new HashSet<UserEntity>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<int> UsersIds { get; set; }
+        public virtual ICollection<UserEntity> Users{ get; set; }
     }
 }

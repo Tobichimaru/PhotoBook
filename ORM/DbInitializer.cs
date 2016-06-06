@@ -1,8 +1,6 @@
 ﻿
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Security.Cryptography;
 using System.Web.Helpers;
 using ORM.Models;
 
@@ -12,6 +10,7 @@ namespace ORM
     {
         protected override void Seed(EntityModel context)
         {
+            //initialize roles
             var role = new Role
             {
                 Name = "User"
@@ -27,6 +26,7 @@ namespace ORM
             });
             context.SaveChanges();
 
+            //initialize Users
             var user1 = new User
             {
                 Email = "kzabelova@gmail.com",
@@ -45,13 +45,13 @@ namespace ORM
             var photo1 = new Photo
             {
                 PublisherUser = user1,
+                UserId = user1.UserId,
                 Picture = new byte[] {34, 4, 6, 1, 65, 1, 3, 6, 4},
-                UserId = user1.UserId
             };
 
+            //initialize profiles
             Profile profile1 = new Profile
             {
-                ProfileId = 1,
                 Age = 18,
                 FirstName = "Kate",
                 LastName = "Zabelova",
@@ -59,7 +59,6 @@ namespace ORM
             };
             Profile profile2 = new Profile
             {
-                ProfileId = 2,
                 Age = 18,
                 FirstName = "Serg",
                 LastName = "Kulik",

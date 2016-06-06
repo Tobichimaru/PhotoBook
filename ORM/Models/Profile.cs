@@ -8,8 +8,14 @@ namespace ORM.Models
     {
         [Key]
         public int ProfileId { get; set; }
+
+        [Required]
+        [MaxLength(50), MinLength(3)]
         public string FirstName { get; set; }
+
+        [MaxLength(50), MinLength(4)]
         public string LastName { get; set; }
+
         public int Age { get; set; }
         public DateTime LastUpdateDate { get; set; }
     }

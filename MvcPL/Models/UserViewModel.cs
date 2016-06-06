@@ -14,5 +14,7 @@ namespace MvcPL.Models
         public DateTime CreationDate { get; set; }
 
         public int RoleId { get; set; }
+
+        public string ImageToShow { get; set; }
     }
 }

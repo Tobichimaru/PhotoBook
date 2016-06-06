@@ -30,3 +30,13 @@ D:\github\epam\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.xml
 D:\github\epam\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\epam\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interfacies.dll
 D:\github\epam\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interfacies.pdb
+D:\github\PhotoBook\BLL.Interfacies\bin\Debug\BLL.Interfacies.dll.config
+D:\github\PhotoBook\BLL.Interfacies\bin\Debug\BLL.Interfacies.dll
+D:\github\PhotoBook\BLL.Interfacies\bin\Debug\BLL.Interfacies.pdb
+D:\github\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.dll
+D:\github\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.SqlServer.dll
+D:\github\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.xml
+D:\github\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.SqlServer.xml
+D:\github\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interface.csprojResolveAssemblyReference.cache
+D:\github\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interfacies.dll
+D:\github\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interfacies.pdb
