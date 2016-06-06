@@ -6,7 +6,7 @@ using ORM.Models;
 
 namespace ORM
 {
-    public class DbInitializer : DropCreateDatabaseIfModelChanges<EntityModel> //Different modes (4 types)
+    public class DbInitializer : CreateDatabaseIfNotExists<EntityModel> //Different modes (4 types)
     {
         protected override void Seed(EntityModel context)
         {

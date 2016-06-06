@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Web.Providers.Entities;
 using System.Web.Security;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
-using MvcPL.Models;
 using RoleEntity = BLL.Interfacies.Entities.RoleEntity;
 
 namespace MvcPL.Providers
@@ -23,16 +21,15 @@ namespace MvcPL.Providers
             get { return (IRoleService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService)); }
         }
 
+
         public override string ApplicationName { get; set; }
 
         public override bool IsUserInRole(string email, string roleName)
         {
             UserEntity user = UserService.GetAllEntities().FirstOrDefault(u => u.Email == email);
-
             if (user == null) return false;
 
             RoleEntity userRole = RoleService.GetById(user.RoleId);
-
             if (userRole != null && userRole.Name == roleName)
             {
                 return true;
@@ -48,8 +45,8 @@ namespace MvcPL.Providers
 
             if (user == null) return roles;
 
-            //var userRole = RoleService.GetRoleEntity(user.RoleId);
-            return new string[] {user.RoleId.ToString()};
+            var role = RoleService.GetById(user.RoleId);
+            return new string[] {role.Name};
         }
 
         public override void CreateRole(string roleName)

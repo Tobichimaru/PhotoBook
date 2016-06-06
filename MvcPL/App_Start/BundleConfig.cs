@@ -10,11 +10,7 @@ namespace MvcPL
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                "~/Scripts/jquery-ui-{version}.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                "~/Scripts/jquery.unobtrusive*",
                 "~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -26,23 +22,24 @@ namespace MvcPL
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/avatar").Include(
+                "~/Scripts/site.avatar.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jcrop").Include(
+                "~/Scripts/jquery.Jcrop.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryform").Include(
+                "~/Scripts/jquery.form.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
-                "~/Content/themes/base/jquery.ui.core.css",
-                "~/Content/themes/base/jquery.ui.resizable.css",
-                "~/Content/themes/base/jquery.ui.selectable.css",
-                "~/Content/themes/base/jquery.ui.accordion.css",
-                "~/Content/themes/base/jquery.ui.autocomplete.css",
-                "~/Content/themes/base/jquery.ui.button.css",
-                "~/Content/themes/base/jquery.ui.dialog.css",
-                "~/Content/themes/base/jquery.ui.slider.css",
-                "~/Content/themes/base/jquery.ui.tabs.css",
-                "~/Content/themes/base/jquery.ui.datepicker.css",
-                "~/Content/themes/base/jquery.ui.progressbar.css",
-                "~/Content/themes/base/jquery.ui.theme.css"));
+            bundles.Add(new StyleBundle("~/Content/jcrop").Include(
+                "~/Content/jquery.Jcrop.css"));
+
+            bundles.Add(new StyleBundle("~/Content/avatar").Include(
+                "~/Content/site.avatar.css"));
         }
     }
 }

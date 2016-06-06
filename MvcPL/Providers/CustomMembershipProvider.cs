@@ -1,13 +1,13 @@
 ﻿//Select Assemblies - > Extensions -> System.Web.Helpers
 
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Web.Helpers;
-using System.Web.Providers.Entities;
 using System.Web.Security;
 using BLL.Interfacies.Services;
 using BLL.Interfacies.Entities;
+using ProfileEntity = BLL.Interfacies.Entities.ProfileEntity;
+
 
 namespace MvcPL.Providers
 {
@@ -16,10 +16,7 @@ namespace MvcPL.Providers
     {
         public IUserService UserService
         {
-            get
-            {
-                return (IUserService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserService));
-            }
+            get { return (IUserService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserService)); }
         }
 
         public IRoleService RoleService
@@ -27,29 +24,31 @@ namespace MvcPL.Providers
             get { return (IRoleService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService)); }
         }
 
+        public IProfileService ProfileService
+        {
+            get { return (IProfileService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IProfileService)); }
+        }
+
         public MembershipUser CreateUser(string email, string password)
         {
-            //var membershipUser = GetUser(email, false);
-
-            //if (membershipUser != null)
-            //{
-            //    Debug.WriteLine("null");
-            //    return null;
-            //}
-
             UserEntity user = new UserEntity()
             {
                 Email = email,
-                Password = Crypto.HashPassword(password),
+                Password = Crypto.HashPassword(password)
                 //http://msdn.microsoft.com/ru-ru/library/system.web.helpers.crypto(v=vs.111).aspx
-                RoleId = 1
             };
 
-            //var role = RoleService.GetAllRoleEntities().FirstOrDefault(r => r.Name == "User");
-            //if (role != null)
-            //{
-            //    user.RoleId = role.Id;
-            //}
+            user.RoleId = RoleService.GetRoleByName("User").Id;
+
+            ProfileEntity profile = new ProfileEntity
+            {
+                Age = 0,
+                FirstName = email,
+                LastUpdateDate = DateTime.Now
+            };
+
+            ProfileService.Create(profile);
+            user.ProfileId = ProfileService.GetProfileByName(email).Id;
 
             UserService.Create(user);
             var membershipUser = GetUser(email, false);

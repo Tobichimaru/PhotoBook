@@ -1,41 +1,44 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Authentication Sample</title>
+    <title>@ViewBag.Title - Your photo book!</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Authentication Sample", "About", "Home", new {area = ""}, new {@class = "navbar-brand"})
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "About", "Home")</li>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("PhotoBook", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Upload Avatar", "Upload", "Avatar")</li>
+                </ul>
                 @Html.Partial("_LoginPartial")
-            </ul>
+            </div>
         </div>
     </div>
-</div>
 <div class="container body-content">
     @RenderBody()
     <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - Authentication Sample</p>
-    </footer>
 </div>
-
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", false)
+<div class="footer">
+    <p>
+        With contributions by <a href="https://github.com/Tobichimaru/PhotoBook">Tobichimaru</a>, Kate Zabelova - @DateTime.Now.Year
+    </p>
+</div>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

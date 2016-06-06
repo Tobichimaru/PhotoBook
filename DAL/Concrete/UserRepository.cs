@@ -19,7 +19,14 @@ namespace DAL.Concrete
 
         public IEnumerable<DalUser> GetAll()
         {
-            return _unitOfWork.Context.Set<User>().Select(user => user.ToDalUser());
+            return _unitOfWork.Context.Set<User>().Select(userEntity => new DalUser
+            {
+                Id = userEntity.UserId,
+                ProfileId = userEntity.UserProfileId,
+                Password = userEntity.Password,
+                Email = userEntity.Email,
+                RoleId = userEntity.RoleId
+            });
         }
 
         public DalUser GetById(int key)

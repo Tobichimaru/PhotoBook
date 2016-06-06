@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using MvcPL.Models;
 using MvcPL.Providers;
@@ -72,11 +73,11 @@ namespace MvcPL.Controllers
         {
             var anyUser = _Service.GetAllEntities().FirstOrDefault(u => u.Email == viewModel.Email);
 
-            //if (ReferenceEquals(anyUser, null))
-            //{
-            //    ModelState.AddModelError("", "User with this address already registered.");
-            //    return View(viewModel);
-            //}
+            if (!ReferenceEquals(anyUser, default(UserEntity)))
+            {
+                ModelState.AddModelError("", "User with this address already registered.");
+                return View(viewModel);
+            }
 
             if (ModelState.IsValid)
             {
