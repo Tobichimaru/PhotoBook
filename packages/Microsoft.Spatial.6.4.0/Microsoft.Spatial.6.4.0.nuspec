@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Spatial</id>
+    <version>6.4.0</version>
+    <title>Microsoft.Spatial</title>
+    <authors>Microsoft Corporation</authors>
+    <owners>Microsoft Corporation</owners>
+    <licenseUrl>http://go.microsoft.com/?linkid=9809688</licenseUrl>
+    <projectUrl>http://go.microsoft.com/fwlink/?LinkId=220868</projectUrl>
+    <iconUrl>http://static.tumblr.com/hgchgxz/9ualgdf98/icon.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Contains classes and methods that facilitate geography and geometry spatial operations. Support OData v4 only. Targets .NET Portable Lib with support for .NET 4.0, SL 5.0, Win Phone 8, and Win 8. Localized for CHS, CHT, DEU, ESN, FRA, ITA, JPN, KOR and RUS.
+OData .NET library is open source at http://odata.codeplex.com</description>
+    <summary>Contains classes and methods that facilitate geography and geometry spatial operations. Supports OData v4 only.</summary>
+    <releaseNotes>New Features 
+•        ODataLib supports write &amp; read async headers &amp; payload. 
+•        OData Client supports model reference. 
+•        OData Client supports using enum in query options &amp; operation parameter. 
+•        Improves the API of OData client for server-side paging support. 
+          Sample: 
+              NorthwindEntities ctx = new NorthwindEntities( 
+                  new Uri(@"http://services.odata.org/V4/Northwind/Northwind.svc/")); 
+              var customers = ctx.Customers.GetAllPages(); // automatically get all pages of the Customers entity set  
+              foreach (var customer in customers) 
+              { 
+                  Console.WriteLine(customer.CustomerID); 
+              } 
+
+•        ODataUriParser supports more type for ‘cast’ in $filter. 
+•        OData Client supports new async API in .NET 4.0 format. 
+          Sample: 
+              var customers = await ctx.Customers.ExecuteAsync(); 
+
+Bug Fixs 
+•        Fix a bug for top level dynamic property payload don’t have @odata.type annotation. 
+•        Fix a bug for Core annotation is not written in full namespace. For example term value will be “Org.OData.Core.V1.Description” instead of “Core.Description”.</releaseNotes>
+    <tags>wcf data services odata odatalib edmlib spatial ado.net ef entity framework open protocol wcfds wcfdataservices dataservices</tags>
+  </metadata>
+</package>

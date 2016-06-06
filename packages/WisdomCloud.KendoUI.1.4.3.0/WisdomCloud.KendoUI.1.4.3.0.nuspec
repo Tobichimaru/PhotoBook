@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>WisdomCloud.KendoUI</id>
+    <version>1.4.3.0</version>
+    <title>WisdomCloud.KendoUI</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <iconUrl>http://img30.360buyimg.com/gitwhale/s130x130_jfs/t196/188/1181712763/19705/5daed156/53a45649N066e8b56.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extentions for Kendo UI.</description>
+    <summary />
+    <copyright>Copyright © Microsoft 2014-2015</copyright>
+    <tags>WisdomCloud KendoUI</tags>
+  </metadata>
+</package>

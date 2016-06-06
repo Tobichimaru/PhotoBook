@@ -1,0 +1,57 @@
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\ORM\bin\Debug\ORM.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\ORM\bin\Debug\ORM.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\ORM\bin\Debug\EntityFramework.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\ORM\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\ORM\bin\Debug\EntityFramework.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\ORM\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\ORM\obj\Debug\ORM.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\ORM\obj\Debug\ORM.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ORM\bin\Debug\ORM.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ORM\bin\Debug\ORM.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ORM\bin\Debug\EntityFramework.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ORM\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ORM\bin\Debug\EntityFramework.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ORM\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ORM\obj\Debug\ORM.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ORM\obj\Debug\ORM.pdb
+D:\github\epam\FinalProject\ORM\bin\Debug\ORM.dll
+D:\github\epam\FinalProject\ORM\bin\Debug\ORM.pdb
+D:\github\epam\FinalProject\ORM\bin\Debug\EntityFramework.dll
+D:\github\epam\FinalProject\ORM\bin\Debug\EntityFramework.SqlServer.dll
+D:\github\epam\FinalProject\ORM\bin\Debug\EntityFramework.xml
+D:\github\epam\FinalProject\ORM\bin\Debug\EntityFramework.SqlServer.xml
+D:\github\epam\FinalProject\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
+D:\github\epam\FinalProject\ORM\obj\Debug\ORM.dll
+D:\github\epam\FinalProject\ORM\obj\Debug\ORM.pdb
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\ORM\bin\Debug\ORM.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\ORM\bin\Debug\ORM.pdb
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\ORM\bin\Debug\EntityFramework.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\ORM\bin\Debug\EntityFramework.SqlServer.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\ORM\bin\Debug\EntityFramework.xml
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\ORM\bin\Debug\EntityFramework.SqlServer.xml
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\ORM\obj\Debug\ORM.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\ORM\obj\Debug\ORM.pdb
+D:\github\epam\PhotoBook\ORM\bin\Debug\ORM.dll.config
+D:\github\epam\PhotoBook\ORM\bin\Debug\ORM.dll
+D:\github\epam\PhotoBook\ORM\bin\Debug\ORM.pdb
+D:\github\epam\PhotoBook\ORM\bin\Debug\EntityFramework.dll
+D:\github\epam\PhotoBook\ORM\bin\Debug\EntityFramework.SqlServer.dll
+D:\github\epam\PhotoBook\ORM\bin\Debug\EntityFramework.xml
+D:\github\epam\PhotoBook\ORM\bin\Debug\EntityFramework.SqlServer.xml
+D:\github\epam\PhotoBook\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
+D:\github\epam\PhotoBook\ORM\obj\Debug\ORM.dll
+D:\github\epam\PhotoBook\ORM\obj\Debug\ORM.pdb
+D:\github\epam\PhotoBook\ORM\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.Helpers.dll
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.Razor.dll
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.WebPages.dll
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.WebPages.Razor.dll
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.Helpers.xml
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.Razor.xml
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.WebPages.xml
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\github\epam\PhotoBook\ORM\bin\Debug\System.Web.WebPages.Razor.xml

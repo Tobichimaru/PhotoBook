@@ -1,0 +1,32 @@
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\BLL.Interfacies\bin\Debug\BLL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\BLL.Interfacies\bin\Debug\BLL.Interfacies.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\BLL.Interfacies\obj\Debug\BLL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\BLL.Interfacies\obj\Debug\BLL.Interfacies.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\BLL.Interfacies\bin\Debug\BLL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\BLL.Interfacies\bin\Debug\BLL.Interfacies.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\BLL.Interfacies\obj\Debug\BLL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\BLL.Interfacies\obj\Debug\BLL.Interfacies.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\BLL.Interfacies\bin\Debug\BLL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\BLL.Interfacies\bin\Debug\BLL.Interfacies.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\BLL.Interfacies\obj\Debug\BLL.Interface.csprojResolveAssemblyReference.cache
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\BLL.Interfacies\obj\Debug\BLL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\BLL.Interfacies\obj\Debug\BLL.Interfacies.pdb
+D:\github\epam\FinalProject\BLL.Interfacies\bin\Debug\BLL.Interfacies.dll
+D:\github\epam\FinalProject\BLL.Interfacies\bin\Debug\BLL.Interfacies.pdb
+D:\github\epam\FinalProject\BLL.Interfacies\obj\Debug\BLL.Interface.csprojResolveAssemblyReference.cache
+D:\github\epam\FinalProject\BLL.Interfacies\obj\Debug\BLL.Interfacies.dll
+D:\github\epam\FinalProject\BLL.Interfacies\obj\Debug\BLL.Interfacies.pdb
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\BLL.Interfacies\bin\Debug\BLL.Interfacies.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\BLL.Interfacies\bin\Debug\BLL.Interfacies.pdb
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\BLL.Interfacies\obj\Debug\BLL.Interface.csprojResolveAssemblyReference.cache
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\BLL.Interfacies\obj\Debug\BLL.Interfacies.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\BLL.Interfacies\obj\Debug\BLL.Interfacies.pdb
+D:\github\epam\PhotoBook\BLL.Interfacies\bin\Debug\BLL.Interfacies.dll.config
+D:\github\epam\PhotoBook\BLL.Interfacies\bin\Debug\BLL.Interfacies.dll
+D:\github\epam\PhotoBook\BLL.Interfacies\bin\Debug\BLL.Interfacies.pdb
+D:\github\epam\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.dll
+D:\github\epam\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.SqlServer.dll
+D:\github\epam\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.xml
+D:\github\epam\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.SqlServer.xml
+D:\github\epam\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interfacies.dll
+D:\github\epam\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interfacies.pdb

@@ -1,0 +1,131 @@
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\bin\Debug\DAL.dll
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\bin\Debug\DAL.pdb
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\obj\Debug\DAL.dll
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\obj\Debug\DAL.pdb
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\bin\Debug\EntityFramework.dll
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\bin\Debug\EntityFramework.xml
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\bin\Debug\ORM.dll
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\bin\Debug\ORM.pdb
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\bin\Debug\DAL.Interfacies.dll
+C:\Users\MIB\Desktop\RepasitoryAndUoWAndEF\DAL\bin\Debug\DAL.Interfacies.pdb
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\DAL.dll
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\DAL.pdb
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\DAL.Interfacies.dll
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\ORM.dll
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\EntityFramework.dll
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\DAL.Interfacies.pdb
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\ORM.pdb
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\EntityFramework.xml
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\obj\Debug\DAL.dll
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\obj\Debug\DAL.pdb
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\DAL.dll.config
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MIB\Desktop\RepositoryAndUoWAndEF\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.dll.config
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\ORM.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.Interfacies.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\ORM.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.dll.config
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\ORM.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.Interfacies.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\ORM.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.dll.config
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\ORM.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.Interfacies.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\ORM.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo\ProjectArchitectureDemo_1\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.dll.config
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.Interfacies.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\ORM.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\DAL.Interfacies.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\ORM.pdb
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.dll
+C:\Users\MIB\Desktop\ProjectArchitectureDemo2015\ProjectArchitectureDemo_1\DAL\obj\Debug\DAL.pdb
+D:\github\epam\FinalProject\DAL\bin\Debug\DAL.dll.config
+D:\github\epam\FinalProject\DAL\bin\Debug\DAL.dll
+D:\github\epam\FinalProject\DAL\bin\Debug\DAL.pdb
+D:\github\epam\FinalProject\DAL\bin\Debug\DAL.Interfacies.dll
+D:\github\epam\FinalProject\DAL\bin\Debug\EntityFramework.dll
+D:\github\epam\FinalProject\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\github\epam\FinalProject\DAL\bin\Debug\ORM.dll
+D:\github\epam\FinalProject\DAL\bin\Debug\DAL.Interfacies.pdb
+D:\github\epam\FinalProject\DAL\bin\Debug\ORM.pdb
+D:\github\epam\FinalProject\DAL\bin\Debug\EntityFramework.xml
+D:\github\epam\FinalProject\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\github\epam\FinalProject\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\github\epam\FinalProject\DAL\obj\Debug\DAL.dll
+D:\github\epam\FinalProject\DAL\obj\Debug\DAL.pdb
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\DAL.dll.config
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\DAL.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\DAL.pdb
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\DAL.Interfacies.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\EntityFramework.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\ORM.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\DAL.Interfacies.pdb
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\ORM.pdb
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\EntityFramework.xml
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\obj\Debug\DAL.dll
+D:\books\[actual] ASP.NET MVC Training.Spring2_2016\FinalProject\DAL\obj\Debug\DAL.pdb
+D:\github\epam\PhotoBook\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\github\epam\PhotoBook\DAL\bin\Debug\DAL.dll.config
+D:\github\epam\PhotoBook\DAL\bin\Debug\DAL.dll
+D:\github\epam\PhotoBook\DAL\bin\Debug\DAL.pdb
+D:\github\epam\PhotoBook\DAL\bin\Debug\DAL.Interfacies.dll
+D:\github\epam\PhotoBook\DAL\bin\Debug\EntityFramework.dll
+D:\github\epam\PhotoBook\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\github\epam\PhotoBook\DAL\bin\Debug\ORM.dll
+D:\github\epam\PhotoBook\DAL\bin\Debug\DAL.Interfacies.pdb
+D:\github\epam\PhotoBook\DAL\bin\Debug\ORM.pdb
+D:\github\epam\PhotoBook\DAL\bin\Debug\EntityFramework.xml
+D:\github\epam\PhotoBook\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\github\epam\PhotoBook\DAL\obj\Debug\DAL.dll
+D:\github\epam\PhotoBook\DAL\obj\Debug\DAL.pdb
+D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.Helpers.dll
+D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.WebPages.dll
+D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.Razor.dll
+D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.Helpers.xml
+D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.WebPages.xml
+D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.Razor.xml
+D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.WebPages.Deployment.xml
