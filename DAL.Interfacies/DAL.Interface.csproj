@@ -46,15 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\DalLike.cs" />
+    <Compile Include="DTO\DalPhoto.cs" />
     <Compile Include="DTO\DalProfile.cs" />
     <Compile Include="DTO\DalRole.cs" />
+    <Compile Include="DTO\DalTag.cs" />
     <Compile Include="DTO\DalUser.cs" />
     <Compile Include="DTO\IEntity.cs" />
-    <Compile Include="Repository\IProfileRepository.cs" />
+    <Compile Include="Repository\ModelRepos\IPhotoRepository.cs" />
+    <Compile Include="Repository\ModelRepos\IProfileRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\IRoleRepository.cs" />
+    <Compile Include="Repository\ModelRepos\IRoleRepository.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />
-    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Repository\ModelRepos\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

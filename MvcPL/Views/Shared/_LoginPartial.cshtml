@@ -14,6 +14,9 @@
                 @Html.ActionLink("Hello, " + User.Identity.Name + "!", "Index", "Home", null, new {title = "Manage"})
             </li>
             <li>
+                @Html.ActionLink("Open gallery", "ShowGallery", "Home")
+            </li>
+            <li>
                 <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
             </li>
         </ul>

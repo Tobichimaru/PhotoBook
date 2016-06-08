@@ -2,7 +2,9 @@
 using BLL.Interfacies.Services;
 using BLL.Services;
 using DAL.Concrete;
+using DAL.Concrete.ModelRepos;
 using DAL.Interfacies.Repository;
+using DAL.Interfacies.Repository.ModelRepos;
 using Ninject;
 using Ninject.Web.Common;
 using ORM;

@@ -15,6 +15,10 @@ namespace ORM.Models
         [Key]
         public int UserId { get; set; }
 
+        //[Required]
+        //[MaxLength(60), MinLength(4)]
+        //public string Name { get; set; }
+
         [Required]
         public string Password { get; set; } //MD5 hash
 

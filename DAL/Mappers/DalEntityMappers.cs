@@ -1,4 +1,5 @@
-﻿using DAL.Interfacies.DTO;
+﻿using System.Security.Policy;
+using DAL.Interfacies.DTO;
 using ORM.Models;
 
 namespace DAL.Mappers
@@ -7,7 +8,7 @@ namespace DAL.Mappers
     {
         public static DalUser ToDalUser(this User userEntity)
         {
-            return new DalUser
+            var user = new DalUser
             {
                 Id = userEntity.UserId,
                 ProfileId = userEntity.UserProfileId,
@@ -15,11 +16,20 @@ namespace DAL.Mappers
                 Email = userEntity.Email,
                 RoleId = userEntity.RoleId
             };
+            foreach (var item in userEntity.Photos)
+            {
+                user.Photos.Add(item.ToDalPhoto());
+            }
+            foreach (var item in userEntity.Likes)
+            {
+                user.Likes.Add(item.ToDalLike());
+            }
+            return user;
         }
 
         public static User ToOrmUser(this DalUser dalUser)
         {
-            return new User
+            var user = new User
             {
                 UserId = dalUser.Id,
                 UserProfileId = dalUser.ProfileId,
@@ -27,6 +37,15 @@ namespace DAL.Mappers
                 Email = dalUser.Email,
                 Password = dalUser.Password
             };
+            foreach (var item in dalUser.Photos)
+            {
+                user.Photos.Add(item.ToOrmPhoto());
+            }
+            foreach (var item in dalUser.Likes)
+            {
+                user.Likes.Add(item.ToOrmLike());
+            }
+            return user;
         }
 
         public static Profile ToOrmProfile(this DalProfile profile)
@@ -79,6 +98,86 @@ namespace DAL.Mappers
                 role.Users.Add(item.ToDalUser());
             }
             return role;
+        }
+
+        public static DalPhoto ToDalPhoto(this Photo orm)
+        {
+            var photo = new DalPhoto
+            {
+                Id = orm.PhotoId,
+                CreatedOn = orm.CreatedOn,
+                ImagePath = orm.ImagePath,
+                Description = orm.Description,
+                ThumbPath = orm.ThumbPath,
+                Picture = orm.Picture,
+                FullSize = orm.FullSize
+            };
+            foreach (var item in orm.Likes)
+            {
+                photo.Likes.Add(item.ToDalLike());
+            }
+            foreach (var item in orm.Tags)
+            {
+                photo.Tags.Add(item.ToDalTag());
+            }
+            return photo;
+        }
+
+        public static Photo ToOrmPhoto(this DalPhoto dal)
+        {
+            var photo = new Photo
+            {
+                PhotoId = dal.Id,
+                CreatedOn = dal.CreatedOn,
+                ImagePath = dal.ImagePath,
+                Description = dal.Description,
+                ThumbPath = dal.ThumbPath,
+                Picture = dal.Picture,
+                FullSize = dal.FullSize
+            };
+            foreach (var item in dal.Likes)
+            {
+                photo.Likes.Add(item.ToOrmLike());
+            }
+            foreach (var item in dal.Tags)
+            {
+                photo.Tags.Add(item.ToOrmTag());
+            }
+            return photo;
+        }
+
+        public static DalTag ToDalTag(this Tag tag)
+        {
+            return new DalTag
+            {
+                Id = tag.TagId,
+                Name = tag.Name
+            };
+        }
+
+        public static Tag ToOrmTag(this DalTag tag)
+        {
+            return new Tag
+            {
+                TagId = tag.Id,
+                Name = tag.Name
+            };
+        }
+
+        public static Like ToOrmLike(this DalLike like)
+        {
+            return new Like
+            {
+                LikeId = like.Id
+            };
+        }
+
+        public static DalLike ToDalLike(this Like like)
+        {
+            return new DalLike
+            {
+                Id = like.LikeId
+            };
         }
     }
 }

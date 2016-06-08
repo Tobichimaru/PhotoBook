@@ -1,12 +1,10 @@
 ﻿//Select Assemblies - > Extensions -> System.Web.Helpers
 
 using System;
-using System.Linq;
 using System.Web.Helpers;
 using System.Web.Security;
-using BLL.Interfacies.Services;
-using BLL.Interfacies.Entities;
-using ProfileEntity = BLL.Interfacies.Entities.ProfileEntity;
+using DAL.Interfacies.DTO;
+using DAL.Interfacies.Repository.ModelRepos;
 
 
 namespace MvcPL.Providers
@@ -14,50 +12,50 @@ namespace MvcPL.Providers
     //провайдер членства помогает системе идентифицировать пользователя
     public class CustomMembershipProvider : MembershipProvider
     {
-        public IUserService UserService
+        public IUserRepository UserRepository
         {
-            get { return (IUserService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserService)); }
+            get { return (IUserRepository) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserRepository)); }
         }
 
-        public IRoleService RoleService
+        public IRoleRepository RoleRepository
         {
-            get { return (IRoleService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService)); }
+            get { return (IRoleRepository)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleRepository)); }
         }
 
-        public IProfileService ProfileService
+        public IProfileRepository ProfileRepository
         {
-            get { return (IProfileService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IProfileService)); }
+            get { return (IProfileRepository)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IProfileRepository)); }
         }
 
         public MembershipUser CreateUser(string email, string password)
         {
-            UserEntity user = new UserEntity()
+            DalUser user = new DalUser()
             {
                 Email = email,
                 Password = Crypto.HashPassword(password)
                 //http://msdn.microsoft.com/ru-ru/library/system.web.helpers.crypto(v=vs.111).aspx
             };
 
-            user.RoleId = RoleService.GetRoleByName("User").Id;
+            user.RoleId = RoleRepository.GetRoleByName("User").Id;
 
-            ProfileEntity profile = new ProfileEntity
+            DalProfile profile = new DalProfile
             {
                 Age = 0,
                 FirstName = email,
                 LastUpdateDate = DateTime.Now
             };
 
-            ProfileService.Create(profile);
-            user.ProfileId = ProfileService.GetProfileByName(email).Id;
+            ProfileRepository.Create(profile);
+            user.ProfileId = ProfileRepository.GetProfileByName(email).Id;
 
-            UserService.Create(user);
+            UserRepository.Create(user);
             var membershipUser = GetUser(email, false);
             return membershipUser;
         }
 
         public override bool ValidateUser(string email, string password)
         {
-            var user = UserService.GetUserByEmail(email);
+            var user = UserRepository.GetByEmail(email);
 
             if (user != null && Crypto.VerifyHashedPassword(user.Password, password))
                 //Определяет, соответствуют ли заданный хэш RFC 2898 и пароль друг другу
@@ -69,7 +67,7 @@ namespace MvcPL.Providers
 
         public override MembershipUser GetUser(string email, bool userIsOnline)
         {
-            var user = UserService.GetUserByEmail(email);
+            var user = UserRepository.GetByEmail(email);
 
             if (user == null) return null;
 
@@ -85,7 +83,7 @@ namespace MvcPL.Providers
 
         public override string GetUserNameByEmail(string email)
         {
-            var user = UserService.GetUserByEmail(email);
+            var user = UserRepository.GetByEmail(email);
 
             if (user == null) return null;
 

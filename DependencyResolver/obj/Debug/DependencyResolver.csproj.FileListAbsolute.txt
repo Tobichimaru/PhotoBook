@@ -220,6 +220,7 @@ D:\github\epam\PhotoBook\DependencyResolver\bin\Debug\System.Web.Helpers.xml
 D:\github\epam\PhotoBook\DependencyResolver\bin\Debug\System.Web.WebPages.xml
 D:\github\epam\PhotoBook\DependencyResolver\bin\Debug\System.Web.Razor.xml
 D:\github\epam\PhotoBook\DependencyResolver\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\github\PhotoBook\DependencyResolver\obj\Debug\DependencyResolver.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\DependencyResolver\bin\Debug\DependencyResolver.dll.config
 D:\github\PhotoBook\DependencyResolver\bin\Debug\DependencyResolver.dll
 D:\github\PhotoBook\DependencyResolver\bin\Debug\DependencyResolver.pdb
@@ -249,6 +250,5 @@ D:\github\PhotoBook\DependencyResolver\bin\Debug\System.Web.Helpers.xml
 D:\github\PhotoBook\DependencyResolver\bin\Debug\System.Web.WebPages.xml
 D:\github\PhotoBook\DependencyResolver\bin\Debug\System.Web.Razor.xml
 D:\github\PhotoBook\DependencyResolver\bin\Debug\System.Web.WebPages.Deployment.xml
-D:\github\PhotoBook\DependencyResolver\obj\Debug\DependencyResolver.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\DependencyResolver\obj\Debug\DependencyResolver.dll
 D:\github\PhotoBook\DependencyResolver\obj\Debug\DependencyResolver.pdb

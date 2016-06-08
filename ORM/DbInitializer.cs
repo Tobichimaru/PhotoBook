@@ -42,13 +42,6 @@ namespace ORM
                 RoleId = role.RoleId
             };
 
-            var photo1 = new Photo
-            {
-                PublisherUser = user1,
-                UserId = user1.UserId,
-                Picture = new byte[] {34, 4, 6, 1, 65, 1, 3, 6, 4},
-            };
-
             //initialize profiles
             Profile profile1 = new Profile
             {
@@ -76,13 +69,6 @@ namespace ORM
 
             context.Users.Add(user1);
             context.Users.Add(user2);
-            context.SaveChanges();
-
-            user1.Photos.Add(photo1);
-            context.Photos.Add(photo1);
-            role.Users.Add(user1);
-            role.Users.Add(user2);
-
             context.SaveChanges();
         }
     }

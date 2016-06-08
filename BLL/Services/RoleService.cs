@@ -5,6 +5,7 @@ using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Mappers;
 using DAL.Interfacies.Repository;
+using DAL.Interfacies.Repository.ModelRepos;
 
 namespace BLL.Services
 {

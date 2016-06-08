@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
-using DAL.Interfacies.Repository;
+using DAL.Interfacies.Repository.ModelRepos;
 using DAL.Mappers;
 using ORM.Models;
 
-namespace DAL.Concrete
+namespace DAL.Concrete.ModelRepos
 {
     public class UserRepository : IUserRepository
     {
@@ -58,7 +58,7 @@ namespace DAL.Concrete
             var user = e.ToOrmUser();
             user.UserProfile = _unitOfWork.Context.Set<Profile>().Find(e.ProfileId);
             user.Role = _unitOfWork.Context.Set<Role>().Find(e.RoleId);
-            
+
             _unitOfWork.Context.Set<User>().Add(user);
             _unitOfWork.Commit();
         }
@@ -72,7 +72,8 @@ namespace DAL.Concrete
 
         public void Update(DalUser entity)
         {
-            throw new NotImplementedException();
+            Delete(GetById(entity.Id));
+            Create(entity);
         }
     }
 }

@@ -1,27 +1,54 @@
-﻿using System;
-using BLL.Interfacies.Entities;
+﻿using DAL.Interfacies.DTO;
 using MvcPL.Models;
 
 namespace MvcPL.Infrastructure.Mappers
 {
     public static class MvcMappers
     {
-        public static UserViewModel ToMvcUser(this UserEntity userEntity)
+        public static UserViewModel ToMvcUser(this DalUser user)
         {
             return new UserViewModel
             {
-                Email = userEntity.Email
+                Email = user.Email,
+                Name = user.Name,
+                Id = user.Id
             };
         }
 
-        public static UserEntity ToBllUser(this UserViewModel userViewModel)
+        public static DalUser ToDalUser(this UserViewModel userViewModel)
         {
-            var user = new UserEntity
+            return new DalUser
             {
                 Email = userViewModel.Email,
-                RoleId = userViewModel.RoleId
+                Name = userViewModel.Name,
+                Id = userViewModel.Id
             };
-            return user;
+        }
+
+        public static DalPhoto ToDalPhoto(this PhotoViewModel photo)
+        {
+            return new DalPhoto
+            {
+                CreatedOn = photo.CreatedOn,
+                Description = photo.Description,
+                ImagePath = photo.ImagePath,
+                ThumbPath = photo.ThumbPath,
+                Picture = photo.Picture,
+                FullSize = photo.FullSize
+            };
+        }
+
+        public static PhotoViewModel ToMvcPhoto(this DalPhoto photo)
+        {
+            return new PhotoViewModel
+            {
+                CreatedOn = photo.CreatedOn,
+                Description = photo.Description,
+                ImagePath = photo.ImagePath,
+                ThumbPath = photo.ThumbPath,
+                Picture = photo.Picture,
+                FullSize = photo.FullSize
+            };
         }
     }
 }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
-using DAL.Interfacies.Repository;
+using DAL.Interfacies.Repository.ModelRepos;
 using DAL.Mappers;
 using ORM.Models;
 
-namespace DAL.Concrete
+namespace DAL.Concrete.ModelRepos
 {
     public class ProfileRepository : IProfileRepository
     {

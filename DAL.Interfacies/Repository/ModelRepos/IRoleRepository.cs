@@ -1,6 +1,6 @@
 ﻿using DAL.Interfacies.DTO;
 
-namespace DAL.Interfacies.Repository
+namespace DAL.Interfacies.Repository.ModelRepos
 {
     public interface IRoleRepository : IRepository<DalRole>
     {

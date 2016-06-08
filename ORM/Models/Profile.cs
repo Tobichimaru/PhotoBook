@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Models
 {
@@ -8,6 +7,10 @@ namespace ORM.Models
     {
         [Key]
         public int ProfileId { get; set; }
+
+        //[Required]
+        //[MaxLength(60), MinLength(4)]
+        //public string UserName { get; set; }
 
         [Required]
         [MaxLength(50), MinLength(3)]

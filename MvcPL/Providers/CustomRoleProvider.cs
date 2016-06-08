@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Security;
-using BLL.Interfacies.Entities;
-using BLL.Interfacies.Services;
-using RoleEntity = BLL.Interfacies.Entities.RoleEntity;
+using DAL.Interfacies.DTO;
+using DAL.Interfacies.Repository.ModelRepos;
 
 namespace MvcPL.Providers
 {
@@ -11,14 +10,14 @@ namespace MvcPL.Providers
     //его определенные правами доступа
     public class CustomRoleProvider : RoleProvider
     {
-        public IUserService UserService
+        public IUserRepository UserRepository
         {
-            get { return (IUserService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserService)); }
+            get { return (IUserRepository) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserRepository)); }
         }
 
-        public IRoleService RoleService
+        public IRoleRepository RoleRepository
         {
-            get { return (IRoleService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService)); }
+            get { return (IRoleRepository)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleRepository)); }
         }
 
 
@@ -26,10 +25,10 @@ namespace MvcPL.Providers
 
         public override bool IsUserInRole(string email, string roleName)
         {
-            UserEntity user = UserService.GetAllEntities().FirstOrDefault(u => u.Email == email);
+            DalUser user = UserRepository.GetAll().FirstOrDefault(u => u.Email == email);
             if (user == null) return false;
 
-            RoleEntity userRole = RoleService.GetById(user.RoleId);
+            DalRole userRole = RoleRepository.GetById(user.RoleId);
             if (userRole != null && userRole.Name == roleName)
             {
                 return true;
@@ -41,18 +40,18 @@ namespace MvcPL.Providers
         public override string[] GetRolesForUser(string email)
         {
             var roles = new string[] {};
-            var user = UserService.GetAllEntities().FirstOrDefault(u => u.Email == email);
+            var user = UserRepository.GetAll().FirstOrDefault(u => u.Email == email);
 
             if (user == null) return roles;
 
-            var role = RoleService.GetById(user.RoleId);
+            var role = RoleRepository.GetById(user.RoleId);
             return new string[] {role.Name};
         }
 
         public override void CreateRole(string roleName)
         {
-            var newRole = new RoleEntity {Name = roleName};
-            RoleService.Create(newRole);
+            var newRole = new DalRole { Name = roleName };
+            RoleRepository.Create(newRole);
         }
 
         #region Stabs

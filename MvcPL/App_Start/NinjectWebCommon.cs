@@ -52,15 +52,15 @@ namespace MvcPL
             var kernel = new StandardKernel();
             kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-            RegisterServices(kernel);
+            RegisterRepositorys(kernel);
             return kernel;
         }
 
         /// <summary>
-        ///     Load your modules or register your services here!
+        ///     Load your modules or register your Repositorys here!
         /// </summary>
         /// <param name="kernel">The kernel.</param>
-        private static void RegisterServices(IKernel kernel)
+        private static void RegisterRepositorys(IKernel kernel)
         {
             System.Web.Mvc.DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }

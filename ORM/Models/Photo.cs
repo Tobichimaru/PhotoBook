@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Models
 {
@@ -15,17 +15,21 @@ namespace ORM.Models
         [Key]
         public int PhotoId { get; set; }
 
-        [MaxLength(250)] 
-        public string Description { get; set; }
-
+        [Display(Name = "Description")]
         [Required]
+        public String Description { get; set; }
+
+        [Display(Name = "Image Path")]
+        public String ImagePath { get; set; }
+
+        [Display(Name = "Thumb Path")]
+        public String ThumbPath { get; set; }
+
+        [Display(Name = "Created On")]
+        public DateTime CreatedOn { get; set; }
+
         public byte[] Picture { get; set; }
-
-        [Required]
-        public int UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual User PublisherUser { get; set; }
+        public byte[] FullSize { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Like> Likes { get; set; }

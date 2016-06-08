@@ -1,10 +1,7 @@
-﻿using System.IO;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
-using BLL.Interfacies.Entities;
-using BLL.Interfacies.Services;
+using DAL.Interfacies.Repository.ModelRepos;
 using MvcPL.Models;
 using MvcPL.Providers;
 
@@ -13,11 +10,11 @@ namespace MvcPL.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly IUserService _Service;
+        private readonly IUserRepository _model;
 
-        public AccountController(IUserService Service)
+        public AccountController(IUserRepository model)
         {
-            _Service = Service;
+            _model = model;
         }
 
         [AllowAnonymous]
@@ -71,9 +68,9 @@ namespace MvcPL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel viewModel)
         {
-            var anyUser = _Service.GetAllEntities().FirstOrDefault(u => u.Email == viewModel.Email);
+            var anyUser = _model.GetAll().FirstOrDefault(u => u.Email == viewModel.Email);
 
-            if (!ReferenceEquals(anyUser, default(UserEntity)))
+            if (!ReferenceEquals(anyUser, null))
             {
                 ModelState.AddModelError("", "User with this address already registered.");
                 return View(viewModel);

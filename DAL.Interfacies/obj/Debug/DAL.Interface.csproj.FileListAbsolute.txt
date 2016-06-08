@@ -43,6 +43,6 @@ D:\github\PhotoBook\DAL.Interfacies\bin\Debug\EntityFramework.dll
 D:\github\PhotoBook\DAL.Interfacies\bin\Debug\EntityFramework.SqlServer.dll
 D:\github\PhotoBook\DAL.Interfacies\bin\Debug\EntityFramework.xml
 D:\github\PhotoBook\DAL.Interfacies\bin\Debug\EntityFramework.SqlServer.xml
-D:\github\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interface.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interfacies.dll
 D:\github\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interfacies.pdb
+D:\github\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interface.csprojResolveAssemblyReference.cache
