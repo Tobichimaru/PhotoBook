@@ -174,8 +174,6 @@
     <Content Include="Content\blueimp-gallery2\js\vendor\jquery.js" />
     <Content Include="Content\blueimp-gallery2\___install.txt" />
     <Content Include="Content\blueimp-gallery2\___version.txt" />
-    <Content Include="Content\bootstrap-image-gallery.css" />
-    <Content Include="Content\bootstrap-image-gallery.min.css" />
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\jquery.Jcrop.css" />
     <Content Include="Content\jquery.Jcrop.min.css" />
@@ -216,12 +214,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Scripts\bootstrap-image-gallery.js" />
-    <Content Include="Scripts\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\bootstrap-image-gallery.min.css.map" />
-    <Content Include="Scripts\bootstrap-image-gallery.min.js.map" />
     <Content Include="Content\blueimp-gallery2\js\jquery.blueimp-gallery.min.js.map" />
     <Content Include="Content\blueimp-gallery2\js\blueimp-gallery.min.js.map" />
     <Content Include="Content\blueimp-gallery2\css\blueimp-gallery.min.css.map" />
