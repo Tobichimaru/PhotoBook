@@ -20,15 +20,22 @@ namespace MvcPL
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/avatar").Include(
-                "~/Scripts/site.avatar.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/jcrop").Include(
                 "~/Scripts/jquery.Jcrop.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryform").Include(
                 "~/Scripts/jquery.form.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/blueimp").Include(
+                "~/Content/blueimp-gallery2/js/blueimp-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-blueimp").Include(
+                "~/Content/blueimp-gallery2/js/jquery.*"));
+
+
+            bundles.Add(new StyleBundle("~/Content/blueimp").Include(
+                "~/Content/blueimp-gallery2/css/blueimp-*"));
+            
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
@@ -37,8 +44,7 @@ namespace MvcPL
             bundles.Add(new StyleBundle("~/Content/jcrop").Include(
                 "~/Content/jquery.Jcrop.css"));
 
-            bundles.Add(new StyleBundle("~/Content/avatar").Include(
-                "~/Content/site.avatar.css"));
+            
         }
     }
 }

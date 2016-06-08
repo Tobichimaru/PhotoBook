@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Ans.Mvc5.BlueimpGallery</id>
+    <version>2.21.2</version>
+    <title>Ans.Mvc5.BlueimpGallery</title>
+    <authors>Roman Koff</authors>
+    <owners>Roman Koff</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ASP.Net MVC5 package for blueimp/Gallery (https://github.com/blueimp/Gallery)</description>
+    <summary />
+  </metadata>
+</package>

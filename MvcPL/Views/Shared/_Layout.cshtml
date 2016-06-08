@@ -6,8 +6,13 @@
     <title>@ViewBag.Title - Your photo book!</title>
     <link rel="shortcut icon" type="image/ico" href="~/Content/Images/favicon.ico">
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/blueimp")
+
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/blueimp");
+    @Scripts.Render("~/bundles/jquery-blueimp");
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -38,10 +43,7 @@
             With contributions by <a href="https://github.com/Tobichimaru/PhotoBook">Tobichimaru</a>, Kate Zabelova - @DateTime.Now.Year
         </p>
     </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
-    <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>
