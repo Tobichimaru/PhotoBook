@@ -50,5 +50,29 @@ namespace MvcPL.Infrastructure.Mappers
                 FullSize = photo.FullSize
             };
         }
+
+        public static DalProfile ToDalProfile(this ProfileViewModel model)
+        {
+            return new DalProfile
+            {
+                Age = model.Age,
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                LastUpdateDate = model.LastUpdateDate
+            };
+        }
+
+        public static ProfileViewModel ToMvcProfile(this DalProfile model)
+        {
+            return new ProfileViewModel
+            {
+                Age = model.Age,
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                LastUpdateDate = model.LastUpdateDate
+            };
+        }
     }
 }

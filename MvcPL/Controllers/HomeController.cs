@@ -31,19 +31,6 @@ namespace MvcPL.Controllers
             return View(model);
         }
 
-        public ActionResult About()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                ViewBag.AuthType = User.Identity.AuthenticationType;
-            }
-            ViewBag.Login = User.Identity.Name;
-            ViewBag.IsAdminInRole = User.IsInRole("Administrator")
-                ? "You have administrator rights."
-                : "You do not have administrator rights.";
-
-            return View();
-        }
 
         [Authorize(Roles = "Administrator")]
         public ActionResult UsersEdit()
@@ -56,7 +43,17 @@ namespace MvcPL.Controllers
             return View(model);
         }
 
-        public ActionResult ShowGallery(string filter = null, int page = 1, int pageSize = 20)
+        public ActionResult UserPage()
+        {
+            var model = new UserPageModel
+            {
+                photos = ShowGallery(),
+                profile = _repository.GetByEmail(User.Identity.Name).Profile.ToMvcProfile()
+            };
+            return View(model);
+        }
+
+        public PagedList<PhotoViewModel> ShowGallery(string filter = null, int page = 1, int pageSize = 20)
         {
             var records = new PagedList<PhotoViewModel>();
             records.Content = new List<PhotoViewModel>();
@@ -79,8 +76,7 @@ namespace MvcPL.Controllers
 
             records.CurrentPage = page;
             records.PageSize = pageSize;
-
-            return View(records);
+            return records;
         }
 
         [HttpGet]
@@ -108,32 +104,14 @@ namespace MvcPL.Controllers
                 if (file.ContentLength == 0) continue;
 
                 model.Description = photo.Description;
-                var fileName = Guid.NewGuid().ToString();
-                var s = Path.GetExtension(file.FileName);
-                if (s != null)
+                using (var img = Image.FromStream(file.InputStream))
                 {
-                    var extension = s.ToLower();
+                    Image cutImage = CutImage(img);
+                    model.Picture = imageToByteArray(cutImage);
 
-                    using (var img = Image.FromStream(file.InputStream))
-                    {
-                        model.ThumbPath = String.Format("/GalleryImages/thumbs/{0}{1}", fileName, extension);
-                        model.ImagePath = String.Format("/GalleryImages/{0}{1}", fileName, extension);
-                        model.FullSize = imageToByteArray(img);
-
-                        Size newSize = new Size(100, 100);
-                        Size imgSize = NewImageSize(img.Size, newSize);
-                        model.Picture = imageToByteArray(new Bitmap(img, imgSize.Width, imgSize.Height));
-
-                        newSize = new Size(600, 600);
-                        imgSize = NewImageSize(img.Size, newSize);
-                        model.FullSize = imageToByteArray(new Bitmap(img, imgSize.Width, imgSize.Height));
-
-                        // Save thumbnail size image, 100 x 100
-                        SaveToFolder(img, fileName, extension, new Size(100, 100), model.ThumbPath);
-
-                        // Save large size image, 800 x 800
-                        SaveToFolder(img, fileName, extension, new Size(600, 600), model.ImagePath);
-                    }
+                    var newSize = new Size(600, 600);
+                    var imgSize = NewImageSize(img.Size, newSize);
+                    model.FullSize = imageToByteArray(new Bitmap(img, imgSize.Width, imgSize.Height));
                 }
 
                 // Save record to database
@@ -143,7 +121,19 @@ namespace MvcPL.Controllers
                 _repository.Update(user);
             }
 
-            return RedirectPermanent("/Home/ShowGallery");
+            return RedirectPermanent("/Home/UserPage");
+        }
+
+        public Image CutImage(Image target)
+        {
+            Bitmap bmpImage = new Bitmap(target);
+            int size = Math.Min(target.Width, target.Height);
+            var rect = new Rectangle((target.Width - size)/2, (target.Height - size)/2, size, size);
+            var img = bmpImage.Clone(rect, bmpImage.PixelFormat);
+            
+            var newSize = new Size(300, 300);
+            var imgSize = NewImageSize(img.Size, newSize);
+            return new Bitmap(img, imgSize.Width, imgSize.Height);
         }
 
         public Size NewImageSize(Size imageSize, Size newSize)
@@ -164,17 +154,6 @@ namespace MvcPL.Controllers
 
             return finalSize;
         }
-
-        private void SaveToFolder(Image img, string fileName, string extension, Size newSize, string pathToSave)
-        {
-            // Get new resolution
-            Size imgSize = NewImageSize(img.Size, newSize);
-            using (Image newImg = new Bitmap(img, imgSize.Width, imgSize.Height))
-            {
-                newImg.Save(Server.MapPath(pathToSave), img.RawFormat);
-            }
-        }
-
         private byte[] imageToByteArray(Image imageIn)
         {
             using (var ms = new MemoryStream())

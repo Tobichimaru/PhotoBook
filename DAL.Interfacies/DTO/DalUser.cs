@@ -17,5 +17,6 @@ namespace DAL.Interfacies.DTO
         public int RoleId { get; set; }
         public virtual ICollection<DalPhoto> Photos { get; set; }
         public virtual ICollection<DalLike> Likes { get; set; }
+        public DalProfile Profile { get; set; }
     }
 }

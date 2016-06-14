@@ -10,15 +10,12 @@
             {
                 <li>@Html.ActionLink("Users edit", "UsersEdit", "Home")</li>
             }
-            <li>
-                @Html.ActionLink("Hello, " + User.Identity.Name + "!", "Index", "Home", null, new {title = "Manage"})
-            </li>
-            <li>
-                @Html.ActionLink("Open gallery", "ShowGallery", "Home")
-            </li>
-            <li>
-                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-            </li>
+            <li><a href='@Url.Action("UserPage", "Home")'>
+                <img src='@Url.Content("~/Content/Images/user.ico")' />
+            </a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">
+                <img src='@Url.Content("~/Content/Images/quit.ico")' />
+            </a></li>
         </ul>
     }
 }

@@ -175,6 +175,9 @@
     <Content Include="Content\blueimp-gallery2\___install.txt" />
     <Content Include="Content\blueimp-gallery2\___version.txt" />
     <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\logo.ico" />
+    <Content Include="Content\Images\quit.ico" />
+    <Content Include="Content\Images\user.ico" />
     <Content Include="Content\jquery.Jcrop.css" />
     <Content Include="Content\jquery.Jcrop.min.css" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -187,22 +190,19 @@
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\PagedList.cs" />
     <Compile Include="Models\PhotoViewModel.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
+    <Compile Include="Models\UserPageModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CustomMembershipProvider.cs" />
     <Compile Include="Providers\CustomRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\PhotoBook.mdf" />
-    <Content Include="App_Data\PhotoBook_log.ldf">
-      <DependentUpon>PhotoBook.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -261,7 +261,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\UsersEdit.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -269,9 +268,11 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\ShowGallery.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Home\UserPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GalleryImages\Thumbs\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

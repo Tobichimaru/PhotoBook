@@ -14,7 +14,8 @@ namespace DAL.Mappers
                 ProfileId = userEntity.UserProfileId,
                 Password = userEntity.Password,
                 Email = userEntity.Email,
-                RoleId = userEntity.RoleId
+                RoleId = userEntity.RoleId,
+                Profile = userEntity.UserProfile.ToDalProfile()
             };
             foreach (var item in userEntity.Photos)
             {
@@ -35,7 +36,8 @@ namespace DAL.Mappers
                 UserProfileId = dalUser.ProfileId,
                 RoleId = dalUser.RoleId,
                 Email = dalUser.Email,
-                Password = dalUser.Password
+                Password = dalUser.Password,
+                UserProfile = dalUser.Profile.ToOrmProfile()
             };
             foreach (var item in dalUser.Photos)
             {
