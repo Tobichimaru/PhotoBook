@@ -53,6 +53,27 @@ namespace MvcPL.Controllers
             return View(model);
         }
 
+
+        [HttpGet]
+        public ActionResult ProfileEdit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ProfileEdit(ProfileEditModel viewModel)
+        {
+            var user = _repository.GetByEmail(User.Identity.Name);
+            var profile = user.Profile;
+            profile.FirstName = viewModel.FirstName;
+            profile.LastName = viewModel.LastName;
+            profile.Age = viewModel.Age;
+            profile.LastUpdateDate = viewModel.LastUpdateDate;
+            user.Profile = profile;
+            _repository.Update(user);
+            return RedirectPermanent("/Home/UserPage");
+        }
+
         public PagedList<PhotoViewModel> ShowGallery(string filter = null, int page = 1, int pageSize = 20)
         {
             var records = new PagedList<PhotoViewModel>();

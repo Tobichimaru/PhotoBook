@@ -47,15 +47,13 @@ namespace ORM
             {
                 Age = 18,
                 FirstName = "Kate",
-                LastName = "Zabelova",
-                LastUpdateDate = DateTime.Now
+                LastName = "Zabelova"
             };
             Profile profile2 = new Profile
             {
                 Age = 18,
                 FirstName = "Serg",
-                LastName = "Kulik",
-                LastUpdateDate = DateTime.Now
+                LastName = "Kulik"
             };
 
             context.Profiles.Add(profile1);

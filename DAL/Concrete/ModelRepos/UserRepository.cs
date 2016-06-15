@@ -56,7 +56,7 @@ namespace DAL.Concrete.ModelRepos
         public void Create(DalUser e)
         {
             var user = e.ToOrmUser();
-            user.UserProfile = _unitOfWork.Context.Set<Profile>().Find(e.ProfileId);
+            _unitOfWork.Context.Set<Profile>().Add(user.UserProfile);
             user.Role = _unitOfWork.Context.Set<Role>().Find(e.RoleId);
 
             _unitOfWork.Context.Set<User>().Add(user);
@@ -66,6 +66,15 @@ namespace DAL.Concrete.ModelRepos
         public void Delete(DalUser e) //implement 
         {
             var user = _unitOfWork.Context.Set<User>().Single(u => u.UserId == e.Id);
+            //foreach (var photo in user.Photos)
+            //{
+            //    _unitOfWork.Context.Set<Photo>().Remove(photo);
+            //}
+            //foreach (var like in user.Likes)
+            //{
+            //    _unitOfWork.Context.Set<Like>().Remove(like);
+            //}
+            _unitOfWork.Context.Set<Profile>().Remove(user.UserProfile);
             _unitOfWork.Context.Set<User>().Remove(user);
             _unitOfWork.Commit();
         }

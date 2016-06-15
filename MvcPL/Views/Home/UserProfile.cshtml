@@ -1,7 +1,10 @@
 ﻿@model MvcPL.Models.ProfileViewModel
-<div class="row">
-    <span class="panel-body">First Name: @Model.FirstName</span>
-    <span class="panel-body">Last Name: @Model.LastName</span>
-    <span class="panel-body">Age: @Model.Age</span>
-    <span class="panel-body">Last Update Date: @Model.LastUpdateDate</span>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <span class="panel-body">First Name: @Model.FirstName</span>
+        <span class="panel-body">Last Name: @Model.LastName</span>
+        <span class="panel-body">Age: @Model.Age</span>
+        @Html.ActionLink("Edit Profile", "ProfileEdit", "Home", null, new { @class = "navbar-brand" })
+    </div>
 </div>
+    

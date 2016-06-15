@@ -20,6 +20,5 @@ namespace ORM.Models
         public string LastName { get; set; }
 
         public int Age { get; set; }
-        public DateTime LastUpdateDate { get; set; }
     }
 }

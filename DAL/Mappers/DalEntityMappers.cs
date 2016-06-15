@@ -57,8 +57,7 @@ namespace DAL.Mappers
                 ProfileId = profile.Id,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
-                Age = profile.Age,
-                LastUpdateDate = profile.LastUpdateDate
+                Age = profile.Age
             };
         }
 
@@ -69,8 +68,7 @@ namespace DAL.Mappers
                 Id = profile.ProfileId,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
-                Age = profile.Age,
-                LastUpdateDate = profile.LastUpdateDate
+                Age = profile.Age
             };
         }
 

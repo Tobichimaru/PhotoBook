@@ -28,6 +28,5 @@ namespace MvcPL.Models
         [DataType(DataType.Date)]
         public DateTime AddedDate { get; set; }
 
-        public string AvatarPath { get; set; }
     }
 }

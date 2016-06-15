@@ -19,7 +19,13 @@ namespace DAL.Concrete.ModelRepos
 
         public IEnumerable<DalProfile> GetAll()
         {
-            return _unitOfWork.Context.Set<Profile>().Select(profile => profile.ToDalProfile());
+            return _unitOfWork.Context.Set<Profile>().Select(profile => new DalProfile()
+            {
+                Id = profile.ProfileId,
+                FirstName = profile.FirstName,
+                LastName = profile.LastName,
+                Age = profile.Age
+            });
         }
 
         public DalProfile GetById(int key)
@@ -56,7 +62,8 @@ namespace DAL.Concrete.ModelRepos
 
         public void Update(DalProfile entity)
         {
-            throw new NotImplementedException();
+            Delete(GetById(entity.Id));
+            Create(entity);
         }
 
         public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> f)

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Security;
 using DAL.Interfacies.Repository.ModelRepos;
+using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
 using MvcPL.Providers;
 

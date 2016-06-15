@@ -58,8 +58,7 @@ namespace MvcPL.Infrastructure.Mappers
                 Age = model.Age,
                 Id = model.Id,
                 FirstName = model.FirstName,
-                LastName = model.LastName,
-                LastUpdateDate = model.LastUpdateDate
+                LastName = model.LastName
             };
         }
 
@@ -70,8 +69,7 @@ namespace MvcPL.Infrastructure.Mappers
                 Age = model.Age,
                 Id = model.Id,
                 FirstName = model.FirstName,
-                LastName = model.LastName,
-                LastUpdateDate = model.LastUpdateDate
+                LastName = model.LastName
             };
         }
     }
