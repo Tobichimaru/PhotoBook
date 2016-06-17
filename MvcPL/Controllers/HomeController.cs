@@ -23,12 +23,15 @@ namespace MvcPL.Controllers
 
         public ActionResult Index()
         {
-            var model = _repository.GetAll().Select(u => new UserViewModel
-            {
-                Email = u.Email
-            });
+            var model = _repository.GetAll();
+            PagedList<PhotoViewModel> photoList = new PagedList<PhotoViewModel>();
+            photoList.Content = new List<PhotoViewModel>();
+            model.ToList().ForEach(i => i.Photos.ToList().ForEach(p => photoList.Content.Add(p.ToMvcPhoto())));
+            photoList.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
+            photoList.PageSize = 20;
+            photoList.CurrentPage = 1;
 
-            return View(model);
+            return View(photoList);
         }
 
 

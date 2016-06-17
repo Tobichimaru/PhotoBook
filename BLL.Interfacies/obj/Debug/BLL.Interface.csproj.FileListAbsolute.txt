@@ -39,3 +39,4 @@ D:\github\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.xml
 D:\github\PhotoBook\BLL.Interfacies\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interfacies.dll
 D:\github\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interfacies.pdb
+D:\github\PhotoBook\BLL.Interfacies\obj\Debug\BLL.Interface.csprojResolveAssemblyReference.cache

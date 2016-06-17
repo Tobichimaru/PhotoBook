@@ -25,7 +25,28 @@ namespace DAL.Concrete.ModelRepos
                 ProfileId = userEntity.UserProfileId,
                 Password = userEntity.Password,
                 Email = userEntity.Email,
-                RoleId = userEntity.RoleId
+                RoleId = userEntity.RoleId,
+                Likes = userEntity.Likes.Select(l => new DalLike
+                {
+                    Id = l.LikeId
+                }).ToList(),
+                Photos = userEntity.Photos.Select(p => new DalPhoto
+                {
+                    Id = p.PhotoId,
+                    CreatedOn = p.CreatedOn,
+                    Description = p.Description,
+                    Picture = p.Picture,
+                    FullSize = p.FullSize,
+                    Likes = p.Likes.Select(l => new DalLike
+                    {
+                        Id = l.LikeId
+                    }).ToList(),
+                    Tags = p.Tags.Select(t => new DalTag
+                    {
+                        Id = t.TagId,
+                        Name = t.Name
+                    }).ToList()
+                }).ToList()
             });
         }
 
