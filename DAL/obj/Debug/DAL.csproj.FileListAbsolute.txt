@@ -129,8 +129,6 @@ D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.Helpers.xml
 D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.WebPages.xml
 D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.Razor.xml
 D:\github\epam\PhotoBook\DAL\bin\Debug\System.Web.WebPages.Deployment.xml
-D:\github\PhotoBook\DAL\obj\Debug\DAL.pdb
-D:\github\PhotoBook\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\DAL\bin\Debug\DAL.dll.config
 D:\github\PhotoBook\DAL\bin\Debug\DAL.dll
 D:\github\PhotoBook\DAL\bin\Debug\DAL.pdb
@@ -150,4 +148,6 @@ D:\github\PhotoBook\DAL\bin\Debug\System.Web.Helpers.xml
 D:\github\PhotoBook\DAL\bin\Debug\System.Web.WebPages.xml
 D:\github\PhotoBook\DAL\bin\Debug\System.Web.Razor.xml
 D:\github\PhotoBook\DAL\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\github\PhotoBook\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\DAL\obj\Debug\DAL.dll
+D:\github\PhotoBook\DAL\obj\Debug\DAL.pdb

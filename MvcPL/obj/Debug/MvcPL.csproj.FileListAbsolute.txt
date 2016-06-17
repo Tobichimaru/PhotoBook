@@ -443,7 +443,6 @@ D:\github\epam\PhotoBook\MvcPL\bin\ORM.pdb
 D:\github\epam\PhotoBook\MvcPL\bin\BLL.pdb
 D:\github\epam\PhotoBook\MvcPL\obj\Debug\MvcPL.dll
 D:\github\epam\PhotoBook\MvcPL\obj\Debug\MvcPL.pdb
-D:\github\PhotoBook\MvcPL\obj\Debug\MvcPL.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\MvcPL\bin\MvcPL.dll.config
 D:\github\PhotoBook\MvcPL\bin\MvcPL.dll
 D:\github\PhotoBook\MvcPL\bin\MvcPL.pdb
@@ -496,5 +495,6 @@ D:\github\PhotoBook\MvcPL\bin\DAL.pdb
 D:\github\PhotoBook\MvcPL\bin\ORM.pdb
 D:\github\PhotoBook\MvcPL\bin\BLL.Interfacies.pdb
 D:\github\PhotoBook\MvcPL\bin\BLL.pdb
+D:\github\PhotoBook\MvcPL\obj\Debug\MvcPL.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\MvcPL\obj\Debug\MvcPL.dll
 D:\github\PhotoBook\MvcPL\obj\Debug\MvcPL.pdb

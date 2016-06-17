@@ -58,6 +58,18 @@ namespace MvcPL.Infrastructure.Mappers
                 Age = model.Age,
                 Id = model.Id,
                 FirstName = model.FirstName,
+                LastName = model.LastName,
+                Avatar = model.Avatar
+            };
+        }
+
+        public static DalProfile ToDalProfile(this ProfileEditModel model)
+        {
+            return new DalProfile
+            {
+                Age = model.Age,
+                Id = model.Id,
+                FirstName = model.FirstName,
                 LastName = model.LastName
             };
         }
@@ -69,7 +81,8 @@ namespace MvcPL.Infrastructure.Mappers
                 Age = model.Age,
                 Id = model.Id,
                 FirstName = model.FirstName,
-                LastName = model.LastName
+                LastName = model.LastName,
+                Avatar = model.Avatar
             };
         }
     }

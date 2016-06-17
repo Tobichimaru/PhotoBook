@@ -57,7 +57,8 @@ namespace DAL.Mappers
                 ProfileId = profile.Id,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
-                Age = profile.Age
+                Age = profile.Age,
+                Avatar = profile.Avatar
             };
         }
 
@@ -68,7 +69,8 @@ namespace DAL.Mappers
                 Id = profile.ProfileId,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
-                Age = profile.Age
+                Age = profile.Age,
+                Avatar = profile.Avatar
             };
         }
 
@@ -106,9 +108,7 @@ namespace DAL.Mappers
             {
                 Id = orm.PhotoId,
                 CreatedOn = orm.CreatedOn,
-                ImagePath = orm.ImagePath,
                 Description = orm.Description,
-                ThumbPath = orm.ThumbPath,
                 Picture = orm.Picture,
                 FullSize = orm.FullSize
             };
@@ -129,9 +129,7 @@ namespace DAL.Mappers
             {
                 PhotoId = dal.Id,
                 CreatedOn = dal.CreatedOn,
-                ImagePath = dal.ImagePath,
                 Description = dal.Description,
-                ThumbPath = dal.ThumbPath,
                 Picture = dal.Picture,
                 FullSize = dal.FullSize
             };

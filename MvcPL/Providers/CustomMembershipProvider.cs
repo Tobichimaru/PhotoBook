@@ -40,13 +40,12 @@ namespace MvcPL.Providers
 
             DalProfile profile = new DalProfile
             {
-                Age = 0,
-                FirstName = email,
-                LastUpdateDate = DateTime.Now
+                FirstName = email
             };
 
             ProfileRepository.Create(profile);
             user.ProfileId = ProfileRepository.GetProfileByName(email).Id;
+            user.Profile = profile;
 
             UserRepository.Create(user);
             var membershipUser = GetUser(email, false);

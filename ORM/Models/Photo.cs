@@ -19,12 +19,6 @@ namespace ORM.Models
         [Required]
         public String Description { get; set; }
 
-        [Display(Name = "Image Path")]
-        public String ImagePath { get; set; }
-
-        [Display(Name = "Thumb Path")]
-        public String ThumbPath { get; set; }
-
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
 

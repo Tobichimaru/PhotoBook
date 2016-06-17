@@ -7,18 +7,19 @@
     <link rel="shortcut icon" type="image/ico" href="~/Content/Images/logo.ico">
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/blueimp")
-
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/blueimp")
     @Scripts.Render("~/bundles/jquery-blueimp")
+
 </head>
 <body>
     <div class="navbar navbar-default">
         <div class="container" id="navbar-container">
             <div class="navbar-left">
-                @Html.ActionLink("PhotoBook", "Index", "Home", null, new {@class = "navbar-brand"})
+                @Html.ActionLink("PhotoBook", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-right">
                 @Html.Partial("_LoginPartial")

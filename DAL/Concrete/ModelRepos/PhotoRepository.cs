@@ -30,16 +30,6 @@ namespace DAL.Concrete.ModelRepos
             return null;
         }
 
-        public DalPhoto GetPhotoByPath(string path)
-        {
-            var orm = _unitOfWork.Context.Set<Photo>().FirstOrDefault(photo => photo.ImagePath == path);
-            if (!ReferenceEquals(orm, null))
-            {
-                return orm.ToDalPhoto();
-            }
-            return null;
-        }
-
         public void Create(DalPhoto e)
         {
             var photo = e.ToOrmPhoto();

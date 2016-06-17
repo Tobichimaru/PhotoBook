@@ -24,7 +24,8 @@ namespace DAL.Concrete.ModelRepos
                 Id = profile.ProfileId,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
-                Age = profile.Age
+                Age = profile.Age,
+                Avatar = profile.Avatar
             });
         }
 

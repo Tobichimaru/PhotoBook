@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace DAL.Interfacies.DTO
 {
     public class DalProfile : IEntity
@@ -8,6 +7,6 @@ namespace DAL.Interfacies.DTO
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
-        public DateTime LastUpdateDate { get; set; }
+        public byte[] Avatar { get; set; }
     }
 }

@@ -61,15 +61,28 @@ namespace MvcPL.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProfileEdit(ProfileEditModel viewModel)
+        public ActionResult ProfileEdit(ProfileEditModel viewModel, HttpPostedFileBase file)
         {
             var user = _repository.GetByEmail(User.Identity.Name);
             var profile = user.Profile;
-            profile.FirstName = viewModel.FirstName;
-            profile.LastName = viewModel.LastName;
-            profile.Age = viewModel.Age;
-            profile.LastUpdateDate = viewModel.LastUpdateDate;
+            if (file != null && file.ContentLength > 0)
+            {
+                MemoryStream target = new MemoryStream();
+                file.InputStream.CopyTo(target);
+                var byteArrayIn = target.ToArray();
+                Image image = null;
+                using (var ms = new MemoryStream(byteArrayIn))
+                {
+                    image = Image.FromStream(ms);
+                }
+                profile.Avatar = imageToByteArray(CutImage(image, 150, 150));
+            }
+
+            profile.FirstName = viewModel.FirstName ?? profile.FirstName;
+            profile.LastName = viewModel.LastName ?? profile.LastName;
+            profile.Age = viewModel.Age == 0? profile.Age : viewModel.Age;
             user.Profile = profile;
+
             _repository.Update(user);
             return RedirectPermanent("/Home/UserPage");
         }
@@ -127,7 +140,7 @@ namespace MvcPL.Controllers
                 model.Description = photo.Description;
                 using (var img = Image.FromStream(file.InputStream))
                 {
-                    Image cutImage = CutImage(img);
+                    Image cutImage = CutImage(img, 300, 300);
                     model.Picture = imageToByteArray(cutImage);
 
                     var newSize = new Size(600, 600);
@@ -145,14 +158,14 @@ namespace MvcPL.Controllers
             return RedirectPermanent("/Home/UserPage");
         }
 
-        public Image CutImage(Image target)
+        public Image CutImage(Image target, int width, int height)
         {
             Bitmap bmpImage = new Bitmap(target);
             int size = Math.Min(target.Width, target.Height);
             var rect = new Rectangle((target.Width - size)/2, (target.Height - size)/2, size, size);
             var img = bmpImage.Clone(rect, bmpImage.PixelFormat);
-            
-            var newSize = new Size(300, 300);
+
+            var newSize = new Size(width, height);
             var imgSize = NewImageSize(img.Size, newSize);
             return new Bitmap(img, imgSize.Width, imgSize.Height);
         }

@@ -1,10 +1,28 @@
 ﻿@model MvcPL.Models.ProfileViewModel
 <div class="panel panel-default">
     <div class="panel-body">
-        <span class="panel-body">First Name: @Model.FirstName</span>
-        <span class="panel-body">Last Name: @Model.LastName</span>
-        <span class="panel-body">Age: @Model.Age</span>
-        @Html.ActionLink("Edit Profile", "ProfileEdit", "Home", null, new { @class = "navbar-brand" })
-    </div>
+        <div class="row" style="display: table">
+            <div style="display: table-cell;">
+                @{
+                    if (Model.Avatar != null)
+                    {
+                        var base64 = Convert.ToBase64String(Model.Avatar);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        <img src="@imgSrc" alt="Avatar" class="circular" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/Images/avatar.png" alt="Avatar" class="circular" style="margin-bottom: 7px;" />
+                    }
+                }
+            </div>
+            <div style="display: table-cell">
+                <p>First Name: @Model.FirstName</p>
+                <p>Last Name: @Model.LastName</p>
+                <p>Age: @Model.Age</p>
+                @Html.ActionLink("Edit Profile", "ProfileEdit", "Home", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+</div>
 </div>
     

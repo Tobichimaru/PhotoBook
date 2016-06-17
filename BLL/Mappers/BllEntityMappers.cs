@@ -36,8 +36,7 @@ namespace BLL.Mappers
                 Id = profileEntity.Id,
                 FirstName = profileEntity.FirstName,
                 LastName = profileEntity.LastName,
-                Age = profileEntity.Age,
-                LastUpdateDate = profileEntity.LastUpdateDate
+                Age = profileEntity.Age
             };
         }
 
@@ -48,8 +47,7 @@ namespace BLL.Mappers
                 Id = dalProfile.Id,
                 FirstName = dalProfile.FirstName,
                 LastName = dalProfile.LastName,
-                Age = dalProfile.Age,
-                LastUpdateDate = dalProfile.LastUpdateDate
+                Age = dalProfile.Age
             };
         }
 

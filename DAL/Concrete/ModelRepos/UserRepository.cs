@@ -55,8 +55,16 @@ namespace DAL.Concrete.ModelRepos
 
         public void Create(DalUser e)
         {
+            Profile profile;
+            profile = e.Profile == null ? new Profile() : e.Profile.ToOrmProfile();
+            if ( _unitOfWork.Context.Set<Profile>().Find(e.ProfileId) == null)
+            {
+                _unitOfWork.Context.Set<Profile>().Add(profile);
+            }
+            e.ProfileId = profile.ProfileId;
+            e.Profile = profile.ToDalProfile();
+
             var user = e.ToOrmUser();
-            _unitOfWork.Context.Set<Profile>().Add(user.UserProfile);
             user.Role = _unitOfWork.Context.Set<Role>().Find(e.RoleId);
 
             _unitOfWork.Context.Set<User>().Add(user);
