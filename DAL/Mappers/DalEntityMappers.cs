@@ -8,6 +8,7 @@ namespace DAL.Mappers
 {
     public static class DalEntityMappers
     {
+        #region User
         public static DalUser ToDalUser(this User userEntity)
         {
             return new DalUser
@@ -18,8 +19,7 @@ namespace DAL.Mappers
                 Email = userEntity.Email,
                 RoleId = userEntity.RoleId,
                 Profile = userEntity.UserProfile.ToDalProfile(),
-                Photos = userEntity.Photos.ToDalPhotos(),
-                Likes = userEntity.Likes.ToDalLikes()
+                UserName = userEntity.UserName
             };
         }
 
@@ -33,11 +33,12 @@ namespace DAL.Mappers
                 Email = dalUser.Email,
                 Password = dalUser.Password,
                 UserProfile = dalUser.Profile.ToOrmProfile(),
-                Photos = dalUser.Photos.ToOrmPhotos(),
-                Likes = dalUser.Likes.ToOrmLikes()
+                UserName = dalUser.UserName
             };
         }
+        #endregion
 
+        #region Profile
         public static Profile ToOrmProfile(this DalProfile profile)
         {
             return new Profile
@@ -46,7 +47,10 @@ namespace DAL.Mappers
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Age = profile.Age,
-                Avatar = profile.Avatar
+                Avatar = profile.Avatar,
+                UserName = profile.UserName,
+                Photos = profile.Photos.ToOrmPhotos(),
+                Likes = profile.Likes.ToOrmLikes()
             };
         }
 
@@ -58,10 +62,15 @@ namespace DAL.Mappers
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Age = profile.Age,
-                Avatar = profile.Avatar
+                Avatar = profile.Avatar,
+                UserName = profile.UserName,
+                Photos = profile.Photos.ToDalPhotos(),
+                Likes = profile.Likes.ToDalLikes()
             };
         }
+        #endregion
 
+        #region Role
         public static Role ToOrmRole(this DalRole role)
         {
             var orm = new Role
@@ -89,7 +98,9 @@ namespace DAL.Mappers
             }
             return role;
         }
+        #endregion
 
+        #region Photo
         public static DalPhoto ToDalPhoto(this Photo orm)
         {
             return new DalPhoto
@@ -137,7 +148,9 @@ namespace DAL.Mappers
             }
             return newPhotos;
         }
+        #endregion
 
+        #region Tag
         public static DalTag ToDalTag(this Tag tag)
         {
             return new DalTag
@@ -175,7 +188,9 @@ namespace DAL.Mappers
                 Name = tag.Name
             };
         }
+        #endregion
 
+        #region Like
         public static Like ToOrmLike(this DalLike like)
         {
             return new Like
@@ -191,7 +206,6 @@ namespace DAL.Mappers
                 Id = like.LikeId
             };
         }
-
 
         public static ICollection<DalLike> ToDalLikes(this ICollection<Like> likes)
         {
@@ -213,5 +227,6 @@ namespace DAL.Mappers
             }
             return newLikes;
         }
+        #endregion
     }
 }

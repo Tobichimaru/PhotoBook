@@ -27,34 +27,26 @@ namespace MvcPL.Providers
             get { return (IProfileRepository)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IProfileRepository)); }
         }
 
-        public MembershipUser CreateUser(string email, string password)
+        public MembershipUser CreateUser(string email, string name, string password)
         {
-            DalUser user = new DalUser()
+            DalUser user = new DalUser
             {
                 Email = email,
-                Password = Crypto.HashPassword(password)
+                UserName = name,
+                Password = Crypto.HashPassword(password),
+                RoleId = RoleRepository.GetRoleByName("User").Id
                 //http://msdn.microsoft.com/ru-ru/library/system.web.helpers.crypto(v=vs.111).aspx
             };
 
-            user.RoleId = RoleRepository.GetRoleByName("User").Id;
-
-            DalProfile profile = new DalProfile
-            {
-                FirstName = email
-            };
-
-            ProfileRepository.Create(profile);
-            user.ProfileId = ProfileRepository.GetProfileByName(email).Id;
-            user.Profile = profile;
 
             UserRepository.Create(user);
-            var membershipUser = GetUser(email, false);
+            var membershipUser = GetUser(name, false);
             return membershipUser;
         }
 
-        public override bool ValidateUser(string email, string password)
+        public override bool ValidateUser(string name, string password)
         {
-            var user = UserRepository.GetByEmail(email);
+            var user = UserRepository.GetByName(name);
 
             if (user != null && Crypto.VerifyHashedPassword(user.Password, password))
                 //Определяет, соответствуют ли заданный хэш RFC 2898 и пароль друг другу
@@ -64,13 +56,13 @@ namespace MvcPL.Providers
             return false;
         }
 
-        public override MembershipUser GetUser(string email, bool userIsOnline)
+        public override MembershipUser GetUser(string name, bool userIsOnline)
         {
-            var user = UserRepository.GetByEmail(email);
+            var user = UserRepository.GetByName(name);
 
             if (user == null) return null;
 
-            var memberUser = new MembershipUser("CustomMembershipProvider", user.Email,
+            var memberUser = new MembershipUser("CustomMembershipProvider", user.UserName,
                 null, null, null, null,
                 false, false, default(DateTime), 
                 DateTime.MinValue, DateTime.MinValue,
@@ -86,7 +78,7 @@ namespace MvcPL.Providers
 
             if (user == null) return null;
 
-            var memberUser = new MembershipUser("CustomMembershipProvider", user.Email,
+            var memberUser = new MembershipUser("CustomMembershipProvider", user.UserName,
                 null, null, null, null,
                 false, false, default(DateTime),
                 DateTime.MinValue, DateTime.MinValue,

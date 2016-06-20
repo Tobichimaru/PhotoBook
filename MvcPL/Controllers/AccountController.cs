@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Web.Security;
 using DAL.Interfacies.Repository.ModelRepos;
-using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
 using MvcPL.Providers;
 
@@ -34,10 +33,10 @@ namespace MvcPL.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(Membership.GetUserNameByEmail(viewModel.Email), viewModel.Password))
+                if (Membership.ValidateUser(viewModel.Name, viewModel.Password))
                 //Проверяет учетные данные пользователя и управляет параметрами пользователей
                 {
-                    FormsAuthentication.SetAuthCookie(viewModel.Email, viewModel.RememberMe);
+                    FormsAuthentication.SetAuthCookie(viewModel.Name, viewModel.RememberMe);
                     //Управляет службами проверки подлинности с помощью форм для веб-приложений
                     if (Url.IsLocalUrl(returnUrl))
                     {
@@ -69,22 +68,25 @@ namespace MvcPL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel viewModel)
         {
-            var anyUser = _model.GetAll().FirstOrDefault(u => u.Email == viewModel.Email);
-
-            if (!ReferenceEquals(anyUser, null))
+            if (_model.GetAll().FirstOrDefault(u => u.Email == viewModel.Email) != null)
             {
                 ModelState.AddModelError("", "User with this address already registered.");
+                return View(viewModel);
+            }
+            if (_model.GetAll().FirstOrDefault(u => u.UserName == viewModel.Name) != null)
+            {
+                ModelState.AddModelError("", "User with this name already registered.");
                 return View(viewModel);
             }
 
             if (ModelState.IsValid)
             {
                 var membershipUser = ((CustomMembershipProvider)Membership.Provider)
-                    .CreateUser(viewModel.Email, viewModel.Password);
+                    .CreateUser(viewModel.Email, viewModel.Name, viewModel.Password);
 
                 if (membershipUser != null)
                 {
-                    FormsAuthentication.SetAuthCookie(viewModel.Email, false);
+                    FormsAuthentication.SetAuthCookie(viewModel.Name, false);
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Error registration.");

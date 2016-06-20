@@ -10,11 +10,16 @@
             {
                 <li>@Html.ActionLink("Users edit", "UsersEdit", "Home")</li>
             }
-            <li><a href='@Url.Action("UserPage", "Home")'>
+            <li>
+                <a href='@Url.Action("Create", "Profile")'>
+                    <img src='@Url.Content("~/Content/Images/photo.ico")' />
+                </a>
+            </li>
+            <li><a href='@Url.Action("UserPage", "Profile", new {name = User.Identity.Name})'>
                 <img src='@Url.Content("~/Content/Images/user.ico")' />
             </a></li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">
-                <img src='@Url.Content("~/Content/Images/quit.ico")' />
+                <img src='@Url.Content("~/Content/Images/quit.ico")'/>
             </a></li>
         </ul>
     }

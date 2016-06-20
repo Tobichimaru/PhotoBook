@@ -32,14 +32,16 @@ namespace ORM
                 Email = "kzabelova@gmail.com",
                 Password = Crypto.HashPassword("12345"),
                 Role = role,
-                RoleId = role.RoleId
+                RoleId = role.RoleId,
+                UserName = "katezabelova"
             };
             var user2 = new User
             {
                 Email = "xsergey@gmail.com",
                 Password = Crypto.HashPassword("qwerty"),
                 Role = role,
-                RoleId = role.RoleId
+                RoleId = role.RoleId,
+                UserName = "sergey"
             };
 
             //initialize profiles
@@ -47,13 +49,15 @@ namespace ORM
             {
                 Age = 18,
                 FirstName = "Kate",
-                LastName = "Zabelova"
+                LastName = "Zabelova",
+                UserName = "katezabelova"
             };
             Profile profile2 = new Profile
             {
                 Age = 18,
                 FirstName = "Serg",
-                LastName = "Kulik"
+                LastName = "Kulik",
+                UserName = "sergey"
             };
 
             context.Profiles.Add(profile1);

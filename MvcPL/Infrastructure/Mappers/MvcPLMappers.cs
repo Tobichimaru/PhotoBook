@@ -1,16 +1,20 @@
-﻿using DAL.Interfacies.DTO;
+﻿using System.Collections.Generic;
+using System.Text;
+using DAL.Interfacies.DTO;
 using MvcPL.Models;
+using MvcPL.Models.Photo;
 
 namespace MvcPL.Infrastructure.Mappers
 {
     public static class MvcMappers
     {
+        #region User
         public static UserViewModel ToMvcUser(this DalUser user)
         {
             return new UserViewModel
             {
                 Email = user.Email,
-                Name = user.Name,
+                Name = user.UserName,
                 Id = user.Id
             };
         }
@@ -20,11 +24,41 @@ namespace MvcPL.Infrastructure.Mappers
             return new DalUser
             {
                 Email = userViewModel.Email,
-                Name = userViewModel.Name,
+                UserName = userViewModel.Name,
                 Id = userViewModel.Id
             };
         }
+        #endregion
 
+        #region Tag
+
+        public static ICollection<DalTag> ToDalTags(this string tags)
+        {
+            var names = tags.Split(' ');
+            ICollection<DalTag> newTags = new List<DalTag>();
+            foreach (var name in names)
+            {
+                newTags.Add(new DalTag
+                {
+                    Name = name
+                });
+            }
+            return newTags;
+        }
+
+        public static string ToMvcTags(this ICollection<DalTag> tags)
+        {
+            StringBuilder newTags = new StringBuilder();
+            foreach (var tag in tags)
+            {
+                newTags.Append(tag.Name + " ");
+            }
+            return newTags.ToString();
+        }
+
+        #endregion
+
+        #region Photo
         public static DalPhoto ToDalPhoto(this PhotoViewModel photo)
         {
             return new DalPhoto
@@ -34,7 +68,8 @@ namespace MvcPL.Infrastructure.Mappers
                 ImagePath = photo.ImagePath,
                 ThumbPath = photo.ThumbPath,
                 Picture = photo.Picture,
-                FullSize = photo.FullSize
+                FullSize = photo.FullSize,
+                //Tags = photo.Tags.ToDalTags()
             };
         }
 
@@ -47,10 +82,13 @@ namespace MvcPL.Infrastructure.Mappers
                 ImagePath = photo.ImagePath,
                 ThumbPath = photo.ThumbPath,
                 Picture = photo.Picture,
-                FullSize = photo.FullSize
+                FullSize = photo.FullSize,
+                //Tags = photo.Tags.ToMvcTags()
             };
         }
+        #endregion
 
+        #region Profile
         public static DalProfile ToDalProfile(this ProfileViewModel model)
         {
             return new DalProfile
@@ -59,21 +97,11 @@ namespace MvcPL.Infrastructure.Mappers
                 Id = model.Id,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Avatar = model.Avatar
+                Avatar = model.Avatar,
+                UserName = model.UserName
             };
         }
-
-        public static DalProfile ToDalProfile(this ProfileEditModel model)
-        {
-            return new DalProfile
-            {
-                Age = model.Age,
-                Id = model.Id,
-                FirstName = model.FirstName,
-                LastName = model.LastName
-            };
-        }
-
+        
         public static ProfileViewModel ToMvcProfile(this DalProfile model)
         {
             return new ProfileViewModel
@@ -82,8 +110,11 @@ namespace MvcPL.Infrastructure.Mappers
                 Id = model.Id,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Avatar = model.Avatar
+                Avatar = model.Avatar,
+                UserName = model.UserName
             };
         }
+        #endregion
+
     }
 }

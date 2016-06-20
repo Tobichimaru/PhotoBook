@@ -1,6 +1,4 @@
 ﻿
-using System.Collections.Generic;
-
 namespace DAL.Interfacies.DTO
 {
     public class DalTag : IEntity

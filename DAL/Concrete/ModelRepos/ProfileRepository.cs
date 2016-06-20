@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
@@ -39,7 +41,7 @@ namespace DAL.Concrete.ModelRepos
 
         public DalProfile GetProfileByName(string name)
         {
-            var orm = _unitOfWork.Context.Set<Profile>().FirstOrDefault(profile => profile.FirstName == name);
+            var orm = _unitOfWork.Context.Set<Profile>().FirstOrDefault(profile => profile.UserName == name);
             if (!ReferenceEquals(orm, null))
             {
                 return orm.ToDalProfile();
@@ -63,8 +65,23 @@ namespace DAL.Concrete.ModelRepos
 
         public void Update(DalProfile entity)
         {
-            Delete(GetById(entity.Id));
-            Create(entity);
+            var profile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == entity.UserName);
+            foreach (var photo in entity.Photos)
+            {
+                var ormPhoto = photo.ToOrmPhoto();
+                _unitOfWork.Context.Set<Photo>().AddOrUpdate(ormPhoto);
+                if (!profile.Photos.Contains(ormPhoto))
+                {
+                    profile.Photos.Add(ormPhoto);
+                }
+            }
+            if (entity.FirstName != null) profile.FirstName = entity.FirstName;
+            if (entity.LastName != null) profile.LastName = entity.LastName;
+            if (entity.Age != 0) profile.Age = entity.Age;
+            if (entity.Avatar != null) profile.Avatar = entity.Avatar;
+
+            _unitOfWork.Context.Set<Profile>().AddOrUpdate(profile);
+            _unitOfWork.Commit();
         }
 
         public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> f)

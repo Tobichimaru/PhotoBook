@@ -1,4 +1,6 @@
-﻿namespace MvcPL.Models
+﻿using MvcPL.Models.Photo;
+
+namespace MvcPL.Models
 {
     public class UserPageModel
     {

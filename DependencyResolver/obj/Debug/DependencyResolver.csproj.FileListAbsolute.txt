@@ -220,6 +220,7 @@ D:\github\epam\PhotoBook\DependencyResolver\bin\Debug\System.Web.Helpers.xml
 D:\github\epam\PhotoBook\DependencyResolver\bin\Debug\System.Web.WebPages.xml
 D:\github\epam\PhotoBook\DependencyResolver\bin\Debug\System.Web.Razor.xml
 D:\github\epam\PhotoBook\DependencyResolver\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\github\PhotoBook\DependencyResolver\bin\Debug\EntityFramework.xml
 D:\github\PhotoBook\DependencyResolver\bin\Debug\DependencyResolver.dll.config
 D:\github\PhotoBook\DependencyResolver\bin\Debug\DependencyResolver.dll
 D:\github\PhotoBook\DependencyResolver\bin\Debug\DependencyResolver.pdb
@@ -241,7 +242,6 @@ D:\github\PhotoBook\DependencyResolver\bin\Debug\BLL.pdb
 D:\github\PhotoBook\DependencyResolver\bin\Debug\DAL.Interfacies.pdb
 D:\github\PhotoBook\DependencyResolver\bin\Debug\DAL.pdb
 D:\github\PhotoBook\DependencyResolver\bin\Debug\ORM.pdb
-D:\github\PhotoBook\DependencyResolver\bin\Debug\EntityFramework.xml
 D:\github\PhotoBook\DependencyResolver\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\PhotoBook\DependencyResolver\bin\Debug\Ninject.xml
 D:\github\PhotoBook\DependencyResolver\bin\Debug\Ninject.Web.Common.xml

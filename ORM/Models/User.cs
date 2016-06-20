@@ -6,18 +6,13 @@ namespace ORM.Models
 {
     public class User
     {
-        public User()
-        {
-            Photos = new HashSet<Photo>();
-            Likes = new HashSet<Like>();
-        }
 
         [Key]
         public int UserId { get; set; }
 
-        //[Required]
-        //[MaxLength(60), MinLength(4)]
-        //public string Name { get; set; }
+        [Required]
+        [MaxLength(60), MinLength(4)]
+        public string UserName { get; set; }
 
         [Required]
         public string Password { get; set; } //MD5 hash
@@ -36,7 +31,5 @@ namespace ORM.Models
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
 
-        public virtual ICollection<Photo> Photos { get; set; }
-        public virtual ICollection<Like> Likes { get; set; }
     }
 }
