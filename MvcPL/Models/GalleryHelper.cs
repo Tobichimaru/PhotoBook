@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using MvcPL.Models.Photo;
 
 namespace MvcPL.Models
 {
@@ -44,6 +46,18 @@ namespace MvcPL.Models
                 imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
                 return ms.ToArray();
             }
+        }
+
+        public static List<PhotoViewModel> GetList(PagedList<PhotoViewModel> Model, int page)
+        {
+            Model.CurrentPage = page;
+            int n = Math.Min(Model.Content.Count, Model.PageSize*Model.CurrentPage);
+            List<PhotoViewModel> list = new List<PhotoViewModel>();
+            for (int i = 0; i < n; i++)
+            {
+                list.Add(Model.Content[i]);
+            }
+            return list;
         }
     }
 }

@@ -17,7 +17,6 @@ namespace MvcPL.Models
         public string LastName { get; set; }
 
         [Display(Name = "Enter your age")]
-        [RangeAttribute(5, 120, ErrorMessage = "Invalid value")]
         public int Age { get; set; }
 
         [Display(Name = "Upload new avatar")]

@@ -29,9 +29,22 @@ namespace MvcPL.Controllers
             {
                 return View("Error");
             }
+
+            var records = new PagedList<PhotoViewModel>();
+            records.Content = new List<PhotoViewModel>();
+            foreach (var item in _repository.GetProfileByName(name).Photos)
+            {
+                records.Content.Add(item.ToMvcPhoto(null));
+            }
+
+            // Count
+            records.TotalRecords = _repository.GetProfileByName(name).Photos.Count;
+            records.CurrentPage = 1;
+            records.PageSize = 12;
+
             var model = new UserPageModel
             {
-                photos = ShowGallery(name),
+                photos = records,
                 profile = profile.ToMvcProfile()
             };
             return View(model);
@@ -67,30 +80,7 @@ namespace MvcPL.Controllers
             _repository.Update(profile);
             return RedirectToAction("UserPage", new {name = profile.UserName});
         }
-
-        public PagedList<PhotoViewModel> ShowGallery(string name, int page = 1, int pageSize = 20)
-        {
-            var records = new PagedList<PhotoViewModel>();
-            records.Content = new List<PhotoViewModel>();
-            
-            var ans = _repository.GetProfileByName(name).Photos
-                .OrderByDescending(x => x.Id)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-            foreach (var item in ans)
-            {
-                records.Content.Add(item.ToMvcPhoto());
-            }
-
-            // Count
-            records.TotalRecords = _repository.GetProfileByName(name).Photos.Count;
-            records.CurrentPage = page;
-            records.PageSize = pageSize;
-            return records;
-        }
-
-
+        
         [HttpGet]
         public ActionResult Create()
         {
@@ -104,7 +94,8 @@ namespace MvcPL.Controllers
             if (!ModelState.IsValid)
                 return View(photo);
 
-            if (!files.Any() || files.FirstOrDefault() == null)
+            var httpPostedFileBases = files as HttpPostedFileBase[] ?? files.ToArray();
+            if (!httpPostedFileBases.Any() || httpPostedFileBases.FirstOrDefault() == null)
             {
                 ViewBag.error = "Please choose a file";
                 return View(photo);
@@ -113,7 +104,7 @@ namespace MvcPL.Controllers
             var model = new PhotoViewModel();
             var profile = _repository.GetProfileByName(User.Identity.Name);
 
-            foreach (var file in files)
+            foreach (var file in httpPostedFileBases)
             {
                 if (file.ContentLength == 0) continue;
 

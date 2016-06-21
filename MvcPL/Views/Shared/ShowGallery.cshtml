@@ -1,5 +1,6 @@
-﻿@model MvcPL.Models.PagedList<MvcPL.Models.Photo.PhotoViewModel>
-<h2>Image Gallery</h2>  
+﻿@using MvcPL.Models
+@model MvcPL.Models.PagedList<MvcPL.Models.Photo.PhotoViewModel>
+<h2>Image Gallery</h2>
 <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
     <!-- The container for the modal slides -->
@@ -30,44 +31,22 @@
                         <i class="glyphicon glyphicon-chevron-right"></i>
                     </button>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
 </div>
-
 <div style="margin-top: 17px;">
     <div id="links">
-        @foreach (var item in Model.Content)
-        {
-            var base64 = Convert.ToBase64String(item.Picture);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-
-            var fullbase64 = Convert.ToBase64String(item.FullSize);
-            var fullimgSrc = String.Format("data:image/gif;base64,{0}", fullbase64);
-
-            <a href="@fullimgSrc" title="@item.Description" class="gallery-link" data-gallery>
-                <img src="@imgSrc" alt="@item.Description" class="img-rounded" style="margin-bottom: 7px;"/>
-                <text>@item.Tags</text>
-            </a>
-            
+        @{
+            Html.RenderPartial("Links", new GalleryLinksModel
+            {
+                page = 1,
+                count = Model.Content.Count,
+                pageSize = Model.PageSize,
+                photos = GalleryHelper.GetList(Model, Model.CurrentPage)
+            });
         }
     </div>
 </div>
 
-<div>
-    @{
-        var grid = new WebGrid(
-                    canPage: true,
-                    rowsPerPage: Model.PageSize,
-                    canSort: true,
-                    ajaxUpdateContainerId: "grid");
-
-        grid.Bind(Model.Content, rowCount: Model.TotalRecords, autoSortAndPage: false);
-        grid.Pager(WebGridPagerModes.All);
-
-        @grid.GetHtml(htmlAttributes: new { id = "grid" },
-        fillEmptyRows: false,
-        mode: WebGridPagerModes.All,
-        columns: grid.Columns());
-    }
-</div>
+    

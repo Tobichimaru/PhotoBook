@@ -1,0 +1,35 @@
+﻿@model MvcPL.Models.GalleryLinksModel
+
+<div id="links">
+    @{
+        foreach (var item in Model.photos)
+        {
+            var base64 = Convert.ToBase64String(item.Picture);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+            var fullbase64 = Convert.ToBase64String(item.FullSize);
+            var fullimgSrc = String.Format("data:image/gif;base64,{0}", fullbase64);
+            <div style="width: 330px; display: inline-block">
+                <a href="@fullimgSrc" title="@item.Description" class="gallery-link" data-gallery>
+                    <img src="@imgSrc" alt="@item.Description" class="img-rounded" style="margin-bottom: 7px;"/>
+                </a>
+                <div style="padding: 0 15px">
+                    <p>
+                        @item.CreatedOn.ToString("F") by <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})">@item.UserName</a>
+                    </p>
+                </div>
+            </div>
+        }
+    }
+    <div style="text-align: center">
+        @if (Model.pageSize*Model.page <= Model.count)
+        {
+            using (Ajax.BeginForm("LinksView", "Home", new {page = ++Model.page},
+            new AjaxOptions {UpdateTargetId = "links", InsertionMode = InsertionMode.ReplaceWith}))
+            {
+                <input type="submit" value="Show more" class="btn btn-default btn-circle"/>
+            }
+        }
+    </div>
+</div>
+

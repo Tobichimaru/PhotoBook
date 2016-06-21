@@ -1,5 +1,4 @@
 ﻿
-using System;
 using System.Data.Entity;
 using System.Web.Helpers;
 using ORM.Models;
@@ -29,35 +28,35 @@ namespace ORM
             //initialize Users
             var user1 = new User
             {
-                Email = "kzabelova@gmail.com",
-                Password = Crypto.HashPassword("12345"),
-                Role = role,
-                RoleId = role.RoleId,
-                UserName = "katezabelova"
-            };
-            var user2 = new User
-            {
-                Email = "xsergey@gmail.com",
+                Email = "arya.stark@gmail.com",
                 Password = Crypto.HashPassword("qwerty"),
                 Role = role,
                 RoleId = role.RoleId,
-                UserName = "sergey"
+                UserName = "arya_stark"
+            };
+            var user2 = new User
+            {
+                Email = "sansa.stark@gmail.com",
+                Password = Crypto.HashPassword("qwerty"),
+                Role = role,
+                RoleId = role.RoleId,
+                UserName = "sansa_stark"
             };
 
             //initialize profiles
             Profile profile1 = new Profile
             {
-                Age = 18,
-                FirstName = "Kate",
-                LastName = "Zabelova",
-                UserName = "katezabelova"
+                Age = 12,
+                FirstName = "Arya",
+                LastName = "Stark",
+                UserName = user1.UserName
             };
             Profile profile2 = new Profile
             {
-                Age = 18,
-                FirstName = "Serg",
-                LastName = "Kulik",
-                UserName = "sergey"
+                Age = 15,
+                FirstName = "Sansa",
+                LastName = "Stark",
+                UserName = user2.UserName
             };
 
             context.Profiles.Add(profile1);

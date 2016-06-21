@@ -10,11 +10,12 @@ namespace MvcPL.Models
 
         [Display(Name = "Enter your e-mail")]
         [Required(ErrorMessage = "The field can not be empty!")]
-        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Некорректный email")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Invalid email")]
         public string Email { get; set; }
 
         [Display(Name = "Enter your name")]
         [Required(ErrorMessage = "The field can not be empty!")]
+        [RegularExpression("[A-Za-z0-9]", ErrorMessage = "Invalid name")]
         [StringLengthAttribute(50, ErrorMessage = "The name must contain at lest {2} characters", MinimumLength = 4)]
         public string Name { get; set; }
 

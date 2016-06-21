@@ -68,12 +68,12 @@ namespace MvcPL.Infrastructure.Mappers
                 ImagePath = photo.ImagePath,
                 ThumbPath = photo.ThumbPath,
                 Picture = photo.Picture,
-                FullSize = photo.FullSize,
+                FullSize = photo.FullSize
                 //Tags = photo.Tags.ToDalTags()
             };
         }
 
-        public static PhotoViewModel ToMvcPhoto(this DalPhoto photo)
+        public static PhotoViewModel ToMvcPhoto(this DalPhoto photo, string name)
         {
             return new PhotoViewModel
             {
@@ -83,6 +83,7 @@ namespace MvcPL.Infrastructure.Mappers
                 ThumbPath = photo.ThumbPath,
                 Picture = photo.Picture,
                 FullSize = photo.FullSize,
+                UserName = name
                 //Tags = photo.Tags.ToMvcTags()
             };
         }

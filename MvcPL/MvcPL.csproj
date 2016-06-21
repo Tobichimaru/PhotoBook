@@ -191,7 +191,9 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMappers.cs" />
     <Compile Include="Models\GalleryHelper.cs" />
+    <Compile Include="Models\GalleryLinksModel.cs" />
     <Compile Include="Models\Photo\CreatePhotoModel.cs" />
+    <Compile Include="Models\Serializer.cs" />
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\User\LogOnViewModel.cs" />
     <Compile Include="Models\PagedList.cs" />
@@ -228,6 +230,7 @@
     <Content Include="Content\blueimp-gallery2\css\blueimp-gallery.min.css.map" />
     <Content Include="Content\blueimp-gallery2\css\blueimp-gallery.less" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\content.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
@@ -278,6 +281,7 @@
     <Content Include="Views\Profile\UserProfile.cshtml" />
     <Content Include="Views\Profile\UserPage.cshtml" />
     <Content Include="Views\Profile\ProfileEdit.cshtml" />
+    <Content Include="Views\Shared\Links.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

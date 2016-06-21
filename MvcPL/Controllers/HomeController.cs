@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -32,12 +33,12 @@ namespace MvcPL.Controllers
             {
                 foreach (var photo in user.Profile.Photos)
                 {
-                    photoList.Content.Add(photo.ToMvcPhoto());
+                    photoList.Content.Add(photo.ToMvcPhoto(user.Profile.UserName));
                 }
             }
 
             photoList.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
-            photoList.PageSize = 20;
+            photoList.PageSize = 12;
             photoList.CurrentPage = 1;
 
             return View(photoList);
@@ -53,6 +54,36 @@ namespace MvcPL.Controllers
             });
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult LinksView(int page)
+        {
+            var model = _repository.GetAll();
+            PagedList<PhotoViewModel> photoList = new PagedList<PhotoViewModel>();
+            photoList.Content = new List<PhotoViewModel>();
+
+            foreach (var user in model)
+            {
+                foreach (var photo in user.Profile.Photos)
+                {
+                    photoList.Content.Add(photo.ToMvcPhoto(user.Profile.UserName));
+                }
+            }
+
+            photoList.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
+            photoList.PageSize = 12;
+            photoList.CurrentPage = page;
+
+            List<PhotoViewModel> result = GalleryHelper.GetList(photoList, page);
+
+            return PartialView("Links", new GalleryLinksModel
+            {
+                page = page,
+                photos = result,
+                count = photoList.Content.Count,
+                pageSize = photoList.PageSize,
+            });
         }
     }
 }
