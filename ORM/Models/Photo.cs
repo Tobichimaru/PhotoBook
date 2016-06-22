@@ -15,10 +15,6 @@ namespace ORM.Models
         [Key]
         public int PhotoId { get; set; }
 
-        [Display(Name = "Description")]
-        [Required]
-        public String Description { get; set; }
-
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
 

@@ -59,6 +59,7 @@ namespace DAL.Concrete.ModelRepos
         public void Delete(DalProfile e)
         {
             var profile = _unitOfWork.Context.Set<Profile>().Single(u => u.ProfileId == e.Id);
+           
             _unitOfWork.Context.Set<Profile>().Remove(profile);
             _unitOfWork.Commit();
         }
@@ -68,13 +69,50 @@ namespace DAL.Concrete.ModelRepos
             var profile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == entity.UserName);
             foreach (var photo in entity.Photos)
             {
-                var ormPhoto = photo.ToOrmPhoto();
-                _unitOfWork.Context.Set<Photo>().AddOrUpdate(ormPhoto);
-                if (!profile.Photos.Contains(ormPhoto))
+                foreach (var tag in photo.Tags)
                 {
-                    profile.Photos.Add(ormPhoto);
+                    if (_unitOfWork.Context.Set<Tag>().FirstOrDefault(p => p.Name == tag.Name) == null)
+                    {
+                        _unitOfWork.Context.Set<Tag>().Add(tag.ToOrmTag());
+                    }
+                }
+                _unitOfWork.Commit();
+
+                foreach (var tag in photo.Tags)
+                {
+                    var dbtag = _unitOfWork.Context.Set<Tag>().FirstOrDefault(p => p.Name == tag.Name);
+                    tag.Id = dbtag.TagId;
+                }
+
+                foreach (var like in photo.Likes)
+                {
+                    if (_unitOfWork.Context.Set<Like>().FirstOrDefault(p => p.PhotoId == like.PhotoId && p.UserName == profile.UserName) == null)
+                    {
+                        _unitOfWork.Context.Set<Like>().Add(like.ToOrmLike());
+                    }
+                }
+                _unitOfWork.Commit();
+
+                foreach (var like in photo.Likes)
+                {
+                    var dblike =
+                        _unitOfWork.Context.Set<Like>()
+                            .FirstOrDefault(p => p.PhotoId == like.PhotoId && p.UserName == profile.UserName);
+                    like.Id = dblike.LikeId;
+                }
+
+                var dbphoto = _unitOfWork.Context.Set<Photo>().FirstOrDefault(p => p.PhotoId == photo.Id);
+                if (dbphoto == null)
+                {
+                    _unitOfWork.Context.Set<Photo>().Add(photo.ToOrmPhoto());
+                }
+
+                if (profile.Photos.FirstOrDefault(p => p.PhotoId == photo.Id) == null)
+                {
+                    profile.Photos.Add(photo.ToOrmPhoto());
                 }
             }
+
             if (entity.FirstName != null) profile.FirstName = entity.FirstName;
             if (entity.LastName != null) profile.LastName = entity.LastName;
             if (entity.Age != 0) profile.Age = entity.Age;

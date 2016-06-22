@@ -1,8 +1,8 @@
 ﻿@model MvcPL.Models.ProfileViewModel
 <div class="panel panel-default">
     <div class="panel-body">
-        <div class="row" style="display: table">
-            <div style="display: table-cell;">
+        <div class="row">
+            <div class="user-page-column">
                 @{
                     if (Model.Avatar != null)
                     {
@@ -16,16 +16,20 @@
                     }
                 }
             </div>
-            <div style="display: table-cell">
-                <p>First Name: @Model.FirstName</p>
-                <p>Last Name: @Model.LastName</p>
-                <p>Age: @Model.Age</p>
+            <div class="user-page-column">
+                <h1>@Model.UserName</h1>
+                <h4>First Name: @Model.FirstName</h4>
+                <h4>Last Name: @Model.LastName</h4>
+                <h4>Age: @Model.Age</h4>
+            </div>
+
+            <div class="user-page-column" style="margin: 30px 0 0 15px ">
                 @if (Model.UserName == User.Identity.Name)
                 {
-                    @Html.ActionLink("Edit Profile", "ProfileEdit", "Profile", null, new {@class = "btn btn-default"})
+                    @Html.ActionLink("Edit Profile", "ProfileEdit", "Profile", null, new { @class = "btn btn-default" })
                 }
             </div>
         </div>
-</div>
+    </div>
 </div>
     

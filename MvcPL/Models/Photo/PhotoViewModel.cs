@@ -10,18 +10,18 @@ namespace MvcPL.Models.Photo
         public PhotoViewModel()
         {
             CreatedOn = DateTime.Now;
+            Likes = new List<LikeModel>();
         }
 
-        public String Description { get; set; }
-        public String ImagePath { get; set; }
-        public String ThumbPath { get; set; }
+        public int Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
         public byte[] Picture { get; set; }
         public byte[] FullSize { get; set; }
         public string UserName { get; set; }
 
-        public virtual List<TagModel> Tags { get; set; }
+        public virtual ICollection<TagModel> Tags { get; set; }
+        public virtual List<LikeModel> Likes { get; set; }
 
     }
 }

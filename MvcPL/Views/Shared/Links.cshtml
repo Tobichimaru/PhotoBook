@@ -1,4 +1,5 @@
-﻿@model MvcPL.Models.GalleryLinksModel
+﻿@using MvcPL.Models
+@model GalleryLinksModel
 
 <div id="links">
     @{
@@ -10,21 +11,51 @@
             var fullbase64 = Convert.ToBase64String(item.FullSize);
             var fullimgSrc = String.Format("data:image/gif;base64,{0}", fullbase64);
             <div style="width: 330px; display: inline-block">
-                <a href="@fullimgSrc" title="@item.Description" class="gallery-link" data-gallery>
-                    <img src="@imgSrc" alt="@item.Description" class="img-rounded" style="margin-bottom: 7px;"/>
+                <a href="@fullimgSrc" class="gallery-link"  data-gallery >
+                    <img src="@imgSrc" class="gallery-image" style="margin-bottom: 7px;" />
                 </a>
                 <div style="padding: 0 15px">
                     <p>
-                        @item.CreatedOn.ToString("F") by <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})">@item.UserName</a>
+                        @item.CreatedOn.ToString("F") <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})">@item.UserName</a>
                     </p>
+                    @foreach (var tag in item.Tags)
+                    {
+                        if (Model.pageName.Substring(3) == tag.Name && Model.pageName.StartsWith("Tag"))
+                        {
+                            <a class="btn btn-primary btn-xs" href="@Url.Action("TagSearch", "Home", new { name = tag.Name })">@tag.Name</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-default btn-xs" href="@Url.Action("TagSearch", "Home", new { name = tag.Name })">@tag.Name</a>
+                        }
+                    }
+                    @if (item.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) == null)
+                    {
+                        <a onclick="@{
+                                        item.Likes.Add(new LikeModel
+                                        {
+                                            UserName = User.Identity.Name,
+                                            PhotoId = item.Id
+                                        });
+                                    }"
+                           class="btn btn-lg btn-default"><span class="glyphicon glyphicon-heart-empty"></span> I like it!</a>
+                    }
+                    else
+                    {
+                        <a onclick="@{
+                                        item.Likes.RemoveAll(l => l.UserName == User.Identity.Name);
+                                    }"
+                           class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-heart-empty"></span> I like it!</a>
+                    }
+                    
                 </div>
             </div>
         }
     }
-    <div style="text-align: center">
+    <div style="text-align: center; padding: 15px">
         @if (Model.pageSize*Model.page <= Model.count)
         {
-            using (Ajax.BeginForm("LinksView", "Home", new {page = ++Model.page},
+            using (Ajax.BeginForm("LinksView", "Home", new { page = ++Model.page, pageName = Model.pageName },
             new AjaxOptions {UpdateTargetId = "links", InsertionMode = InsertionMode.ReplaceWith}))
             {
                 <input type="submit" value="Show more" class="btn btn-default btn-circle"/>

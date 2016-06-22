@@ -32,28 +32,66 @@ namespace MvcPL.Infrastructure.Mappers
 
         #region Tag
 
-        public static ICollection<DalTag> ToDalTags(this string tags)
+        public static ICollection<DalTag> ToDalTags(this ICollection<TagModel> tags)
         {
-            var names = tags.Split(' ');
-            ICollection<DalTag> newTags = new List<DalTag>();
-            foreach (var name in names)
-            {
-                newTags.Add(new DalTag
-                {
-                    Name = name
-                });
-            }
-            return newTags;
-        }
-
-        public static string ToMvcTags(this ICollection<DalTag> tags)
-        {
-            StringBuilder newTags = new StringBuilder();
+            var result = new List<DalTag>();
             foreach (var tag in tags)
             {
-                newTags.Append(tag.Name + " ");
+                result.Add(new DalTag
+                {
+                    Id = tag.Id,
+                    Name = tag.Name
+                });
             }
-            return newTags.ToString();
+            return result;
+        }
+
+        public static ICollection<TagModel> ToMvcTags(this ICollection<DalTag> tags)
+        {
+            var result = new List<TagModel>();
+            foreach (var tag in tags)
+            {
+                result.Add(new TagModel
+                {
+                    Id = tag.Id,
+                    Name = tag.Name
+                });
+            }
+            return result;
+        }
+
+        #endregion
+
+        #region Like
+
+        public static ICollection<DalLike> ToDalLikes(this ICollection<LikeModel> likes)
+        {
+            var result = new List<DalLike>();
+            foreach (var like in likes)
+            {
+                result.Add(new DalLike
+                {
+                    Id = like.Id,
+                    UserName = like.UserName,
+                    PhotoId = like.PhotoId
+                });
+            }
+            return result;
+        }
+
+        public static ICollection<LikeModel> ToMvcLikes(this ICollection<DalLike> likes)
+        {
+            var result = new List<LikeModel>();
+            foreach (var like in likes)
+            {
+                result.Add(new LikeModel
+                {
+                    Id = like.Id,
+                    UserName = like.UserName,
+                    PhotoId = like.PhotoId
+                });
+            }
+            return result;
         }
 
         #endregion
@@ -63,13 +101,12 @@ namespace MvcPL.Infrastructure.Mappers
         {
             return new DalPhoto
             {
+                Id = photo.Id,
                 CreatedOn = photo.CreatedOn,
-                Description = photo.Description,
-                ImagePath = photo.ImagePath,
-                ThumbPath = photo.ThumbPath,
                 Picture = photo.Picture,
-                FullSize = photo.FullSize
-                //Tags = photo.Tags.ToDalTags()
+                FullSize = photo.FullSize,
+                Tags = photo.Tags.ToDalTags(),
+                Likes = photo.Likes.ToDalLikes()
             };
         }
 
@@ -77,14 +114,13 @@ namespace MvcPL.Infrastructure.Mappers
         {
             return new PhotoViewModel
             {
+                Id = photo.Id,
                 CreatedOn = photo.CreatedOn,
-                Description = photo.Description,
-                ImagePath = photo.ImagePath,
-                ThumbPath = photo.ThumbPath,
                 Picture = photo.Picture,
                 FullSize = photo.FullSize,
-                UserName = name
-                //Tags = photo.Tags.ToMvcTags()
+                UserName = name,
+                Tags = photo.Tags.ToMvcTags(),
+                Likes = new List<LikeModel>(photo.Likes.ToMvcLikes())
             };
         }
         #endregion

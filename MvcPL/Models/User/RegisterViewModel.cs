@@ -15,8 +15,8 @@ namespace MvcPL.Models
 
         [Display(Name = "Enter your name")]
         [Required(ErrorMessage = "The field can not be empty!")]
-        [RegularExpression("[A-Za-z0-9]", ErrorMessage = "Invalid name")]
-        [StringLengthAttribute(50, ErrorMessage = "The name must contain at lest {2} characters", MinimumLength = 4)]
+        [RegularExpression(@"(\w+)", ErrorMessage = "Invalid name")]
+        [StringLengthAttribute(30, ErrorMessage = "The name must contain at lest {2} characters", MinimumLength = 4)]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Enter your password")]

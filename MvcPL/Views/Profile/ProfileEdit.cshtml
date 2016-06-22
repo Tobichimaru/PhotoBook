@@ -4,11 +4,13 @@
     ViewBag.Title = "Profile Edit";
 }
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" , @class = "form-horizontal"}))
 {
+    @Html.AntiForgeryToken()
     <h4>Profile Edit</h4>
     <hr/>
     @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName, new {@class = "col-md-2 control-label"})
         <div class="col-md-10">
@@ -16,6 +18,7 @@
             @Html.ValidationMessageFor(m => m.FirstName, null, new {@class = "text-danger"})
         </div>
     </div>
+
     <div class="form-group">
         @Html.LabelFor(m => m.LastName, new {@class = "col-md-2 control-label"})
         <div class="col-md-10">
@@ -23,10 +26,11 @@
             @Html.ValidationMessageFor(m => m.LastName, null, new {@class = "text-danger"})
         </div>
     </div>
+    
     <div class="form-group">
         @Html.LabelFor(m => m.Age, new {@class = "col-md-2 control-label"})
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Age, new {@class = "form-control"})
+            @Html.TextBoxFor(m => m.Age, new { @class = "form-control"})
             @Html.ValidationMessageFor(m => m.Age, null, new {@class = "text-danger"})
         </div>
     </div>

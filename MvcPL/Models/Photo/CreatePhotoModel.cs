@@ -5,15 +5,6 @@ namespace MvcPL.Models.Photo
 {
     public class CreatePhotoModel
     {
-        [Display(Name = "Description")]
-        [Required]
-        public String Description { get; set; }
-
-        [Display(Name = "Image Path")]
-        public String ImagePath { get; set; }
-
-        [Display(Name = "Thumb Path")]
-        public String ThumbPath { get; set; }
 
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
@@ -22,6 +13,8 @@ namespace MvcPL.Models.Photo
         public byte[] FullSize { get; set; }
 
         [Display(Name = "Print tags separated by spaces")]
+        [RegularExpression(@"[\w\s]+", ErrorMessage = "Tag should consists only of characters")]
+        [StringLengthAttribute(30, ErrorMessage = "The name must contain no more than {1} characters")]
         public string Tags { get; set; }
     }
 }

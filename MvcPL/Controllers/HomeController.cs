@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DAL.Interfacies.Repository.ModelRepos;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
 using MvcPL.Models.Photo;
+using WebGrease.Css.Extensions;
 
 namespace MvcPL.Controllers
 {
@@ -25,23 +22,20 @@ namespace MvcPL.Controllers
 
         public ActionResult Index()
         {
-            var model = _repository.GetAll();
-            PagedList<PhotoViewModel> photoList = new PagedList<PhotoViewModel>();
-            photoList.Content = new List<PhotoViewModel>();
-
-            foreach (var user in model)
+            PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
             {
-                foreach (var photo in user.Profile.Photos)
-                {
-                    photoList.Content.Add(photo.ToMvcPhoto(user.Profile.UserName));
-                }
-            }
+                Content = new List<PhotoViewModel>(),
+                PageSize = GalleryHelper.PageSize,
+                CurrentPage = 1
+            };
 
-            photoList.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
-            photoList.PageSize = 12;
-            photoList.CurrentPage = 1;
+            _repository.GetAll().ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto(u.Profile.UserName))));
+            photos.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
+            photos.PageName = "Index";
 
-            return View(photoList);
+            HttpContext.Session[User.Identity.Name + photos.PageName] = photos;
+
+            return View(photos);
         }
 
 
@@ -57,33 +51,58 @@ namespace MvcPL.Controllers
         }
 
         [HttpPost]
-        public ActionResult LinksView(int page)
+        public ActionResult LinksView(int page, string pageName)
+        {
+            PagedList<PhotoViewModel> photos = (PagedList<PhotoViewModel>)HttpContext.Session[User.Identity.Name + pageName];
+            photos.CurrentPage = page;
+
+            List<PhotoViewModel> result =
+                new List<PhotoViewModel>(photos.Content.Take(photos.PageSize*photos.CurrentPage));
+
+            return PartialView("Links", new GalleryLinksModel
+            {
+                photos = result,
+                page = page,
+                count = photos.Content.Count,
+                pageSize = photos.PageSize,
+                pageName = pageName
+            });
+        }
+
+        [Route("tag/{name}")]
+        public ActionResult TagSearch(string name)
         {
             var model = _repository.GetAll();
-            PagedList<PhotoViewModel> photoList = new PagedList<PhotoViewModel>();
-            photoList.Content = new List<PhotoViewModel>();
+            PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
+            {
+                Content = new List<PhotoViewModel>(),
+                PageSize = GalleryHelper.PageSize,
+                CurrentPage = 1
+            };
 
             foreach (var user in model)
             {
                 foreach (var photo in user.Profile.Photos)
                 {
-                    photoList.Content.Add(photo.ToMvcPhoto(user.Profile.UserName));
+                    var flag = false;
+                    foreach (var tag in photo.Tags)
+                    {
+                        if (tag.Name == name)
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (flag) photos.Content.Add(photo.ToMvcPhoto(user.Profile.UserName));
                 }
             }
 
-            photoList.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
-            photoList.PageSize = 12;
-            photoList.CurrentPage = page;
+            photos.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
+            photos.PageName = "Tag" + name;
 
-            List<PhotoViewModel> result = GalleryHelper.GetList(photoList, page);
+            HttpContext.Session[User.Identity.Name + photos.PageName] = photos;
 
-            return PartialView("Links", new GalleryLinksModel
-            {
-                page = page,
-                photos = result,
-                count = photoList.Content.Count,
-                pageSize = photoList.PageSize,
-            });
+            return View(photos);
         }
     }
 }

@@ -9,7 +9,6 @@ namespace ORM.Models
         public Profile()
         {
             Photos = new HashSet<Photo>();
-            Likes = new HashSet<Like>();
         }
 
         [Key]
@@ -30,6 +29,5 @@ namespace ORM.Models
         public byte[] Avatar { get; set; }
 
         public virtual ICollection<Photo> Photos { get; set; }
-        public virtual ICollection<Like> Likes { get; set; }
     }
 }

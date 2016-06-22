@@ -49,8 +49,7 @@ namespace DAL.Mappers
                 Age = profile.Age,
                 Avatar = profile.Avatar,
                 UserName = profile.UserName,
-                Photos = profile.Photos.ToOrmPhotos(),
-                Likes = profile.Likes.ToOrmLikes()
+                Photos = profile.Photos.ToOrmPhotos()
             };
         }
 
@@ -64,8 +63,7 @@ namespace DAL.Mappers
                 Age = profile.Age,
                 Avatar = profile.Avatar,
                 UserName = profile.UserName,
-                Photos = profile.Photos.ToDalPhotos(),
-                Likes = profile.Likes.ToDalLikes()
+                Photos = profile.Photos.ToDalPhotos()
             };
         }
         #endregion
@@ -107,7 +105,6 @@ namespace DAL.Mappers
             {
                 Id = orm.PhotoId,
                 CreatedOn = orm.CreatedOn,
-                Description = orm.Description,
                 Picture = orm.Picture,
                 FullSize = orm.FullSize,
                 Likes = orm.Likes.ToDalLikes(),
@@ -121,7 +118,6 @@ namespace DAL.Mappers
             {
                 PhotoId = dal.Id,
                 CreatedOn = dal.CreatedOn,
-                Description = dal.Description,
                 Picture = dal.Picture,
                 FullSize = dal.FullSize,
                 Likes = dal.Likes.ToOrmLikes(),
@@ -195,7 +191,9 @@ namespace DAL.Mappers
         {
             return new Like
             {
-                LikeId = like.Id
+                LikeId = like.Id,
+                PhotoId = like.PhotoId,
+                UserName = like.UserName
             };
         }
 
@@ -203,7 +201,9 @@ namespace DAL.Mappers
         {
             return new DalLike
             {
-                Id = like.LikeId
+                Id = like.LikeId,
+                PhotoId = like.PhotoId,
+                UserName = like.UserName
             };
         }
 

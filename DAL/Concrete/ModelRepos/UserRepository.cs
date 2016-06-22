@@ -35,20 +35,17 @@ namespace DAL.Concrete.ModelRepos
                     LastName = userEntity.UserProfile.LastName,
                     Id = userEntity.UserProfile.ProfileId,
                     UserName = userEntity.UserProfile.UserName,
-                    Likes = userEntity.UserProfile.Likes.Select(l => new DalLike
-                    {
-                        Id = l.LikeId
-                    }).ToList(),
                     Photos = userEntity.UserProfile.Photos.Select(p => new DalPhoto
                     {
                         Id = p.PhotoId,
                         CreatedOn = p.CreatedOn,
-                        Description = p.Description,
                         Picture = p.Picture,
                         FullSize = p.FullSize,
                         Likes = p.Likes.Select(l => new DalLike
                         {
-                            Id = l.LikeId
+                            Id = l.LikeId,
+                            PhotoId = l.PhotoId,
+                            UserName = l.UserName
                         }).ToList(),
                         Tags = p.Tags.Select(t => new DalTag
                         {
@@ -122,10 +119,7 @@ namespace DAL.Concrete.ModelRepos
             {
                 _unitOfWork.Context.Set<Photo>().Remove(photo);
             }
-            foreach (var like in user.UserProfile.Likes)
-            {
-                _unitOfWork.Context.Set<Like>().Remove(like);
-            }
+            
             _unitOfWork.Context.Set<Profile>().Remove(user.UserProfile);
             _unitOfWork.Context.Set<User>().Remove(user);
             _unitOfWork.Commit();

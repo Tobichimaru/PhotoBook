@@ -1,6 +1,11 @@
 ﻿/* Set padding to keep content from hitting the edges */
-.img-rounded {
+.gallery-image {
     padding: 15px 15px 0 15px;
+}
+
+.user-page-column {
+    float: left;
+    padding: 10px;
 }
 
 .btn-circle {
@@ -28,7 +33,7 @@
 }
 
 .footer {
-    padding-left: 20px;
+    padding-left: 50px;
 }
 
 .body-content {
@@ -101,4 +106,15 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+}
+
+.blueimp-gallery > .description, .blueimp-gallery > .example {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  color: #fff;
+  display: none;
+}
+.blueimp-gallery-controls > .description, .blueimp-gallery-controls > .example {
+  display: block;
 }

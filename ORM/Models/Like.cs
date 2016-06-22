@@ -7,5 +7,7 @@ namespace ORM.Models
         [Key]
         public int LikeId { get; set; }
 
+        public string UserName { get; set; }
+        public int PhotoId { get; set; }
     }
 }

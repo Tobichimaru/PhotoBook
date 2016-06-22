@@ -36,11 +36,14 @@ namespace MvcPL.Controllers
             {
                 records.Content.Add(item.ToMvcPhoto(null));
             }
+            records.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
 
             // Count
-            records.TotalRecords = _repository.GetProfileByName(name).Photos.Count;
             records.CurrentPage = 1;
-            records.PageSize = 12;
+            records.PageSize = GalleryHelper.PageSize;
+            records.PageName = "Profile";
+
+            HttpContext.Session[User.Identity.Name + records.PageName] = records;
 
             var model = new UserPageModel
             {
@@ -84,12 +87,12 @@ namespace MvcPL.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var photo = new PhotoViewModel();
+            var photo = new CreatePhotoModel();
             return View(photo);
         }
 
         [HttpPost]
-        public ActionResult Create(PhotoViewModel photo, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create(CreatePhotoModel photo, IEnumerable<HttpPostedFileBase> files)
         {
             if (!ModelState.IsValid)
                 return View(photo);
@@ -108,7 +111,6 @@ namespace MvcPL.Controllers
             {
                 if (file.ContentLength == 0) continue;
 
-                model.Description = photo.Description;
                 using (var img = Image.FromStream(file.InputStream))
                 {
                     Image cutImage = GalleryHelper.CutImage(img, 300, 300);
@@ -120,6 +122,17 @@ namespace MvcPL.Controllers
                 }
                 // Save record to database
                 model.CreatedOn = DateTime.Now;
+
+                string[] tags = photo.Tags.Split(' ');
+                model.Tags = new List<TagModel>();
+                foreach (var tag in tags)
+                {
+                     model.Tags.Add(new TagModel
+                     {
+                         Name = tag
+                     });
+                }
+
                 profile.Photos.Add(model.ToDalPhoto());
             }
             _repository.Update(profile);
