@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using DAL.Interfacies.DTO;
-
-namespace MvcPL.Models
+﻿namespace MvcPL.Models.Profile
 {
     public class ProfileViewModel
     {

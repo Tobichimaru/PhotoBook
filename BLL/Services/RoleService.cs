@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
@@ -39,6 +38,12 @@ namespace BLL.Services
         public void Delete(RoleEntity role)
         {
             roleRepository.Delete(role.ToBllRole());
+            uow.Commit();
+        }
+
+        public void Update(RoleEntity item)
+        {
+            roleRepository.Update(item.ToBllRole());
             uow.Commit();
         }
 

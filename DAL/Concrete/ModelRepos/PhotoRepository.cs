@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
@@ -44,9 +45,15 @@ namespace DAL.Concrete.ModelRepos
             _unitOfWork.Commit();
         }
 
-        public void Update(DalPhoto entity)
+        public void Update(DalPhoto photo)
         {
-            throw new NotImplementedException();
+            foreach (var like in photo.Likes)
+            {
+                _unitOfWork.Context.Set<Like>().AddOrUpdate(like.ToOrmLike());
+                
+            }
+            _unitOfWork.Context.Set<Photo>().AddOrUpdate(photo.ToOrmPhoto());
+            _unitOfWork.Commit();
         }
 
         public DalPhoto GetByPredicate(Expression<Func<DalPhoto, bool>> f)

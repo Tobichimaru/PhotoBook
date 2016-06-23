@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MvcPL.Models
+namespace MvcPL.Models.Helpers
 {
     public class PagedList<T>
     {

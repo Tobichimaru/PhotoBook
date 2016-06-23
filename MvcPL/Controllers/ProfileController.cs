@@ -5,26 +5,28 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DAL.Interfacies.Repository.ModelRepos;
+using BLL.Interfacies.Services;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
+using MvcPL.Models.Helpers;
 using MvcPL.Models.Photo;
+using MvcPL.Models.Profile;
 
 namespace MvcPL.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly IProfileRepository _repository;
+        private readonly IProfileService _Service;
 
-        public ProfileController(IProfileRepository repository)
+        public ProfileController(IProfileService Service)
         {
-            _repository = repository;
+            _Service = Service;
         }
 
         [Route("user/{name}")]
         public ActionResult UserPage(string name)
         {
-            var profile = _repository.GetProfileByName(name);
+            var profile = _Service.GetProfileByName(name);
             if (profile == null)
             {
                 return View("Error");
@@ -32,7 +34,7 @@ namespace MvcPL.Controllers
 
             var records = new PagedList<PhotoViewModel>();
             records.Content = new List<PhotoViewModel>();
-            foreach (var item in _repository.GetProfileByName(name).Photos)
+            foreach (var item in _Service.GetProfileByName(name).Photos)
             {
                 records.Content.Add(item.ToMvcPhoto(null));
             }
@@ -62,7 +64,7 @@ namespace MvcPL.Controllers
         [HttpPost]
         public ActionResult ProfileEdit(ProfileEditModel viewModel, HttpPostedFileBase file)
         {
-            var profile = _repository.GetProfileByName(User.Identity.Name);
+            var profile = _Service.GetProfileByName(User.Identity.Name);
             if (file != null && file.ContentLength > 0)
             {
                 MemoryStream target = new MemoryStream();
@@ -80,7 +82,7 @@ namespace MvcPL.Controllers
             profile.LastName = viewModel.LastName ?? profile.LastName;
             profile.Age = viewModel.Age == 0 ? profile.Age : viewModel.Age;
 
-            _repository.Update(profile);
+            _Service.Update(profile);
             return RedirectToAction("UserPage", new {name = profile.UserName});
         }
         
@@ -105,7 +107,7 @@ namespace MvcPL.Controllers
             }
 
             var model = new PhotoViewModel();
-            var profile = _repository.GetProfileByName(User.Identity.Name);
+            var profile = _Service.GetProfileByName(User.Identity.Name);
 
             foreach (var file in httpPostedFileBases)
             {
@@ -133,9 +135,9 @@ namespace MvcPL.Controllers
                      });
                 }
 
-                profile.Photos.Add(model.ToDalPhoto());
+                profile.Photos.Add(model.ToPhotoEntity());
             }
-            _repository.Update(profile);
+            _Service.Update(profile);
             return RedirectToAction("UserPage", new {name = profile.UserName});
         }
 	}

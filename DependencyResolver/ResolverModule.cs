@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Services;
 using DAL.Concrete;
@@ -44,6 +45,9 @@ namespace DependencyResolver
 
             kernel.Bind<IProfileService>().To<ProfileService>();
             kernel.Bind<IProfileRepository>().To<ProfileRepository>();
+
+            kernel.Bind<IPhotoService>().To<PhotoService>();
+            kernel.Bind<IPhotoRepository>().To<PhotoRepository>();
         }
     }
 }

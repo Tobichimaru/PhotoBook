@@ -45,5 +45,11 @@ namespace BLL.Services
             profileRepository.Delete(profile.ToDalProfile());
             uow.Commit();
         }
+
+        public void Update(ProfileEntity item)
+        {
+            profileRepository.Update(item.ToDalProfile());
+            uow.Commit();
+        }
     }
 }

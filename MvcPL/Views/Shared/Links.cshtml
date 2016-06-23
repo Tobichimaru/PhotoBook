@@ -1,5 +1,5 @@
 ﻿@using MvcPL.Models
-@model GalleryLinksModel
+@model MvcPL.Models.Helpers.GalleryLinksModel
 @foreach (var item in Model.photos)
 {
     var base64 = Convert.ToBase64String(item.Picture);
@@ -27,7 +27,7 @@
                 }
             }
             <br/>
-            <a class="btn btn-lg btn-default" id=@item.Id.ToString() onclick="changeStyle(@item.Id.ToString())"><span class="glyphicon glyphicon-heart-empty"></span> I like it!</a>
+            <a class="btn btn-lg btn-default" style="margin-top: 5px" id=@item.Id.ToString() onclick="changeStyle(@item.Id.ToString())"><span class="glyphicon glyphicon-heart-empty"></span> Like!</a>
             <script type="text/javascript">
                 function changeStyle(id) {
                     var textbox = document.getElementById(id);

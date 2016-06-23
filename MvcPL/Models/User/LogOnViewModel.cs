@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MvcPL.Models
+namespace MvcPL.Models.User
 {
     public class LogOnViewModel
     {

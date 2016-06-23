@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MvcPL.Models
+namespace MvcPL.Models.User
 {
-
     public class UserViewModel
     {
         [Display(Name = "User's e-mail")]

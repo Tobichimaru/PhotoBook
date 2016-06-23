@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MvcPL.Models
+namespace MvcPL.Models.User
 {
     public class RegisterViewModel
     {
@@ -16,7 +16,7 @@ namespace MvcPL.Models
         [Display(Name = "Enter your name")]
         [Required(ErrorMessage = "The field can not be empty!")]
         [RegularExpression(@"(\w+)", ErrorMessage = "Invalid name")]
-        [StringLengthAttribute(30, ErrorMessage = "The name must contain at lest {2} characters", MinimumLength = 4)]
+        [StringLength(30, ErrorMessage = "The name must contain at lest {2} characters", MinimumLength = 4)]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Enter your password")]

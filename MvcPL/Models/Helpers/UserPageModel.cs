@@ -1,6 +1,7 @@
 ﻿using MvcPL.Models.Photo;
+using MvcPL.Models.Profile;
 
-namespace MvcPL.Models
+namespace MvcPL.Models.Helpers
 {
     public class UserPageModel
     {

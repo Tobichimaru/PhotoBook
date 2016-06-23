@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MvcPL.Models.Photo;
 
-namespace MvcPL.Models
+namespace MvcPL.Models.Helpers
 {
     public class GalleryLinksModel
     {

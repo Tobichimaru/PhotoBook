@@ -1,23 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using DAL.Interfacies.Repository.ModelRepos;
+using BLL.Interfacies.Services;
+using Microsoft.Ajax.Utilities;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
+using MvcPL.Models.Helpers;
 using MvcPL.Models.Photo;
-using WebGrease.Css.Extensions;
+using MvcPL.Models.User;
 
 namespace MvcPL.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IUserRepository _repository;
+        private readonly IUserService _Service;
 
-        public HomeController(IUserRepository repository)
+        public HomeController(IUserService Service)
         {
-            _repository = repository;
+            _Service = Service;
         }
 
         public ActionResult Index()
@@ -29,7 +30,7 @@ namespace MvcPL.Controllers
                 CurrentPage = 1
             };
 
-            _repository.GetAll().ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto(u.Profile.UserName))));
+            _Service.GetAllEntities().ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto(u.Profile.UserName))));
             photos.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
             photos.PageName = "Index";
 
@@ -42,13 +43,15 @@ namespace MvcPL.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult UsersEdit()
         {
-            var model = _repository.GetAll().Select(u => new UserViewModel
+            var model = _Service.GetAllEntities().Select(u => new UserViewModel
             {
                 Email = u.Email
             });
 
             return View(model);
         }
+
+        
 
         [HttpPost]
         public ActionResult LinksView(int page, string pageName)
@@ -72,7 +75,7 @@ namespace MvcPL.Controllers
         [Route("tag/{name}")]
         public ActionResult TagSearch(string name)
         {
-            var model = _repository.GetAll();
+            var model = _Service.GetAllEntities();
             PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
             {
                 Content = new List<PhotoViewModel>(),

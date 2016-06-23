@@ -29,6 +29,11 @@ namespace BLL.Services
             return userRepository.GetByEmail(email).ToBllUser();
         }
 
+        public UserEntity GetUserByName(string name)
+        {
+            return userRepository.GetByName(name).ToBllUser();
+        }
+
         public IEnumerable<UserEntity> GetAllEntities()
         {
             return userRepository.GetAll().Select(user => user.ToBllUser());
@@ -43,6 +48,12 @@ namespace BLL.Services
         public void Delete(UserEntity user)
         {
             userRepository.Delete(user.ToDalUser());
+            uow.Commit();
+        }
+
+        public void Update(UserEntity item)
+        {
+            userRepository.Update(item.ToDalUser());
             uow.Commit();
         }
     }

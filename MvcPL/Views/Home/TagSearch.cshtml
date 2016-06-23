@@ -1,4 +1,4 @@
-﻿@model MvcPL.Models.PagedList<MvcPL.Models.Photo.PhotoViewModel>
+﻿@model MvcPL.Models.Helpers.PagedList<MvcPL.Models.Photo.PhotoViewModel>
     @{
         <h2>Total records on #@Model.PageName.Substring(3): @Model.Content.Count</h2>
         Html.RenderPartial("ShowGallery", Model);

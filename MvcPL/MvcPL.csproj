@@ -146,6 +146,10 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App_Data\PhotoBook.mdf" />
+    <Content Include="App_Data\PhotoBook_log.ldf">
+      <DependentUpon>PhotoBook.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\blueimp-gallery2\ans-blueimp-gallery2.js" />
     <Content Include="Content\blueimp-gallery2\ans-blueimp-gallery2.min.js" />
     <Content Include="Content\blueimp-gallery2\css\blueimp-gallery-indicator.css" />
@@ -283,16 +287,14 @@
     <Content Include="Views\Shared\Links.cshtml" />
     <Content Include="Views\Home\TagSearch.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL.Interfacies\DAL.Interface.csproj">
-      <Project>{06204c03-41a1-4567-8edd-88ae0fc4391b}</Project>
-      <Name>DAL.Interface</Name>
+    <ProjectReference Include="..\BLL.Interfacies\BLL.Interface.csproj">
+      <Project>{7fa5f436-290d-46bf-aa16-33d0bfb5e45d}</Project>
+      <Name>BLL.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\DependencyResolver\DependencyResolver.csproj">
       <Project>{dfbef70e-859f-4567-9297-5168727f050d}</Project>

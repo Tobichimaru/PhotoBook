@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.IO;
 
-namespace MvcPL.Models
+namespace MvcPL.Models.Helpers
 {
     public static class GalleryHelper
     {

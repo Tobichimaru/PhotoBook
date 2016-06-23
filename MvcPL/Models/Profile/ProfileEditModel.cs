@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MvcPL.Models
+namespace MvcPL.Models.Profile
 {
     public class ProfileEditModel
     {
@@ -9,7 +8,7 @@ namespace MvcPL.Models
         public int Id { get; set; }
 
         [Display(Name = "Enter your name")]
-        [StringLengthAttribute(50, ErrorMessage = "The name must contain at lest {2} characters", MinimumLength = 3)]
+        [StringLength(50, ErrorMessage = "The name must contain at lest {2} characters", MinimumLength = 3)]
         public string FirstName { get; set; }
 
         [Display(Name = "Enter your surname")]
@@ -17,7 +16,7 @@ namespace MvcPL.Models
         public string LastName { get; set; }
 
         [Display(Name = "Enter your age")]
-        [RangeAttribute(5, 120, ErrorMessage = "Invalid value")]
+        [Range(5, 120, ErrorMessage = "Invalid value")]
         public int Age { get; set; }
 
         [Display(Name = "Upload new avatar")]

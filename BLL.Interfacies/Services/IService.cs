@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Collections.Generic;
 namespace BLL.Interfacies.Services
 {
     public interface IService<T>
@@ -12,5 +7,6 @@ namespace BLL.Interfacies.Services
         IEnumerable<T> GetAllEntities();
         void Create(T item);
         void Delete(T item);
+        void Update(T item);
     }
 }

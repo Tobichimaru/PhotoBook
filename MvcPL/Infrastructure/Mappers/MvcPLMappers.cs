@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Text;
-using DAL.Interfacies.DTO;
+using BLL.Interfacies.Entities;
 using MvcPL.Models;
 using MvcPL.Models.Photo;
+using MvcPL.Models.Profile;
+using MvcPL.Models.User;
 
 namespace MvcPL.Infrastructure.Mappers
 {
     public static class MvcMappers
     {
         #region User
-        public static UserViewModel ToMvcUser(this DalUser user)
+        public static UserViewModel ToMvcUser(this UserEntity user)
         {
             return new UserViewModel
             {
@@ -19,9 +20,9 @@ namespace MvcPL.Infrastructure.Mappers
             };
         }
 
-        public static DalUser ToDalUser(this UserViewModel userViewModel)
+        public static UserEntity ToUserEntity(this UserViewModel userViewModel)
         {
-            return new DalUser
+            return new UserEntity
             {
                 Email = userViewModel.Email,
                 UserName = userViewModel.Name,
@@ -32,12 +33,12 @@ namespace MvcPL.Infrastructure.Mappers
 
         #region Tag
 
-        public static ICollection<DalTag> ToDalTags(this ICollection<TagModel> tags)
+        public static ICollection<TagEntity> ToTagEntitys(this ICollection<TagModel> tags)
         {
-            var result = new List<DalTag>();
+            var result = new List<TagEntity>();
             foreach (var tag in tags)
             {
-                result.Add(new DalTag
+                result.Add(new TagEntity
                 {
                     Id = tag.Id,
                     Name = tag.Name
@@ -46,7 +47,7 @@ namespace MvcPL.Infrastructure.Mappers
             return result;
         }
 
-        public static ICollection<TagModel> ToMvcTags(this ICollection<DalTag> tags)
+        public static ICollection<TagModel> ToMvcTags(this ICollection<TagEntity> tags)
         {
             var result = new List<TagModel>();
             foreach (var tag in tags)
@@ -64,12 +65,12 @@ namespace MvcPL.Infrastructure.Mappers
 
         #region Like
 
-        public static ICollection<DalLike> ToDalLikes(this ICollection<LikeModel> likes)
+        public static ICollection<LikeEntity> ToLikeEntitys(this ICollection<LikeModel> likes)
         {
-            var result = new List<DalLike>();
+            var result = new List<LikeEntity>();
             foreach (var like in likes)
             {
-                result.Add(new DalLike
+                result.Add(new LikeEntity
                 {
                     Id = like.Id,
                     UserName = like.UserName,
@@ -79,7 +80,7 @@ namespace MvcPL.Infrastructure.Mappers
             return result;
         }
 
-        public static ICollection<LikeModel> ToMvcLikes(this ICollection<DalLike> likes)
+        public static ICollection<LikeModel> ToMvcLikes(this ICollection<LikeEntity> likes)
         {
             var result = new List<LikeModel>();
             foreach (var like in likes)
@@ -97,20 +98,20 @@ namespace MvcPL.Infrastructure.Mappers
         #endregion
 
         #region Photo
-        public static DalPhoto ToDalPhoto(this PhotoViewModel photo)
+        public static PhotoEntity ToPhotoEntity(this PhotoViewModel photo)
         {
-            return new DalPhoto
+            return new PhotoEntity
             {
                 Id = photo.Id,
                 CreatedOn = photo.CreatedOn,
                 Picture = photo.Picture,
                 FullSize = photo.FullSize,
-                Tags = photo.Tags.ToDalTags(),
-                Likes = photo.Likes.ToDalLikes()
+                Tags = photo.Tags.ToTagEntitys(),
+                Likes = photo.Likes.ToLikeEntitys()
             };
         }
 
-        public static PhotoViewModel ToMvcPhoto(this DalPhoto photo, string name)
+        public static PhotoViewModel ToMvcPhoto(this PhotoEntity photo, string name)
         {
             return new PhotoViewModel
             {
@@ -126,9 +127,9 @@ namespace MvcPL.Infrastructure.Mappers
         #endregion
 
         #region Profile
-        public static DalProfile ToDalProfile(this ProfileViewModel model)
+        public static ProfileEntity ToProfileEntity(this ProfileViewModel model)
         {
-            return new DalProfile
+            return new ProfileEntity
             {
                 Age = model.Age,
                 Id = model.Id,
@@ -139,7 +140,7 @@ namespace MvcPL.Infrastructure.Mappers
             };
         }
         
-        public static ProfileViewModel ToMvcProfile(this DalProfile model)
+        public static ProfileViewModel ToMvcProfile(this ProfileEntity model)
         {
             return new ProfileViewModel
             {
