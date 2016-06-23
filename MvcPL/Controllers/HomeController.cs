@@ -57,7 +57,7 @@ namespace MvcPL.Controllers
             photos.CurrentPage = page;
 
             List<PhotoViewModel> result =
-                new List<PhotoViewModel>(photos.Content.Take(photos.PageSize*photos.CurrentPage));
+                new List<PhotoViewModel>(photos.Content.Skip(photos.PageSize*(photos.CurrentPage-1)).Take(photos.PageSize));
 
             return PartialView("Links", new GalleryLinksModel
             {
