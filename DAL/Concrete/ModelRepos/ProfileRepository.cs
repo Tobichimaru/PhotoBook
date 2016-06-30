@@ -26,7 +26,25 @@ namespace DAL.Concrete.ModelRepos
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Age = profile.Age,
-                Avatar = profile.Avatar
+                Avatar = profile.Avatar,
+                Photos = profile.Photos.Select(p => new DalPhoto
+                {
+                    Id = p.PhotoId,
+                    CreatedOn = p.CreatedOn,
+                    Picture = p.Picture,
+                    FullSize = p.FullSize,
+                    Likes = p.Likes.Select(l => new DalLike
+                    {
+                        Id = l.LikeId,
+                        PhotoId = l.PhotoId,
+                        UserName = l.UserName
+                    }).ToList(),
+                    Tags = p.Tags.Select(t => new DalTag
+                    {
+                        Id = t.TagId,
+                        Name = t.Name
+                    }).ToList()
+                }).ToList()
             });
         }
 
@@ -68,21 +86,6 @@ namespace DAL.Concrete.ModelRepos
             var profile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == entity.UserName);
             foreach (var photo in entity.Photos)
             {
-                foreach (var tag in photo.Tags)
-                {
-                    if (_unitOfWork.Context.Set<Tag>().FirstOrDefault(p => p.Name == tag.Name) == null)
-                    {
-                        _unitOfWork.Context.Set<Tag>().Add(tag.ToOrmTag());
-                    }
-                }
-                _unitOfWork.Commit();
-
-                foreach (var tag in photo.Tags)
-                {
-                    var dbtag = _unitOfWork.Context.Set<Tag>().FirstOrDefault(p => p.Name == tag.Name);
-                    tag.Id = dbtag.TagId;
-                }
-
                 foreach (var like in photo.Likes)
                 {
                     if (_unitOfWork.Context.Set<Like>().FirstOrDefault(p => p.PhotoId == like.PhotoId && p.UserName == profile.UserName) == null)
@@ -92,24 +95,12 @@ namespace DAL.Concrete.ModelRepos
                 }
                 _unitOfWork.Commit();
 
-                foreach (var like in photo.Likes)
-                {
-                    var dblike =
-                        _unitOfWork.Context.Set<Like>()
-                            .FirstOrDefault(p => p.PhotoId == like.PhotoId && p.UserName == profile.UserName);
-                    like.Id = dblike.LikeId;
-                }
-
-                var dbphoto = _unitOfWork.Context.Set<Photo>().FirstOrDefault(p => p.PhotoId == photo.Id);
-                if (dbphoto == null)
-                {
-                    _unitOfWork.Context.Set<Photo>().Add(photo.ToOrmPhoto());
-                }
-
                 if (profile.Photos.FirstOrDefault(p => p.PhotoId == photo.Id) == null)
                 {
                     profile.Photos.Add(photo.ToOrmPhoto());
                 }
+
+                
             }
 
             if (entity.FirstName != null) profile.FirstName = entity.FirstName;
@@ -119,6 +110,9 @@ namespace DAL.Concrete.ModelRepos
 
             _unitOfWork.Context.Set<Profile>().AddOrUpdate(profile);
             _unitOfWork.Commit();
+
+            
+
         }
 
         public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> f)

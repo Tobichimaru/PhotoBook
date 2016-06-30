@@ -106,6 +106,8 @@ namespace MvcPL.Controllers
                 return View(photo);
             }
 
+            photo.Tags = photo.Tags.Trim();
+
             var model = new PhotoViewModel();
             var profile = _Service.GetProfileByName(User.Identity.Name);
 
@@ -140,5 +142,15 @@ namespace MvcPL.Controllers
             _Service.Update(profile);
             return RedirectToAction("UserPage", new {name = profile.UserName});
         }
-	}
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult DeletePhoto(string name, int photoId)
+        {
+            var profile = _Service.GetProfileByName(name);
+            var photo = profile.Photos.FirstOrDefault(p => p.Id == photoId);
+            profile.Photos.Remove(photo);
+            _Service.Update(profile);
+            return RedirectToAction("UserPage", new {name = name});
+        }
+    }
 }

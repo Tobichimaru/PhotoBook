@@ -15,13 +15,15 @@ namespace ORM
                 Name = "User"
             };
             context.Roles.Add(role);
+
+            var adminRole = new Role
+            {
+                Name = "Admin"
+            };
+            context.Roles.Add(adminRole);
             context.Roles.Add(new Role
             {
-                Name = "Administrator"
-            });
-            context.Roles.Add(new Role
-            {
-                Name = "Guest"
+                Name = "Moderator"
             });
             context.SaveChanges();
 
@@ -42,6 +44,14 @@ namespace ORM
                 RoleId = role.RoleId,
                 UserName = "sansa_stark"
             };
+            var user = new User
+            {
+                Email = "admin@gmail.com",
+                Password = Crypto.HashPassword("qwerty"),
+                Role = adminRole,
+                RoleId = adminRole.RoleId,
+                UserName = "admin"
+            };
 
             //initialize profiles
             Profile profile1 = new Profile
@@ -58,19 +68,28 @@ namespace ORM
                 LastName = "Stark",
                 UserName = user2.UserName
             };
+            Profile profile = new Profile
+            {
+                UserName = user.UserName
+            };
 
             context.Profiles.Add(profile1);
             context.Profiles.Add(profile2);
+            context.Profiles.Add(profile);
             context.SaveChanges();
 
             user1.UserProfile = profile1;
             user1.UserProfileId = profile1.ProfileId;
             user2.UserProfile = profile2;
             user2.UserProfileId = profile2.ProfileId;
+            user.UserProfile = profile;
+            user.UserProfileId = profile.ProfileId;
 
             context.Users.Add(user1);
             context.Users.Add(user2);
+            context.Users.Add(user);
             context.SaveChanges();
+
         }
     }
 }

@@ -40,17 +40,25 @@ namespace MvcPL.Controllers
         }
 
 
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Admin")]
         public ActionResult UsersEdit()
         {
             var model = _Service.GetAllEntities().Select(u => new UserViewModel
             {
-                Email = u.Email
+                Email = u.Email,
+                Name = u.UserName
             });
 
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult Delete(string name)
+        {
+            var user = _Service.GetUserByName(name);
+            _Service.Delete(user);
+            return View("UsersEdit");
+        }
         
 
         [HttpPost]

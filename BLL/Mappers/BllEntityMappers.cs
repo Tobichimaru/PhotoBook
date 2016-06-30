@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using BLL.Interfacies.Entities;
 using DAL.Interfacies.DTO;
 
@@ -39,30 +39,38 @@ namespace BLL.Mappers
         #region Profile
         public static DalProfile ToDalProfile(this ProfileEntity profileEntity)
         {
-            return new DalProfile
+            var profile =  new DalProfile
             {
                 Id = profileEntity.Id,
                 FirstName = profileEntity.FirstName,
                 LastName = profileEntity.LastName,
                 Age = profileEntity.Age,
                 Avatar = profileEntity.Avatar,
-                Photos = profileEntity.Photos.ToDalPhotos(),
                 UserName = profileEntity.UserName
             };
+            foreach (var photo in profileEntity.Photos)
+            {
+                profile.Photos.Add(photo.ToDalPhoto());
+            }
+            return profile;
         }
 
         public static ProfileEntity ToBllProfile(this DalProfile dalProfile)
         {
-            return new ProfileEntity
+            var profile =  new ProfileEntity
             {
                 Id = dalProfile.Id,
                 FirstName = dalProfile.FirstName,
                 LastName = dalProfile.LastName,
                 Age = dalProfile.Age,
                 Avatar = dalProfile.Avatar,
-                UserName = dalProfile.UserName,
-                Photos = dalProfile.Photos.ToBllPhotos()
+                UserName = dalProfile.UserName
             };
+            foreach (var photo in dalProfile.Photos)
+            {
+                profile.Photos.Add(photo.ToBllPhoto());
+            }
+            return profile;
         }
         #endregion
 
@@ -87,66 +95,36 @@ namespace BLL.Mappers
                 UserName = like.UserName
             };
         }
-
-        public static ICollection<LikeEntity> ToBllLikes(this ICollection<DalLike> likes)
-        {
-            var result = new List<LikeEntity>();
-            foreach (var like in likes)
-            {
-                result.Add(like.ToBllLike());
-            }
-            return result;
-        }
-
-        public static ICollection<DalLike> ToDalLikes(this ICollection<LikeEntity> likes)
-        {
-            var result = new List<DalLike>();
-            foreach (var like in likes)
-            {
-                result.Add(like.ToDalLike());
-            }
-            return result;
-        }
         #endregion
 
         #region Tag
 
         public static TagEntity ToBllTag(this DalTag tag)
         {
-            return new TagEntity
+            var newtag = new TagEntity
             {
                 Id = tag.Id,
                 Name = tag.Name
             };
+            foreach (var photo in tag.Photos)
+            {
+                newtag.Photos.Add(photo.ToBllPhoto());
+            }
+            return newtag;
         }
 
         public static DalTag ToDalTag(this TagEntity tag)
         {
-            return new DalTag
+            var newtag = new DalTag
             {
                 Id = tag.Id,
                 Name = tag.Name
             };
-        }
-
-        public static ICollection<TagEntity> ToBllTags(this ICollection<DalTag> tags)
-        {
-            var result = new List<TagEntity>();
-            foreach (var tag in tags)
+            foreach (var photo in tag.Photos)
             {
-                result.Add(tag.ToBllTag());
+                newtag.Photos.Add(photo.ToDalPhoto());
             }
-            return result;
-        }
-
-        public static ICollection<DalTag> ToDalTags(this ICollection<TagEntity> tags)
-        {
-            var result = new List<DalTag>();
-            foreach (var tag in tags)
-            {
-                result.Add(tag.ToDalTag());
-            }
-            return result;
+            return newtag;
         }
         #endregion
 
@@ -159,9 +137,18 @@ namespace BLL.Mappers
                 CreatedOn = photo.CreatedOn,
                 FullSize = photo.FullSize,
                 Id = photo.Id,
-                Likes = photo.Likes.ToBllLikes(),
                 Picture = photo.Picture,
-                Tags = photo.Tags.ToBllTags()
+                Likes = photo.Likes.Select(l => new LikeEntity()
+                {
+                    Id = l.Id,
+                    PhotoId = l.PhotoId,
+                    UserName = l.UserName
+                }).ToList(),
+                Tags = photo.Tags.Select(t => new TagEntity()
+                {
+                    Id = t.Id,
+                    Name = t.Name
+                }).ToList()
             };
         }
 
@@ -172,30 +159,19 @@ namespace BLL.Mappers
                 CreatedOn = photo.CreatedOn,
                 FullSize = photo.FullSize,
                 Id = photo.Id,
-                Likes = photo.Likes.ToDalLikes(),
                 Picture = photo.Picture,
-                Tags = photo.Tags.ToDalTags()
+                Likes = photo.Likes.Select(l => new DalLike
+                {
+                    Id = l.Id,
+                    PhotoId = l.PhotoId,
+                    UserName = l.UserName
+                }).ToList(),
+                Tags = photo.Tags.Select(t => new DalTag
+                {
+                    Id = t.Id,
+                    Name = t.Name
+                }).ToList()
             };
-        }
-
-        public static ICollection<PhotoEntity> ToBllPhotos(this ICollection<DalPhoto> photos)
-        {
-            var result = new List<PhotoEntity>();
-            foreach (var photo in photos)
-            {
-                result.Add(photo.ToBllPhoto());
-            }
-            return result;
-        }
-
-        public static ICollection<DalPhoto> ToDalPhotos(this ICollection<PhotoEntity> photos)
-        {
-            var result = new List<DalPhoto>();
-            foreach (var photo in photos)
-            {
-                result.Add(photo.ToDalPhoto());
-            }
-            return result;
         }
 
         #endregion

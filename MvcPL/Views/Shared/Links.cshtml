@@ -12,6 +12,10 @@
             <img src="@imgSrc" class="gallery-image" style="margin-bottom: 7px;" />
         </a>
         <div style="padding: 0 15px">
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("delete photo", "DeletePhoto", "Profile", null, new { name = item.UserName, photoId = item.Id })
+            }
             <p>
                 @item.CreatedOn.ToString("F") <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})">@item.UserName</a>
             </p>
@@ -19,11 +23,11 @@
             {
                 if (Model.pageName.Substring(3) == tag.Name && Model.pageName.StartsWith("Tag"))
                 {
-                    <a class="btn btn-primary btn-xs" href="@Url.Action("TagSearch", "Home", new { name = tag.Name })">@tag.Name</a>
+                    <a class="btn btn-primary btn-xs" href="@Url.Action("TagSearch", "Home", new {name = tag.Name})">@tag.Name</a>
                 }
                 else
                 {
-                    <a class="btn btn-default btn-xs" href="@Url.Action("TagSearch", "Home", new { name = tag.Name })">@tag.Name</a>
+                    <a class="btn btn-default btn-xs" href="@Url.Action("TagSearch", "Home", new {name = tag.Name})">@tag.Name</a>
                 }
             }
             <br/>
@@ -41,7 +45,7 @@
                     }
                     else
                     {
-                            item.Likes.RemoveAll(l => l.UserName == User.Identity.Name);
+                        item.Likes.RemoveAll(l => l.UserName == User.Identity.Name);
                     }
 
                     if (textbox.className === 'btn btn-lg btn-default') {

@@ -1,6 +1,4 @@
-﻿using System.CodeDom;
-using System.Collections.Generic;
-using System.Security.Policy;
+﻿using System.Linq;
 using DAL.Interfacies.DTO;
 using ORM.Models;
 
@@ -41,30 +39,38 @@ namespace DAL.Mappers
         #region Profile
         public static Profile ToOrmProfile(this DalProfile profile)
         {
-            return new Profile
+            var newprofile = new Profile
             {
                 ProfileId = profile.Id,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Age = profile.Age,
                 Avatar = profile.Avatar,
-                UserName = profile.UserName,
-                Photos = profile.Photos.ToOrmPhotos()
+                UserName = profile.UserName
             };
+            foreach (var photo in profile.Photos)
+            {
+                newprofile.Photos.Add(photo.ToOrmPhoto());
+            }
+            return newprofile;
         }
 
         public static DalProfile ToDalProfile(this Profile profile)
         {
-            return new DalProfile
+            var newprofile =  new DalProfile
             {
                 Id = profile.ProfileId,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Age = profile.Age,
                 Avatar = profile.Avatar,
-                UserName = profile.UserName,
-                Photos = profile.Photos.ToDalPhotos()
+                UserName = profile.UserName
             };
+            foreach (var photo in profile.Photos)
+            {
+                newprofile.Photos.Add(photo.ToDalPhoto());
+            }
+            return newprofile;
         }
         #endregion
 
@@ -99,16 +105,25 @@ namespace DAL.Mappers
         #endregion
 
         #region Photo
-        public static DalPhoto ToDalPhoto(this Photo orm)
+        public static DalPhoto ToDalPhoto(this Photo photo)
         {
             return new DalPhoto
             {
-                Id = orm.PhotoId,
-                CreatedOn = orm.CreatedOn,
-                Picture = orm.Picture,
-                FullSize = orm.FullSize,
-                Likes = orm.Likes.ToDalLikes(),
-                Tags = orm.Tags.ToDalTags()
+                Id = photo.PhotoId,
+                CreatedOn = photo.CreatedOn,
+                Picture = photo.Picture,
+                FullSize = photo.FullSize,
+                Likes = photo.Likes.Select(l => new DalLike
+                {
+                    Id = l.LikeId,
+                    PhotoId = l.PhotoId,
+                    UserName = l.UserName
+                }).ToList(),
+                Tags = photo.Tags.Select(t => new DalTag
+                {
+                    Id = t.TagId,
+                    Name = t.Name
+                }).ToList()
             };
         }
 
@@ -120,69 +135,48 @@ namespace DAL.Mappers
                 CreatedOn = dal.CreatedOn,
                 Picture = dal.Picture,
                 FullSize = dal.FullSize,
-                Likes = dal.Likes.ToOrmLikes(),
-                Tags = dal.Tags.ToOrmTags()
+                Likes = dal.Likes.Select(l => new Like
+                {
+                    LikeId = l.Id,
+                    PhotoId = l.PhotoId,
+                    UserName = l.UserName
+                }).ToList(),
+                Tags = dal.Tags.Select(t => new Tag
+                {
+                    TagId = t.Id,
+                    Name = t.Name
+                }).ToList()
             };
-        }
-
-        public static ICollection<DalPhoto> ToDalPhotos(this ICollection<Photo> photos)
-        {
-            ICollection<DalPhoto> newPhotos = new List<DalPhoto>();
-            foreach (var photo in photos)
-            {
-                newPhotos.Add(photo.ToDalPhoto());
-            }
-            return newPhotos;
-        }
-
-        public static ICollection<Photo> ToOrmPhotos(this ICollection<DalPhoto> photos)
-        {
-            ICollection<Photo> newPhotos = new List<Photo>();
-            foreach (var photo in photos)
-            {
-                newPhotos.Add(photo.ToOrmPhoto());
-            }
-            return newPhotos;
         }
         #endregion
 
         #region Tag
         public static DalTag ToDalTag(this Tag tag)
         {
-            return new DalTag
+            var newtag = new DalTag
             {
                 Id = tag.TagId,
                 Name = tag.Name
             };
-        }
-
-        public static ICollection<DalTag> ToDalTags(this ICollection<Tag> tags)
-        {
-            ICollection<DalTag> newTags = new List<DalTag>();
-            foreach (var tag in tags)
+            foreach (var photo in tag.Photos)
             {
-                newTags.Add(tag.ToDalTag());
+                newtag.Photos.Add(photo.ToDalPhoto());
             }
-            return newTags;
-        }
-
-        public static ICollection<Tag> ToOrmTags(this ICollection<DalTag> tags)
-        {
-            ICollection<Tag> newTags = new List<Tag>();
-            foreach (var tag in tags)
-            {
-                newTags.Add(tag.ToOrmTag());
-            }
-            return newTags;
+            return newtag;
         }
 
         public static Tag ToOrmTag(this DalTag tag)
         {
-            return new Tag
+            var newtag = new Tag
             {
                 TagId = tag.Id,
                 Name = tag.Name
             };
+            foreach (var photo in tag.Photos)
+            {
+                newtag.Photos.Add(photo.ToOrmPhoto());
+            }
+            return newtag;
         }
         #endregion
 
@@ -207,26 +201,6 @@ namespace DAL.Mappers
             };
         }
 
-        public static ICollection<DalLike> ToDalLikes(this ICollection<Like> likes)
-        {
-            ICollection<DalLike> newLikes = new List<DalLike>();
-            foreach (var like in likes)
-            {
-                newLikes.Add(like.ToDalLike());
-            }
-            return newLikes;
-        }
-
-
-        public static ICollection<Like> ToOrmLikes(this ICollection<DalLike> likes)
-        {
-            ICollection<Like> newLikes = new List<Like>();
-            foreach (var like in likes)
-            {
-                newLikes.Add(like.ToOrmLike());
-            }
-            return newLikes;
-        }
         #endregion
     }
 }
