@@ -12,7 +12,7 @@ namespace ORM.Models
         }
 
         [Key]
-        public int ProfileId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(60), MinLength(4)]

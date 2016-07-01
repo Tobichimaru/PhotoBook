@@ -41,7 +41,7 @@ namespace DAL.Mappers
         {
             var newprofile = new Profile
             {
-                ProfileId = profile.Id,
+                Id = profile.Id,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Age = profile.Age,
@@ -59,7 +59,7 @@ namespace DAL.Mappers
         {
             var newprofile =  new DalProfile
             {
-                Id = profile.ProfileId,
+                Id = profile.Id,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Age = profile.Age,
@@ -113,6 +113,7 @@ namespace DAL.Mappers
                 CreatedOn = photo.CreatedOn,
                 Picture = photo.Picture,
                 FullSize = photo.FullSize,
+                ProfileId = photo.ProfileId,
                 Likes = photo.Likes.Select(l => new DalLike
                 {
                     Id = l.LikeId,
@@ -135,6 +136,7 @@ namespace DAL.Mappers
                 CreatedOn = dal.CreatedOn,
                 Picture = dal.Picture,
                 FullSize = dal.FullSize,
+                ProfileId = dal.ProfileId,
                 Likes = dal.Likes.Select(l => new Like
                 {
                     LikeId = l.Id,

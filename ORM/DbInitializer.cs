@@ -79,11 +79,11 @@ namespace ORM
             context.SaveChanges();
 
             user1.UserProfile = profile1;
-            user1.UserProfileId = profile1.ProfileId;
+            user1.UserProfileId = profile1.Id;
             user2.UserProfile = profile2;
-            user2.UserProfileId = profile2.ProfileId;
+            user2.UserProfileId = profile2.Id;
             user.UserProfile = profile;
-            user.UserProfileId = profile.ProfileId;
+            user.UserProfileId = profile.Id;
 
             context.Users.Add(user1);
             context.Users.Add(user2);

@@ -33,7 +33,7 @@ namespace DAL.Concrete.ModelRepos
                     Avatar = userEntity.UserProfile.Avatar,
                     FirstName = userEntity.UserProfile.FirstName,
                     LastName = userEntity.UserProfile.LastName,
-                    Id = userEntity.UserProfile.ProfileId,
+                    Id = userEntity.UserProfile.Id,
                     UserName = userEntity.UserProfile.UserName,
                     Photos = userEntity.UserProfile.Photos.Select(p => new DalPhoto
                     {
@@ -41,6 +41,7 @@ namespace DAL.Concrete.ModelRepos
                         CreatedOn = p.CreatedOn,
                         Picture = p.Picture,
                         FullSize = p.FullSize,
+                        ProfileId = p.ProfileId,
                         Likes = p.Likes.Select(l => new DalLike
                         {
                             Id = l.LikeId,
@@ -106,7 +107,7 @@ namespace DAL.Concrete.ModelRepos
             _unitOfWork.Commit();
 
             var pr = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == user.UserName);
-            user.UserProfileId = pr.ProfileId;
+            user.UserProfileId = pr.Id;
             _unitOfWork.Context.Set<User>().AddOrUpdate(user);
 
             _unitOfWork.Commit();

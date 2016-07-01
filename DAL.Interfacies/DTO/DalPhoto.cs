@@ -11,8 +11,9 @@ namespace DAL.Interfacies.DTO
             Likes = new HashSet<DalLike>();
         }
         
-
         public int Id { get; set; }
+
+        public int ProfileId { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public byte[] Picture { get; set; }

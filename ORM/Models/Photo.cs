@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Models
 {
@@ -17,6 +18,11 @@ namespace ORM.Models
 
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
+
+        public int ProfileId { get; set; }
+
+        [ForeignKey("ProfileId")]
+        public virtual Profile Profile { get; set; }
 
         public byte[] Picture { get; set; }
         public byte[] FullSize { get; set; }

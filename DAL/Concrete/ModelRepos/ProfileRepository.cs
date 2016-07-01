@@ -22,7 +22,7 @@ namespace DAL.Concrete.ModelRepos
         {
             return _unitOfWork.Context.Set<Profile>().Select(profile => new DalProfile()
             {
-                Id = profile.ProfileId,
+                Id = profile.Id,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Age = profile.Age,
@@ -50,7 +50,7 @@ namespace DAL.Concrete.ModelRepos
 
         public DalProfile GetById(int key)
         {
-            var orm = _unitOfWork.Context.Set<Profile>().FirstOrDefault(profile => profile.ProfileId == key);
+            var orm = _unitOfWork.Context.Set<Profile>().FirstOrDefault(profile => profile.Id == key);
             if (!ReferenceEquals(orm, null))
                 return orm.ToDalProfile();
             return null;
@@ -75,7 +75,7 @@ namespace DAL.Concrete.ModelRepos
 
         public void Delete(DalProfile e)
         {
-            var profile = _unitOfWork.Context.Set<Profile>().Single(u => u.ProfileId == e.Id);
+            var profile = _unitOfWork.Context.Set<Profile>().Single(u => u.Id == e.Id);
            
             _unitOfWork.Context.Set<Profile>().Remove(profile);
             _unitOfWork.Commit();
@@ -84,34 +84,48 @@ namespace DAL.Concrete.ModelRepos
         public void Update(DalProfile entity)
         {
             var profile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == entity.UserName);
-            foreach (var photo in entity.Photos)
-            {
-                foreach (var like in photo.Likes)
-                {
-                    if (_unitOfWork.Context.Set<Like>().FirstOrDefault(p => p.PhotoId == like.PhotoId && p.UserName == profile.UserName) == null)
-                    {
-                        _unitOfWork.Context.Set<Like>().Add(like.ToOrmLike());
-                    }
-                }
-                _unitOfWork.Commit();
-
-                if (profile.Photos.FirstOrDefault(p => p.PhotoId == photo.Id) == null)
-                {
-                    profile.Photos.Add(photo.ToOrmPhoto());
-                }
-
-                
-            }
-
+            _unitOfWork.Context.Set<Profile>().Attach(profile);
             if (entity.FirstName != null) profile.FirstName = entity.FirstName;
             if (entity.LastName != null) profile.LastName = entity.LastName;
             if (entity.Age != 0) profile.Age = entity.Age;
             if (entity.Avatar != null) profile.Avatar = entity.Avatar;
+            foreach (var photo in entity.Photos)
+            {
+                photo.ProfileId = profile.Id;
+                if (profile.Photos.FirstOrDefault(p => p.PhotoId == photo.Id) == null)
+                {
+                    var tags = photo.Tags.ToList();
+                    photo.Tags.Clear();
+                    var ormphoto = photo.ToOrmPhoto();
 
-            _unitOfWork.Context.Set<Profile>().AddOrUpdate(profile);
+                    foreach (var tag in tags)
+                    {
+                        var dbtag = _unitOfWork.Context.Set<Tag>().FirstOrDefault(t => t.Name == tag.Name);
+                        if (dbtag == null)
+                        {
+                            _unitOfWork.Context.Set<Tag>().Add(tag.ToOrmTag());
+                            _unitOfWork.Commit();
+                            dbtag = _unitOfWork.Context.Set<Tag>().FirstOrDefault(t => t.Name == tag.Name);
+                        }
+                        _unitOfWork.Context.Set<Tag>().Attach(dbtag);
+                        dbtag.Photos.Add(ormphoto);
+                        _unitOfWork.Commit();
+                    }
+
+                    photo.Tags = tags;
+                }
+            }
             _unitOfWork.Commit();
 
-            
+
+            //foreach (var like in photo.Likes)
+            //{
+            //    if (_unitOfWork.Context.Set<Like>().FirstOrDefault(p => p.PhotoId == like.PhotoId && p.UserName == profile.UserName) == null)
+            //    {
+            //        _unitOfWork.Context.Set<Like>().Add(like.ToOrmLike());
+            //    }
+            //}
+            //_unitOfWork.Commit();
 
         }
 

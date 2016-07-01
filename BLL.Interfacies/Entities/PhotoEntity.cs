@@ -13,6 +13,7 @@ namespace BLL.Interfacies.Entities
         
 
         public int Id { get; set; }
+        public int ProfileId { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public byte[] Picture { get; set; }
