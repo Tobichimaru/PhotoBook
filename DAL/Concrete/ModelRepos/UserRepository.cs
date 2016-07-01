@@ -118,11 +118,7 @@ namespace DAL.Concrete.ModelRepos
         public void Delete(DalUser e) //implement 
         {
             var user = _unitOfWork.Context.Set<User>().Single(u => u.UserId == e.Id);
-            foreach (var photo in user.UserProfile.Photos)
-            {
-                _unitOfWork.Context.Set<Photo>().Remove(photo);
-            }
-
+            _unitOfWork.Context.Set<Photo>().RemoveRange(user.UserProfile.Photos);
             _unitOfWork.Context.Set<Profile>().Remove(user.UserProfile);
             _unitOfWork.Context.Set<User>().Remove(user);
             _unitOfWork.Commit();

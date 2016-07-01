@@ -40,6 +40,12 @@ namespace BLL.Services
             uow.Commit();
         }
 
+        public void DeletePhoto(ProfileEntity entity, int id)
+        {
+            profileRepository.DeletePhoto(entity.ToDalProfile(), id);
+            uow.Commit();
+        }
+
         public void Delete(ProfileEntity profile)
         {
             profileRepository.Delete(profile.ToDalProfile());

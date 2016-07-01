@@ -81,6 +81,17 @@ namespace DAL.Concrete.ModelRepos
             _unitOfWork.Commit();
         }
 
+        public void DeletePhoto(DalProfile entity, int id)
+        {
+            var profile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == entity.UserName);
+            _unitOfWork.Context.Set<Profile>().Attach(profile);
+            var photo = profile.Photos.First(p => p.PhotoId == id);
+            profile.Photos.Remove(photo);
+            var bdphoto = _unitOfWork.Context.Set<Photo>().First(p => p.PhotoId == id);
+            _unitOfWork.Context.Set<Photo>().Remove(bdphoto);
+            _unitOfWork.Commit();
+        }
+
         public void Update(DalProfile entity)
         {
             var profile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == entity.UserName);

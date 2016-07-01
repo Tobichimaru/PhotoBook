@@ -179,7 +179,9 @@
     <Content Include="Content\Images\logo.ico" />
     <Content Include="Content\Images\photo.ico" />
     <Content Include="Content\Images\quit.ico" />
+    <Content Include="Content\Images\trashCan.ico" />
     <Content Include="Content\Images\user.ico" />
+    <Content Include="Content\Images\UserEdit.ico" />
     <Content Include="Content\jquery.Jcrop.css" />
     <Content Include="Content\jquery.Jcrop.min.css" />
     <Compile Include="Controllers\AccountController.cs" />

@@ -5,10 +5,6 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
-            @if (Roles.IsUserInRole(User.Identity.Name, "Admin"))
-            {
-                <li>@Html.ActionLink("Users edit", "UsersEdit", "Home")</li>
-            }
             <li>
                 <a href='@Url.Action("Create", "Profile")'>
                     <img src='@Url.Content("~/Content/Images/photo.ico")'/>

@@ -57,7 +57,7 @@ namespace MvcPL.Controllers
         {
             var user = _Service.GetUserByName(name);
             _Service.Delete(user);
-            return View("UsersEdit");
+            return RedirectToAction("UsersEdit");
         }
 
 

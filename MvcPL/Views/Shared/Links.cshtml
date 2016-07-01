@@ -12,13 +12,10 @@
             <img src="@imgSrc" class="gallery-image" style="margin-bottom: 7px;"/>
         </a>
         <div style="padding: 0 15px">
-            @if (User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("delete photo", "DeletePhoto", "Profile", null, new {name = item.UserName, photoId = item.Id})
-            }
             <p>
                 @item.CreatedOn.ToString("F") <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})">@item.UserName</a>
             </p>
+            
             @foreach (var tag in item.Tags)
             {
                 if (Model.pageName.Substring(3) == tag.Name && Model.pageName.StartsWith("Tag"))
@@ -32,6 +29,12 @@
             }
             <br/>
             <a class="btn btn-lg btn-default" style="margin-top: 5px" id=@item.Id.ToString() onclick="changeStyle(@item.Id.ToString())"><span class="glyphicon glyphicon-heart-empty"></span> Like!</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="@Url.Action("DeletePhoto", "Profile", new {name = item.UserName, photoId = item.Id})">
+                    <img src="~/Content/Images/trashCan.ico" style="zoom: 50%; padding-left: 5px" />
+                </a>
+            }
             <script type="text/javascript">
                 function changeStyle(id) {
                     var textbox = document.getElementById(id);

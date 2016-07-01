@@ -147,10 +147,8 @@ namespace MvcPL.Controllers
         public ActionResult DeletePhoto(string name, int photoId)
         {
             var profile = _Service.GetProfileByName(name);
-            var photo = profile.Photos.FirstOrDefault(p => p.Id == photoId);
-            profile.Photos.Remove(photo);
-            _Service.Update(profile);
-            return RedirectToAction("UserPage", new {name});
+            _Service.DeletePhoto(profile, photoId);
+            return RedirectToAction("Index", "Home", new {name});
         }
     }
 }
