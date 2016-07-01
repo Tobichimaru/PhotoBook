@@ -60,6 +60,7 @@ namespace BLL.Mappers
 
         public static ProfileEntity ToBllProfile(this DalProfile dalProfile)
         {
+            if (dalProfile == null) return null;
             var profile = new ProfileEntity
             {
                 Id = dalProfile.Id,

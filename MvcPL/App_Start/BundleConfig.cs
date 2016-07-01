@@ -41,7 +41,7 @@ namespace MvcPL
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.css",
+                "~/Content/bootstrap.*",
                 "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/jcrop").Include(

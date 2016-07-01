@@ -13,7 +13,6 @@ namespace MvcPL.Models.Photo
 
         [Display(Name = "Print tags separated by spaces")]
         [RegularExpression(@"[\w\s]+", ErrorMessage = "Tag should consists only of characters")]
-        [StringLength(30, ErrorMessage = "The name must contain no more than {1} characters")]
         public string Tags { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace MvcPL.Controllers
             var profile = _Service.GetProfileByName(name);
             if (profile == null)
             {
-                return View("Error");
+                return RedirectToAction("NotFound", "Error");
             }
 
             var records = new PagedList<PhotoViewModel>();
