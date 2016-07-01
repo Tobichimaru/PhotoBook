@@ -7,6 +7,7 @@ namespace BLL.Mappers
     public static class BllEntityMappers
     {
         #region User
+
         public static DalUser ToDalUser(this UserEntity userEntity)
         {
             return new DalUser
@@ -34,12 +35,14 @@ namespace BLL.Mappers
                 UserName = dalUser.UserName
             };
         }
+
         #endregion
 
         #region Profile
+
         public static DalProfile ToDalProfile(this ProfileEntity profileEntity)
         {
-            var profile =  new DalProfile
+            var profile = new DalProfile
             {
                 Id = profileEntity.Id,
                 FirstName = profileEntity.FirstName,
@@ -57,7 +60,7 @@ namespace BLL.Mappers
 
         public static ProfileEntity ToBllProfile(this DalProfile dalProfile)
         {
-            var profile =  new ProfileEntity
+            var profile = new ProfileEntity
             {
                 Id = dalProfile.Id,
                 FirstName = dalProfile.FirstName,
@@ -72,6 +75,7 @@ namespace BLL.Mappers
             }
             return profile;
         }
+
         #endregion
 
         #region Like
@@ -95,6 +99,7 @@ namespace BLL.Mappers
                 UserName = like.UserName
             };
         }
+
         #endregion
 
         #region Tag
@@ -126,6 +131,7 @@ namespace BLL.Mappers
             }
             return newtag;
         }
+
         #endregion
 
         #region Photo
@@ -139,13 +145,13 @@ namespace BLL.Mappers
                 Id = photo.Id,
                 Picture = photo.Picture,
                 ProfileId = photo.ProfileId,
-                Likes = photo.Likes.Select(l => new LikeEntity()
+                Likes = photo.Likes.Select(l => new LikeEntity
                 {
                     Id = l.Id,
                     PhotoId = l.PhotoId,
                     UserName = l.UserName
                 }).ToList(),
-                Tags = photo.Tags.Select(t => new TagEntity()
+                Tags = photo.Tags.Select(t => new TagEntity
                 {
                     Id = t.Id,
                     Name = t.Name
@@ -155,7 +161,7 @@ namespace BLL.Mappers
 
         public static DalPhoto ToDalPhoto(this PhotoEntity photo)
         {
-            return new DalPhoto()
+            return new DalPhoto
             {
                 CreatedOn = photo.CreatedOn,
                 FullSize = photo.FullSize,
@@ -179,6 +185,7 @@ namespace BLL.Mappers
         #endregion
 
         #region Role
+
         public static RoleEntity ToBllRole(this DalRole role)
         {
             var roleEntity = new RoleEntity
@@ -206,6 +213,7 @@ namespace BLL.Mappers
             }
             return dalRole;
         }
+
         #endregion
     }
 }

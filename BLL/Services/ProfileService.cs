@@ -10,8 +10,8 @@ namespace BLL.Services
 {
     public class ProfileService : IProfileService
     {
-        private readonly IUnitOfWork uow;
         private readonly IProfileRepository profileRepository;
+        private readonly IUnitOfWork uow;
 
         public ProfileService(IUnitOfWork uow, IProfileRepository repository)
         {

@@ -10,6 +10,7 @@ namespace MvcPL.Infrastructure.Mappers
     public static class MvcMappers
     {
         #region User
+
         public static UserViewModel ToMvcUser(this UserEntity user)
         {
             return new UserViewModel
@@ -29,6 +30,7 @@ namespace MvcPL.Infrastructure.Mappers
                 Id = userViewModel.Id
             };
         }
+
         #endregion
 
         #region Tag
@@ -98,6 +100,7 @@ namespace MvcPL.Infrastructure.Mappers
         #endregion
 
         #region Photo
+
         public static PhotoEntity ToPhotoEntity(this PhotoViewModel photo)
         {
             return new PhotoEntity
@@ -124,9 +127,11 @@ namespace MvcPL.Infrastructure.Mappers
                 Likes = new List<LikeModel>(photo.Likes.ToMvcLikes())
             };
         }
+
         #endregion
 
         #region Profile
+
         public static ProfileEntity ToProfileEntity(this ProfileViewModel model)
         {
             return new ProfileEntity
@@ -139,7 +144,7 @@ namespace MvcPL.Infrastructure.Mappers
                 UserName = model.UserName
             };
         }
-        
+
         public static ProfileViewModel ToMvcProfile(this ProfileEntity model)
         {
             return new ProfileViewModel
@@ -152,7 +157,7 @@ namespace MvcPL.Infrastructure.Mappers
                 UserName = model.UserName
             };
         }
-        #endregion
 
+        #endregion
     }
 }

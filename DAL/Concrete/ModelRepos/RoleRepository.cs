@@ -12,6 +12,7 @@ namespace DAL.Concrete.ModelRepos
     public class RoleRepository : IRoleRepository
     {
         private readonly UnitOfWork _unitOfWork; //not interface
+
         public RoleRepository(UnitOfWork uow)
         {
             _unitOfWork = uow;

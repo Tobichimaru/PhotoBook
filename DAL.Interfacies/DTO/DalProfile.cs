@@ -8,7 +8,7 @@ namespace DAL.Interfacies.DTO
         {
             Photos = new HashSet<DalPhoto>();
         }
-        public int Id { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
@@ -16,5 +16,6 @@ namespace DAL.Interfacies.DTO
         public byte[] Avatar { get; set; }
 
         public virtual ICollection<DalPhoto> Photos { get; set; }
+        public int Id { get; set; }
     }
 }

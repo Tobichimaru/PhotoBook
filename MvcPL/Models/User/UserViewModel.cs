@@ -6,6 +6,7 @@ namespace MvcPL.Models.User
     {
         [Display(Name = "User's e-mail")]
         public string Email { get; set; }
+
         public string Name { get; set; }
         public int Id { get; set; }
     }

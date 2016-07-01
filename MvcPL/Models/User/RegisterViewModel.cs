@@ -33,6 +33,5 @@ namespace MvcPL.Models.User
 
         [DataType(DataType.Date)]
         public DateTime AddedDate { get; set; }
-
     }
 }

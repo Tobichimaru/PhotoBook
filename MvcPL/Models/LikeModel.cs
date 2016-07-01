@@ -1,5 +1,4 @@
-﻿
-namespace MvcPL.Models
+﻿namespace MvcPL.Models
 {
     public class LikeModel
     {

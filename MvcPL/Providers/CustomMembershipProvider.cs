@@ -18,17 +18,20 @@ namespace MvcPL.Providers
 
         public IRoleService RoleService
         {
-            get { return (IRoleService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService)); }
+            get { return (IRoleService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService)); }
         }
 
         public IProfileService ProfileService
         {
-            get { return (IProfileService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IProfileService)); }
+            get
+            {
+                return (IProfileService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IProfileService));
+            }
         }
 
         public MembershipUser CreateUser(string email, string name, string password)
         {
-            UserEntity user = new UserEntity
+            var user = new UserEntity
             {
                 Email = email,
                 UserName = name,
@@ -64,7 +67,7 @@ namespace MvcPL.Providers
 
             var memberUser = new MembershipUser("CustomMembershipProvider", user.UserName,
                 null, null, null, null,
-                false, false, default(DateTime), 
+                false, false, default(DateTime),
                 DateTime.MinValue, DateTime.MinValue,
                 DateTime.MinValue, DateTime.MinValue);
 
@@ -86,7 +89,6 @@ namespace MvcPL.Providers
 
             return memberUser.UserName;
         }
-
 
         #region Stabs
 

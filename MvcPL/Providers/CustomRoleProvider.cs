@@ -17,44 +17,40 @@ namespace MvcPL.Providers
 
         public IRoleService RoleService
         {
-            get { return (IRoleService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService)); }
+            get { return (IRoleService) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService)); }
         }
 
 
         public override string ApplicationName { get; set; }
 
-        public override bool IsUserInRole(string email, string roleName)
+        public override bool IsUserInRole(string name, string roleName)
         {
-            UserEntity user = UserService.GetAllEntities().FirstOrDefault(u => u.Email == email);
-            if (user == null) return false;
-
-            RoleEntity userRole = RoleService.GetById(user.RoleId);
-            if (userRole != null && userRole.Name == roleName)
-            {
+            var role = RoleService.GetById(UserService.GetUserByName(name).RoleId);
+            if (role.Name == roleName)
                 return true;
-            }
-
             return false;
         }
 
-        public override string[] GetRolesForUser(string email)
+        public override string[] GetRolesForUser(string name)
         {
             var roles = new string[] {};
-            var user = UserService.GetAllEntities().FirstOrDefault(u => u.Email == email);
+            var users = UserService.GetAllEntities();
+            var user = users.FirstOrDefault(u => u.UserName == name);
 
             if (user == null) return roles;
 
             var role = RoleService.GetById(user.RoleId);
-            return new string[] {role.Name};
+            return new[] {role.Name};
         }
 
         public override void CreateRole(string roleName)
         {
-            var newRole = new RoleEntity() { Name = roleName };
+            var newRole = new RoleEntity {Name = roleName};
             RoleService.Create(newRole);
         }
 
         #region Stabs
+
         public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
         {
             throw new NotImplementedException();
@@ -89,6 +85,7 @@ namespace MvcPL.Providers
         {
             throw new NotImplementedException();
         }
+
         #endregion
     }
 }

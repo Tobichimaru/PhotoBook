@@ -8,9 +8,10 @@ namespace DAL.Interfacies.DTO
         {
             Users = new HashSet<DalUser>();
         }
-        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public virtual ICollection<DalUser> Users { get; set; }
+        public int Id { get; set; }
     }
 }

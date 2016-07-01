@@ -38,7 +38,7 @@ namespace MvcPL
 
             bundles.Add(new StyleBundle("~/Content/blueimp").Include(
                 "~/Content/blueimp-gallery2/css/blueimp-*"));
-            
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
@@ -46,8 +46,6 @@ namespace MvcPL
 
             bundles.Add(new StyleBundle("~/Content/jcrop").Include(
                 "~/Content/jquery.Jcrop.css"));
-
-            
         }
     }
 }

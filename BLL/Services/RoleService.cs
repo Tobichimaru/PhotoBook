@@ -10,8 +10,8 @@ namespace BLL.Services
 {
     public class RoleService : IRoleService
     {
-        private readonly IUnitOfWork uow;
         private readonly IRoleRepository roleRepository;
+        private readonly IUnitOfWork uow;
 
         public RoleService(IUnitOfWork uow, IRoleRepository repository)
         {

@@ -3,18 +3,18 @@
 @foreach (var item in Model.photos)
 {
     var base64 = Convert.ToBase64String(item.Picture);
-    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
 
     var fullbase64 = Convert.ToBase64String(item.FullSize);
-    var fullimgSrc = String.Format("data:image/gif;base64,{0}", fullbase64);
-    <div style="width: 330px; display: inline-block">
-        <a href="@fullimgSrc" class="gallery-link"  data-gallery >
-            <img src="@imgSrc" class="gallery-image" style="margin-bottom: 7px;" />
+    var fullimgSrc = string.Format("data:image/gif;base64,{0}", fullbase64);
+    <div style="display: inline-block; width: 330px;">
+        <a href="@fullimgSrc" class="gallery-link" data-gallery>
+            <img src="@imgSrc" class="gallery-image" style="margin-bottom: 7px;"/>
         </a>
         <div style="padding: 0 15px">
             @if (User.IsInRole("Admin"))
             {
-                @Html.ActionLink("delete photo", "DeletePhoto", "Profile", null, new { name = item.UserName, photoId = item.Id })
+                @Html.ActionLink("delete photo", "DeletePhoto", "Profile", null, new {name = item.UserName, photoId = item.Id})
             }
             <p>
                 @item.CreatedOn.ToString("F") <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})">@item.UserName</a>
@@ -58,14 +58,13 @@
         </div>
     </div>
 }
-<div style="text-align: center; padding: 15px">
+<div style="padding: 15px; text-align: center;">
     @if (Model.pageSize*Model.page <= Model.count)
     {
-        using (Ajax.BeginForm("LinksView", "Home", new {page = ++Model.page, pageName = Model.pageName},
+        using (Ajax.BeginForm("LinksView", "Home", new {page = ++Model.page, Model.pageName},
             new AjaxOptions {UpdateTargetId = "links", InsertionMode = InsertionMode.InsertAfter}))
         {
             <input type="submit" value="Show more" onclick="hideshow(this)" class="btn btn-default btn-circle"/>
         }
     }
 </div>
-

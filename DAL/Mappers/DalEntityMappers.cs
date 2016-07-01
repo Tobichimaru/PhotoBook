@@ -7,6 +7,7 @@ namespace DAL.Mappers
     public static class DalEntityMappers
     {
         #region User
+
         public static DalUser ToDalUser(this User userEntity)
         {
             return new DalUser
@@ -34,9 +35,11 @@ namespace DAL.Mappers
                 UserName = dalUser.UserName
             };
         }
+
         #endregion
 
         #region Profile
+
         public static Profile ToOrmProfile(this DalProfile profile)
         {
             var newprofile = new Profile
@@ -57,7 +60,7 @@ namespace DAL.Mappers
 
         public static DalProfile ToDalProfile(this Profile profile)
         {
-            var newprofile =  new DalProfile
+            var newprofile = new DalProfile
             {
                 Id = profile.Id,
                 FirstName = profile.FirstName,
@@ -72,19 +75,21 @@ namespace DAL.Mappers
             }
             return newprofile;
         }
+
         #endregion
 
         #region Role
+
         public static Role ToOrmRole(this DalRole role)
         {
             var orm = new Role
             {
                 RoleId = role.Id,
-                Name = role.Name,
+                Name = role.Name
             };
             foreach (var item in role.Users)
             {
-                orm.Users.Add(item.ToOrmUser());   
+                orm.Users.Add(item.ToOrmUser());
             }
             return orm;
         }
@@ -102,9 +107,11 @@ namespace DAL.Mappers
             }
             return role;
         }
+
         #endregion
 
         #region Photo
+
         public static DalPhoto ToDalPhoto(this Photo photo)
         {
             return new DalPhoto
@@ -150,9 +157,11 @@ namespace DAL.Mappers
                 }).ToList()
             };
         }
+
         #endregion
 
         #region Tag
+
         public static DalTag ToDalTag(this Tag tag)
         {
             var newtag = new DalTag
@@ -180,9 +189,11 @@ namespace DAL.Mappers
             }
             return newtag;
         }
+
         #endregion
 
         #region Like
+
         public static Like ToOrmLike(this DalLike like)
         {
             return new Like

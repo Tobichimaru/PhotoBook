@@ -67,7 +67,7 @@ namespace MvcPL.Controllers
             var profile = _Service.GetProfileByName(User.Identity.Name);
             if (file != null && file.ContentLength > 0)
             {
-                MemoryStream target = new MemoryStream();
+                var target = new MemoryStream();
                 file.InputStream.CopyTo(target);
                 var byteArrayIn = target.ToArray();
                 Image image = null;
@@ -85,7 +85,7 @@ namespace MvcPL.Controllers
             _Service.Update(profile);
             return RedirectToAction("UserPage", new {name = profile.UserName});
         }
-        
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -117,7 +117,7 @@ namespace MvcPL.Controllers
 
                 using (var img = Image.FromStream(file.InputStream))
                 {
-                    Image cutImage = GalleryHelper.CutImage(img, 300, 300);
+                    var cutImage = GalleryHelper.CutImage(img, 300, 300);
                     model.Picture = GalleryHelper.ImageToByteArray(cutImage);
 
                     var newSize = new Size(600, 600);
@@ -127,14 +127,14 @@ namespace MvcPL.Controllers
                 // Save record to database
                 model.CreatedOn = DateTime.Now;
 
-                string[] tags = photo.Tags.Split(' ');
+                var tags = photo.Tags.Split(' ');
                 model.Tags = new List<TagModel>();
                 foreach (var tag in tags)
                 {
-                     model.Tags.Add(new TagModel
-                     {
-                         Name = tag
-                     });
+                    model.Tags.Add(new TagModel
+                    {
+                        Name = tag
+                    });
                 }
 
                 profile.Photos.Add(model.ToPhotoEntity());
@@ -150,7 +150,7 @@ namespace MvcPL.Controllers
             var photo = profile.Photos.FirstOrDefault(p => p.Id == photoId);
             profile.Photos.Remove(photo);
             _Service.Update(profile);
-            return RedirectToAction("UserPage", new {name = name});
+            return RedirectToAction("UserPage", new {name});
         }
     }
 }

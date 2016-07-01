@@ -13,6 +13,7 @@ namespace DAL.Concrete.ModelRepos
     public class UserRepository : IUserRepository
     {
         private readonly UnitOfWork _unitOfWork; //not interface
+
         public UserRepository(UnitOfWork uow)
         {
             _unitOfWork = uow;
@@ -27,6 +28,7 @@ namespace DAL.Concrete.ModelRepos
                 Password = userEntity.Password,
                 Email = userEntity.Email,
                 RoleId = userEntity.RoleId,
+                UserName = userEntity.UserName,
                 Profile = new DalProfile
                 {
                     Age = userEntity.UserProfile.Age,
@@ -94,7 +96,7 @@ namespace DAL.Concrete.ModelRepos
 
         public void Create(DalUser e)
         {
-            DalProfile profile = new DalProfile
+            var profile = new DalProfile
             {
                 UserName = e.UserName
             };
@@ -120,7 +122,7 @@ namespace DAL.Concrete.ModelRepos
             {
                 _unitOfWork.Context.Set<Photo>().Remove(photo);
             }
-            
+
             _unitOfWork.Context.Set<Profile>().Remove(user.UserProfile);
             _unitOfWork.Context.Set<User>().Remove(user);
             _unitOfWork.Commit();

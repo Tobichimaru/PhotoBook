@@ -1,5 +1,4 @@
-﻿
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Web.Helpers;
 using ORM.Models;
 
@@ -54,21 +53,21 @@ namespace ORM
             };
 
             //initialize profiles
-            Profile profile1 = new Profile
+            var profile1 = new Profile
             {
                 Age = 12,
                 FirstName = "Arya",
                 LastName = "Stark",
                 UserName = user1.UserName
             };
-            Profile profile2 = new Profile
+            var profile2 = new Profile
             {
                 Age = 15,
                 FirstName = "Sansa",
                 LastName = "Stark",
                 UserName = user2.UserName
             };
-            Profile profile = new Profile
+            var profile = new Profile
             {
                 UserName = user.UserName
             };
@@ -89,7 +88,6 @@ namespace ORM
             context.Users.Add(user2);
             context.Users.Add(user);
             context.SaveChanges();
-
         }
     }
 }

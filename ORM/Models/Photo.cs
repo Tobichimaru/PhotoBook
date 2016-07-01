@@ -12,7 +12,7 @@ namespace ORM.Models
             Tags = new HashSet<Tag>();
             Likes = new HashSet<Like>();
         }
-        
+
         [Key]
         public int PhotoId { get; set; }
 

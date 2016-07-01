@@ -7,12 +7,12 @@
                     if (Model.Avatar != null)
                     {
                         var base64 = Convert.ToBase64String(Model.Avatar);
-                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                        <img src="@imgSrc" alt="Avatar" class="circular" />
+                        var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                        <img src="@imgSrc" alt="Avatar" class="circular"/>
                     }
                     else
                     {
-                        <img src="~/Content/Images/avatar.png" alt="Avatar" class="circular" style="margin-bottom: 7px;" />
+                        <img src="~/Content/Images/avatar.png" alt="Avatar" class="circular" style="margin-bottom: 7px;"/>
                     }
                 }
             </div>
@@ -23,13 +23,12 @@
                 <h4>Age: @Model.Age</h4>
             </div>
 
-            <div class="user-page-column" style="margin: 30px 0 0 15px ">
+            <div class="user-page-column" style="margin: 30px 0 0 15px">
                 @if (Model.UserName == User.Identity.Name || User.IsInRole("Admin"))
                 {
-                    @Html.ActionLink("Edit Profile", "ProfileEdit", "Profile", null, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Edit Profile", "ProfileEdit", "Profile", null, new {@class = "btn btn-default"})
                 }
             </div>
         </div>
     </div>
 </div>
-    

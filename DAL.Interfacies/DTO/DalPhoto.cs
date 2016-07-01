@@ -10,8 +10,6 @@ namespace DAL.Interfacies.DTO
             Tags = new HashSet<DalTag>();
             Likes = new HashSet<DalLike>();
         }
-        
-        public int Id { get; set; }
 
         public int ProfileId { get; set; }
 
@@ -21,5 +19,7 @@ namespace DAL.Interfacies.DTO
 
         public virtual ICollection<DalTag> Tags { get; set; }
         public virtual ICollection<DalLike> Likes { get; set; }
+
+        public int Id { get; set; }
     }
 }

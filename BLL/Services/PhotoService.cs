@@ -10,8 +10,8 @@ namespace BLL.Services
 {
     public class PhotoService : IPhotoService
     {
-        private readonly IUnitOfWork uow;
         private readonly IPhotoRepository photoRepository;
+        private readonly IUnitOfWork uow;
 
         public PhotoService(IUnitOfWork uow, IPhotoRepository repository)
         {

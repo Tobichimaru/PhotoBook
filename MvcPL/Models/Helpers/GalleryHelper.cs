@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 
 namespace MvcPL.Models.Helpers
@@ -10,9 +11,9 @@ namespace MvcPL.Models.Helpers
 
         public static Image CutImage(Image target, int width, int height)
         {
-            Bitmap bmpImage = new Bitmap(target);
-            int size = Math.Min(target.Width, target.Height);
-            var rect = new Rectangle((target.Width - size) / 2, (target.Height - size) / 2, size, size);
+            var bmpImage = new Bitmap(target);
+            var size = Math.Min(target.Width, target.Height);
+            var rect = new Rectangle((target.Width - size)/2, (target.Height - size)/2, size, size);
             var img = bmpImage.Clone(rect, bmpImage.PixelFormat);
 
             var newSize = new Size(width, height);
@@ -27,11 +28,11 @@ namespace MvcPL.Models.Helpers
             if (imageSize.Height > newSize.Height || imageSize.Width > newSize.Width)
             {
                 if (imageSize.Height > imageSize.Width)
-                    tempval = newSize.Height / (imageSize.Height * 1.0);
+                    tempval = newSize.Height/(imageSize.Height*1.0);
                 else
-                    tempval = newSize.Width / (imageSize.Width * 1.0);
+                    tempval = newSize.Width/(imageSize.Width*1.0);
 
-                finalSize = new Size((int)(tempval * imageSize.Width), (int)(tempval * imageSize.Height));
+                finalSize = new Size((int) (tempval*imageSize.Width), (int) (tempval*imageSize.Height));
             }
             else
                 finalSize = imageSize; // image is already small size
@@ -43,10 +44,9 @@ namespace MvcPL.Models.Helpers
         {
             using (var ms = new MemoryStream())
             {
-                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+                imageIn.Save(ms, ImageFormat.Gif);
                 return ms.ToArray();
             }
         }
-
     }
 }

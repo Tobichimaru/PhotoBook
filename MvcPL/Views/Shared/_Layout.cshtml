@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Your photo book!</title>
     <link rel="shortcut icon" type="image/ico" href="~/Content/Images/logo.ico">
@@ -17,26 +17,26 @@
 
 </head>
 <body>
-    <div class="navbar navbar-default">
-        <div class="container" id="navbar-container">
-            <div class="navbar-left">
-                @Html.ActionLink("PhotoBook", "Index", "Home", null, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-right">
-                @Html.Partial("_LoginPartial")
-            </div>
+<div class="navbar navbar-default">
+    <div class="container" id="navbar-container">
+        <div class="navbar-left">
+            @Html.ActionLink("PhotoBook", "Index", "Home", null, new {@class = "navbar-brand"})
+        </div>
+        <div class="navbar-right">
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr/>
-    </div>
-    <div class="footer">
-        <p>
-            With contributions by <a href="https://github.com/Tobichimaru/PhotoBook">Tobichimaru</a>, Kate Zabelova - @DateTime.Now.Year
-        </p>
-    </div>
-    
-    @RenderSection("scripts", required: false)
+</div>
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+</div>
+<div class="footer">
+    <p>
+        With contributions by <a href="https://github.com/Tobichimaru/PhotoBook">Tobichimaru</a>, Kate Zabelova - @DateTime.Now.Year
+    </p>
+</div>
+
+@RenderSection("scripts", false)
 </body>
 </html>

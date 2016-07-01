@@ -2,7 +2,7 @@
 
 namespace BLL.Interfacies.Services
 {
-    public interface IProfileService: IService<ProfileEntity>
+    public interface IProfileService : IService<ProfileEntity>
     {
         ProfileEntity GetProfileByName(string name);
     }

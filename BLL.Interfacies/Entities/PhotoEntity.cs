@@ -10,7 +10,7 @@ namespace BLL.Interfacies.Entities
             Tags = new HashSet<TagEntity>();
             Likes = new HashSet<LikeEntity>();
         }
-        
+
 
         public int Id { get; set; }
         public int ProfileId { get; set; }

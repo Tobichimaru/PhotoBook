@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Models
 {
     public class User
     {
-
         [Key]
         public int UserId { get; set; }
 
@@ -23,13 +21,14 @@ namespace ORM.Models
 
         [Required]
         public int UserProfileId { get; set; }
+
         [ForeignKey("UserProfileId")]
         public virtual Profile UserProfile { get; set; }
 
         [Required]
         public int RoleId { get; set; }
+
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
-
     }
 }

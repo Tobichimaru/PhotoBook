@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 namespace BLL.Interfacies.Services
 {
     public interface IService<T>

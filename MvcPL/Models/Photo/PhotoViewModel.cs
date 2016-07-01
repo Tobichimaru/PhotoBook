@@ -20,6 +20,5 @@ namespace MvcPL.Models.Photo
 
         public virtual ICollection<TagModel> Tags { get; set; }
         public virtual List<LikeModel> Likes { get; set; }
-
     }
 }

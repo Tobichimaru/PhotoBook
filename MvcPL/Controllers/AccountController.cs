@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Web.Security;
 using BLL.Interfacies.Services;
-using MvcPL.Models;
 using MvcPL.Models.User;
 using MvcPL.Providers;
 
@@ -35,7 +34,7 @@ namespace MvcPL.Controllers
             if (ModelState.IsValid)
             {
                 if (Membership.ValidateUser(viewModel.Name, viewModel.Password))
-                //Проверяет учетные данные пользователя и управляет параметрами пользователей
+                    //Проверяет учетные данные пользователя и управляет параметрами пользователей
                 {
                     FormsAuthentication.SetAuthCookie(viewModel.Name, viewModel.RememberMe);
                     //Управляет службами проверки подлинности с помощью форм для веб-приложений
@@ -82,7 +81,7 @@ namespace MvcPL.Controllers
 
             if (ModelState.IsValid)
             {
-                var membershipUser = ((CustomMembershipProvider)Membership.Provider)
+                var membershipUser = ((CustomMembershipProvider) Membership.Provider)
                     .CreateUser(viewModel.Email, viewModel.Name, viewModel.Password);
 
                 if (membershipUser != null)
@@ -101,7 +100,5 @@ namespace MvcPL.Controllers
         {
             return PartialView("_LoginPartial");
         }
-
-        
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
@@ -13,6 +12,7 @@ namespace DAL.Concrete.ModelRepos
     public class ProfileRepository : IProfileRepository
     {
         private readonly UnitOfWork _unitOfWork; //not interface
+
         public ProfileRepository(UnitOfWork uow)
         {
             _unitOfWork = uow;
@@ -20,7 +20,7 @@ namespace DAL.Concrete.ModelRepos
 
         public IEnumerable<DalProfile> GetAll()
         {
-            return _unitOfWork.Context.Set<Profile>().Select(profile => new DalProfile()
+            return _unitOfWork.Context.Set<Profile>().Select(profile => new DalProfile
             {
                 Id = profile.Id,
                 FirstName = profile.FirstName,
@@ -76,7 +76,7 @@ namespace DAL.Concrete.ModelRepos
         public void Delete(DalProfile e)
         {
             var profile = _unitOfWork.Context.Set<Profile>().Single(u => u.Id == e.Id);
-           
+
             _unitOfWork.Context.Set<Profile>().Remove(profile);
             _unitOfWork.Commit();
         }
@@ -126,13 +126,11 @@ namespace DAL.Concrete.ModelRepos
             //    }
             //}
             //_unitOfWork.Commit();
-
         }
 
         public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> f)
         {
             throw new NotImplementedException();
         }
-
     }
 }

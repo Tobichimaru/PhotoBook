@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using BLL.Interfacies.Services;
 using Microsoft.Ajax.Utilities;
 using MvcPL.Infrastructure.Mappers;
-using MvcPL.Models;
 using MvcPL.Models.Helpers;
 using MvcPL.Models.Photo;
 using MvcPL.Models.User;
@@ -30,7 +29,8 @@ namespace MvcPL.Controllers
                 CurrentPage = 1
             };
 
-            _Service.GetAllEntities().ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto(u.Profile.UserName))));
+            _Service.GetAllEntities()
+                .ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto(u.Profile.UserName))));
             photos.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
             photos.PageName = "Index";
 
@@ -59,16 +59,18 @@ namespace MvcPL.Controllers
             _Service.Delete(user);
             return View("UsersEdit");
         }
-        
+
 
         [HttpPost]
         public ActionResult LinksView(int page, string pageName)
         {
-            PagedList<PhotoViewModel> photos = (PagedList<PhotoViewModel>)HttpContext.Session[User.Identity.Name + pageName];
+            PagedList<PhotoViewModel> photos =
+                (PagedList<PhotoViewModel>) HttpContext.Session[User.Identity.Name + pageName];
             photos.CurrentPage = page;
 
             List<PhotoViewModel> result =
-                new List<PhotoViewModel>(photos.Content.Skip(photos.PageSize*(photos.CurrentPage-1)).Take(photos.PageSize));
+                new List<PhotoViewModel>(
+                    photos.Content.Skip(photos.PageSize*(photos.CurrentPage - 1)).Take(photos.PageSize));
 
             return PartialView("Links", new GalleryLinksModel
             {

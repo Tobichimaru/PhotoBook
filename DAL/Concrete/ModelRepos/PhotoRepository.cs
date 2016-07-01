@@ -13,6 +13,7 @@ namespace DAL.Concrete.ModelRepos
     public class PhotoRepository : IPhotoRepository
     {
         private readonly UnitOfWork _unitOfWork; //not interface
+
         public PhotoRepository(UnitOfWork uow)
         {
             _unitOfWork = uow;
@@ -50,7 +51,6 @@ namespace DAL.Concrete.ModelRepos
             foreach (var like in photo.Likes)
             {
                 _unitOfWork.Context.Set<Like>().AddOrUpdate(like.ToOrmLike());
-                
             }
             _unitOfWork.Context.Set<Photo>().AddOrUpdate(photo.ToOrmPhoto());
             _unitOfWork.Commit();
@@ -60,6 +60,5 @@ namespace DAL.Concrete.ModelRepos
         {
             throw new NotImplementedException();
         }
-
     }
 }

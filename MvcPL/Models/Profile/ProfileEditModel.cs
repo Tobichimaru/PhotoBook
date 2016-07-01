@@ -21,6 +21,5 @@ namespace MvcPL.Models.Profile
 
         [Display(Name = "Upload new avatar")]
         public byte[] Avatar { get; set; }
-        
     }
 }

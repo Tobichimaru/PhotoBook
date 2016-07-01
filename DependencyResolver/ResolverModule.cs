@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Services;
 using DAL.Concrete;
