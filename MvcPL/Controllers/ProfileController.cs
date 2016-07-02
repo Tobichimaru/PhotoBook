@@ -158,20 +158,23 @@ namespace MvcPL.Controllers
         {
             var profile = _Service.GetProfileByName(name);
             var photo = profile.Photos.First(p => p.Id == photoId);
-            if (photo.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) != null)
-            {
-                _Service.RemoveLike(profile, new LikeEntity
-                {
-                    PhotoId = photoId,
-                    UserName = User.Identity.Name
-                });
-                return PartialView("NotLike", photo.ToMvcPhoto(name));
-            } 
-            _Service.AddLike(profile, new LikeEntity
-            {
-                PhotoId = photoId,
-                UserName = User.Identity.Name
-            });
+             if (photo.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) != null)
+             {
+                 _Service.RemoveLike(profile, new LikeEntity
+                 {
+                     PhotoId = photoId,
+                     UserName = User.Identity.Name
+                 });
+             }
+             else
+             {
+                 _Service.AddLike(profile, new LikeEntity
+                 {
+                     PhotoId = photoId,
+                     UserName = User.Identity.Name
+                 });
+             }
+            photo = _Service.GetProfileByName(name).Photos.First(p => p.Id == photoId);
             return PartialView("Like", photo.ToMvcPhoto(name));
         }
     }

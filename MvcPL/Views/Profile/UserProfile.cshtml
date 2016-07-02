@@ -24,7 +24,7 @@
             </div>
 
             <div class="user-page-column" style="margin: 30px 0 0 15px">
-                @if (Model.UserName == User.Identity.Name || User.IsInRole("Admin"))
+                @if (Model.UserName == User.Identity.Name)
                 {
                     @Html.ActionLink("Edit Profile", "ProfileEdit", "Profile", null, new {@class = "btn btn-default"})
                 }

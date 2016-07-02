@@ -12,45 +12,46 @@
             <img src="@imgSrc" class="gallery-image" style="margin-bottom: 7px;"/>
         </a>
         <div style="padding: 0 15px">
-            <p style="font-family: 'Times New Roman'; font-weight: bold; ">@item.Description</p>
-            <p style="font-size: 10px;">
-                @item.CreatedOn.ToString("F")
-            </p>
-            @if (item.UserName != null)
-            {
-                <p style="font-size: 10px; margin-top: -7px;">
-                Posted by 
-                <a href="@Url.Action("UserPage", "Profile", new { name = item.UserName })"> @item.UserName</a>
+            <div style="width: 150px; float: left;">
+                <p style="font-family: 'Times New Roman'; font-weight: bold;">@item.Description</p>
+                <p style="font-size: 10px;">
+                    @item.CreatedOn.ToString("F")
                 </p>
-            }
-            
-
-            @foreach (var tag in item.Tags)
-            {
-                if (Model.pageName.Substring(3) == tag.Name && Model.pageName.StartsWith("Tag"))
+                @if (item.UserName != null)
                 {
-                    <a class="btn btn-primary btn-xs" href="@Url.Action("TagSearch", "Home", new {name = tag.Name})">@tag.Name</a>
+                    <p style="font-size: 10px; margin-top: -7px;">
+                        Posted by
+                        <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})"> @item.UserName</a>
+                    </p>
                 }
-                else
+                <br/>
+                
+            </div>
+            <div>
+                @foreach (var tag in item.Tags)
                 {
-                    <a class="btn btn-default btn-xs" href="@Url.Action("TagSearch", "Home", new {name = tag.Name})">@tag.Name</a>
+                    if (Model.pageName.Substring(3) == tag.Name && Model.pageName.StartsWith("Tag"))
+                    {
+                        <a class="btn btn-primary btn-xs" href="@Url.Action("TagSearch", "Home", new {name = tag.Name})">@tag.Name</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-default btn-xs" href="@Url.Action("TagSearch", "Home", new {name = tag.Name})">@tag.Name</a>
+                    }
                 }
-            }
-            <br/>
-            <div id=@item.Id.ToString()>
-                @{
-                    Html.RenderPartial(item.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) == null ? "Like" : "NotLike", item);
+                @if (User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("DeletePhoto", "Profile", new {name = item.UserName, photoId = item.Id})">
+                        <img src="~/Content/Images/trashCan.ico" style="zoom: 50%; padding-left: 5px" />
+                    </a>
                 }
-            </div> 
-            
-           
-        @if (User.IsInRole("Admin"))
-        {
-            <a href="@Url.Action("DeletePhoto", "Profile", new {name = item.UserName, photoId = item.Id})">
-                <img src="~/Content/Images/trashCan.ico" style="zoom: 50%; padding-left: 5px" />
-            </a>
-        }
+                <div id=@item.Id.ToString()>
+                    @{
+                        Html.RenderPartial( "Like", item);
+                    }
+                </div>
 
+            </div>
         </div>
     </div>
 }
