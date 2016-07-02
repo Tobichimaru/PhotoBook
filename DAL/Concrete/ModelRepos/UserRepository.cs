@@ -44,6 +44,7 @@ namespace DAL.Concrete.ModelRepos
                         Picture = p.Picture,
                         FullSize = p.FullSize,
                         ProfileId = p.ProfileId,
+                        Description = p.Description,
                         Likes = p.Likes.Select(l => new DalLike
                         {
                             Id = l.LikeId,

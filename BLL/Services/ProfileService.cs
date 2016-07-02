@@ -46,6 +46,18 @@ namespace BLL.Services
             uow.Commit();
         }
 
+        public void RemoveLike(ProfileEntity profile, LikeEntity likeEntity)
+        {
+            profileRepository.RemoveLike(profile.ToDalProfile(), likeEntity.ToDalLike());
+            uow.Commit();
+        }
+
+        public void AddLike(ProfileEntity profile, LikeEntity likeEntity)
+        {
+            profileRepository.AddLike(profile.ToDalProfile(), likeEntity.ToDalLike());
+            uow.Commit();
+        }
+
         public void Delete(ProfileEntity profile)
         {
             profileRepository.Delete(profile.ToDalProfile());

@@ -146,6 +146,10 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App_Data\PhotoBook.mdf" />
+    <Content Include="App_Data\PhotoBook_log.ldf">
+      <DependentUpon>PhotoBook.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\blueimp-gallery2\ans-blueimp-gallery2.js" />
     <Content Include="Content\blueimp-gallery2\ans-blueimp-gallery2.min.js" />
     <Content Include="Content\blueimp-gallery2\css\blueimp-gallery-indicator.css" />
@@ -287,10 +291,10 @@
     <Content Include="Views\Shared\Links.cshtml" />
     <Content Include="Views\Home\TagSearch.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Shared\Like.cshtml" />
+    <Content Include="Views\Shared\NotLike.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

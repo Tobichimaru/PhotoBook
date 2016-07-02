@@ -12,10 +12,19 @@
             <img src="@imgSrc" class="gallery-image" style="margin-bottom: 7px;"/>
         </a>
         <div style="padding: 0 15px">
-            <p>
-                @item.CreatedOn.ToString("F") <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})">@item.UserName</a>
+            <p style="font-family: 'Times New Roman'; font-weight: bold; ">@item.Description</p>
+            <p style="font-size: 10px;">
+                @item.CreatedOn.ToString("F")
             </p>
+            @if (item.UserName != null)
+            {
+                <p style="font-size: 10px; margin-top: -7px;">
+                Posted by 
+                <a href="@Url.Action("UserPage", "Profile", new { name = item.UserName })"> @item.UserName</a>
+                </p>
+            }
             
+
             @foreach (var tag in item.Tags)
             {
                 if (Model.pageName.Substring(3) == tag.Name && Model.pageName.StartsWith("Tag"))
@@ -28,36 +37,20 @@
                 }
             }
             <br/>
-            <a class="btn btn-lg btn-default" style="margin-top: 5px" id=@item.Id.ToString() onclick="changeStyle(@item.Id.ToString())"><span class="glyphicon glyphicon-heart-empty"></span> Like!</a>
-            @if (User.IsInRole("Admin"))
-            {
-                <a href="@Url.Action("DeletePhoto", "Profile", new {name = item.UserName, photoId = item.Id})">
-                    <img src="~/Content/Images/trashCan.ico" style="zoom: 50%; padding-left: 5px" />
-                </a>
-            }
-            <script type="text/javascript">
-                function changeStyle(id) {
-                    var textbox = document.getElementById(id);
-                    @if (item.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) == null)
-                    {
-                        item.Likes.Add(new LikeModel
-                        {
-                            UserName = User.Identity.Name,
-                            PhotoId = item.Id
-                        });
-                    }
-                    else
-                    {
-                        item.Likes.RemoveAll(l => l.UserName == User.Identity.Name);
-                    }
-
-                    if (textbox.className === 'btn btn-lg btn-default') {
-                        textbox.className = 'btn btn-lg btn-danger';
-                    } else {
-                        textbox.className = 'btn btn-lg btn-default';
-                    }
+            <div id=@item.Id.ToString()>
+                @{
+                    Html.RenderPartial(item.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) == null ? "Like" : "NotLike", item);
                 }
-            </script>
+            </div> 
+            
+           
+        @if (User.IsInRole("Admin"))
+        {
+            <a href="@Url.Action("DeletePhoto", "Profile", new {name = item.UserName, photoId = item.Id})">
+                <img src="~/Content/Images/trashCan.ico" style="zoom: 50%; padding-left: 5px" />
+            </a>
+        }
+
         </div>
     </div>
 }

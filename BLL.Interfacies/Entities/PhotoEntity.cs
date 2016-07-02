@@ -11,7 +11,7 @@ namespace BLL.Interfacies.Entities
             Likes = new HashSet<LikeEntity>();
         }
 
-
+        public String Description { get; set; }
         public int Id { get; set; }
         public int ProfileId { get; set; }
 

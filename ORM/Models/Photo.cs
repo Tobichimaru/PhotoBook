@@ -19,6 +19,9 @@ namespace ORM.Models
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
 
+        [Required]
+        public String Description { get; set; }
+
         public int ProfileId { get; set; }
 
         [ForeignKey("ProfileId")]

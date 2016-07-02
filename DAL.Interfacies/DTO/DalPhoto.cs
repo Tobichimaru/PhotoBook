@@ -12,6 +12,7 @@ namespace DAL.Interfacies.DTO
         }
 
         public int ProfileId { get; set; }
+        public String Description { get; set; }
 
         public DateTime CreatedOn { get; set; }
         public byte[] Picture { get; set; }

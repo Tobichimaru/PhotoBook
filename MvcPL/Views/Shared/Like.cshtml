@@ -1,0 +1,8 @@
+﻿@model MvcPL.Models.Photo.PhotoViewModel
+<div id=@Model.Id.ToString()>
+    @using (Ajax.BeginForm("Like", "Profile", new { photoId = Model.Id, name = Model.UserName },
+            new AjaxOptions { UpdateTargetId = Model.Id.ToString(), InsertionMode = InsertionMode.ReplaceWith }))
+    {
+        <input style="margin-top: 5px;" type="submit" value="Like!" class="btn btn-lg btn-danger" />
+    }
+</div>

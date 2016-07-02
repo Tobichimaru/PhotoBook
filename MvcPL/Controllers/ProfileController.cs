@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
@@ -126,6 +127,7 @@ namespace MvcPL.Controllers
                 }
                 // Save record to database
                 model.CreatedOn = DateTime.Now;
+                model.Description = photo.Description;
 
                 var tags = photo.Tags.Split(' ');
                 model.Tags = new List<TagModel>();
@@ -136,6 +138,7 @@ namespace MvcPL.Controllers
                         Name = tag
                     });
                 }
+
 
                 profile.Photos.Add(model.ToPhotoEntity());
             }
@@ -149,6 +152,27 @@ namespace MvcPL.Controllers
             var profile = _Service.GetProfileByName(name);
             _Service.DeletePhoto(profile, photoId);
             return RedirectToAction("Index", "Home", new {name});
+        }
+
+         public ActionResult Like(int photoId, string name)
+        {
+            var profile = _Service.GetProfileByName(name);
+            var photo = profile.Photos.First(p => p.Id == photoId);
+            if (photo.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) != null)
+            {
+                _Service.RemoveLike(profile, new LikeEntity
+                {
+                    PhotoId = photoId,
+                    UserName = User.Identity.Name
+                });
+                return PartialView("NotLike", photo.ToMvcPhoto(name));
+            } 
+            _Service.AddLike(profile, new LikeEntity
+            {
+                PhotoId = photoId,
+                UserName = User.Identity.Name
+            });
+            return PartialView("Like", photo.ToMvcPhoto(name));
         }
     }
 }

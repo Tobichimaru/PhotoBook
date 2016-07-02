@@ -109,6 +109,7 @@ namespace MvcPL.Infrastructure.Mappers
                 CreatedOn = photo.CreatedOn,
                 Picture = photo.Picture,
                 FullSize = photo.FullSize,
+                Description = photo.Description,
                 Tags = photo.Tags.ToTagEntitys(),
                 Likes = photo.Likes.ToLikeEntitys()
             };
@@ -122,6 +123,7 @@ namespace MvcPL.Infrastructure.Mappers
                 CreatedOn = photo.CreatedOn,
                 Picture = photo.Picture,
                 FullSize = photo.FullSize,
+                Description = photo.Description,
                 UserName = name,
                 Tags = photo.Tags.ToMvcTags(),
                 Likes = new List<LikeModel>(photo.Likes.ToMvcLikes())

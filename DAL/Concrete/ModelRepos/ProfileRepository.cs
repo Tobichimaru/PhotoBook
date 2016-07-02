@@ -92,6 +92,27 @@ namespace DAL.Concrete.ModelRepos
             _unitOfWork.Commit();
         }
 
+        public void AddLike(DalProfile profile, DalLike like)
+        {
+            var dalprofile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == profile.UserName);
+            _unitOfWork.Context.Set<Profile>().Attach(dalprofile);
+            var photo = dalprofile.Photos.First(p => p.PhotoId == like.PhotoId);
+            photo.Likes.Add(like.ToOrmLike());
+            _unitOfWork.Commit();
+        }
+
+        public void RemoveLike(DalProfile profile, DalLike like)
+        {
+            var dalprofile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == profile.UserName);
+            _unitOfWork.Context.Set<Profile>().Attach(dalprofile);
+            var photo = dalprofile.Photos.First(p => p.PhotoId == like.PhotoId);
+            photo.Likes.Remove(like.ToOrmLike());
+            var dblike =
+                _unitOfWork.Context.Set<Like>().First(l => l.UserName == like.UserName && l.PhotoId == like.PhotoId);
+            _unitOfWork.Context.Set<Like>().Remove(dblike);
+            _unitOfWork.Commit();
+        }
+
         public void Update(DalProfile entity)
         {
             var profile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == entity.UserName);
@@ -127,16 +148,6 @@ namespace DAL.Concrete.ModelRepos
                 }
             }
             _unitOfWork.Commit();
-
-
-            //foreach (var like in photo.Likes)
-            //{
-            //    if (_unitOfWork.Context.Set<Like>().FirstOrDefault(p => p.PhotoId == like.PhotoId && p.UserName == profile.UserName) == null)
-            //    {
-            //        _unitOfWork.Context.Set<Like>().Add(like.ToOrmLike());
-            //    }
-            //}
-            //_unitOfWork.Commit();
         }
 
         public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> f)

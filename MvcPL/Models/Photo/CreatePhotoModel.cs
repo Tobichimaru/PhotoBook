@@ -8,6 +8,10 @@ namespace MvcPL.Models.Photo
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
 
+        [Display(Name = "Description")]
+        [Required]
+        public String Description { get; set; }
+
         public byte[] Picture { get; set; }
         public byte[] FullSize { get; set; }
 

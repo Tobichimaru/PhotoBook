@@ -121,6 +121,7 @@ namespace DAL.Mappers
                 Picture = photo.Picture,
                 FullSize = photo.FullSize,
                 ProfileId = photo.ProfileId,
+                Description = photo.Description,
                 Likes = photo.Likes.Select(l => new DalLike
                 {
                     Id = l.LikeId,
@@ -144,6 +145,7 @@ namespace DAL.Mappers
                 Picture = dal.Picture,
                 FullSize = dal.FullSize,
                 ProfileId = dal.ProfileId,
+                Description = dal.Description,
                 Likes = dal.Likes.Select(l => new Like
                 {
                     LikeId = l.Id,

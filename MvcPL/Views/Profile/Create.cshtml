@@ -11,7 +11,13 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Description, new { @class = "control-label col-sm-3" })
+                <div class="col-sm-5">
+                    @Html.TextBoxFor(m => m.Description, new { @class = "form-control required" })
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(m => Model.Tags, new {@class = "control-label col-sm-3"})
                 <div class="col-sm-5">

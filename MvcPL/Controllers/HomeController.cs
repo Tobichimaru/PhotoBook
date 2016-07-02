@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using Microsoft.Ajax.Utilities;
 using MvcPL.Infrastructure.Mappers;
@@ -20,8 +21,9 @@ namespace MvcPL.Controllers
             _Service = Service;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string filter = null)
         {
+            ViewBag.filter = filter;
             PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
             {
                 Content = new List<PhotoViewModel>(),
@@ -29,10 +31,10 @@ namespace MvcPL.Controllers
                 CurrentPage = 1
             };
 
-            _Service.GetAllEntities()
-                .ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto(u.Profile.UserName))));
+            _Service.GetAllEntities().ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto(u.Profile.UserName))));
             photos.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
             photos.PageName = "Index";
+            photos.Content = photos.Content.Where(x => filter == null || (x.Description.Contains(filter))).ToList();
 
             HttpContext.Session[User.Identity.Name + photos.PageName] = photos;
 
@@ -81,6 +83,7 @@ namespace MvcPL.Controllers
                 pageName = pageName
             });
         }
+
 
         [Route("tag/{name}")]
         public ActionResult TagSearch(string name)

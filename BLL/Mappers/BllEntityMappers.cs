@@ -143,6 +143,7 @@ namespace BLL.Mappers
             {
                 CreatedOn = photo.CreatedOn,
                 FullSize = photo.FullSize,
+                Description = photo.Description,
                 Id = photo.Id,
                 Picture = photo.Picture,
                 ProfileId = photo.ProfileId,
@@ -167,6 +168,7 @@ namespace BLL.Mappers
                 CreatedOn = photo.CreatedOn,
                 FullSize = photo.FullSize,
                 ProfileId = photo.ProfileId,
+                Description = photo.Description,
                 Id = photo.Id,
                 Picture = photo.Picture,
                 Likes = photo.Likes.Select(l => new DalLike
