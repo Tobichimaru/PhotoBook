@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using Microsoft.Ajax.Utilities;
 using MvcPL.Infrastructure.Mappers;
@@ -14,11 +13,11 @@ namespace MvcPL.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IUserService _Service;
+        private readonly IUserService _service;
 
-        public HomeController(IUserService Service)
+        public HomeController(IUserService service)
         {
-            _Service = Service;
+            _service = service;
         }
 
         public ActionResult Index(string filter = null)
@@ -31,7 +30,7 @@ namespace MvcPL.Controllers
                 CurrentPage = 1
             };
 
-            _Service.GetAllEntities().ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto(u.Profile.UserName))));
+            _service.GetAllEntities().ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto())));
             photos.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
             photos.PageName = "Index";
             photos.Content = photos.Content.Where(x => filter == null || (x.Description.Contains(filter))).ToList();
@@ -45,7 +44,7 @@ namespace MvcPL.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult UsersEdit()
         {
-            var model = _Service.GetAllEntities().Select(u => new UserViewModel
+            var model = _service.GetAllEntities().Select(u => new UserViewModel
             {
                 Email = u.Email,
                 Name = u.UserName
@@ -57,8 +56,8 @@ namespace MvcPL.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(string name)
         {
-            var user = _Service.GetUserByName(name);
-            _Service.Delete(user);
+            var user = _service.GetUserByName(name);
+            _service.Delete(user);
             return RedirectToAction("UsersEdit");
         }
 
@@ -82,43 +81,6 @@ namespace MvcPL.Controllers
                 pageSize = photos.PageSize,
                 pageName = pageName
             });
-        }
-
-
-        [Route("tag/{name}")]
-        public ActionResult TagSearch(string name)
-        {
-            var model = _Service.GetAllEntities();
-            PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
-            {
-                Content = new List<PhotoViewModel>(),
-                PageSize = GalleryHelper.PageSize,
-                CurrentPage = 1
-            };
-
-            foreach (var user in model)
-            {
-                foreach (var photo in user.Profile.Photos)
-                {
-                    var flag = false;
-                    foreach (var tag in photo.Tags)
-                    {
-                        if (tag.Name == name)
-                        {
-                            flag = true;
-                            break;
-                        }
-                    }
-                    if (flag) photos.Content.Add(photo.ToMvcPhoto(user.Profile.UserName));
-                }
-            }
-
-            photos.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
-            photos.PageName = "Tag" + name;
-
-            HttpContext.Session[User.Identity.Name + photos.PageName] = photos;
-
-            return View(photos);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
@@ -21,6 +22,8 @@ namespace BLL.Services
 
         public RoleEntity GetById(int id)
         {
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException();
             return roleRepository.GetById(id).ToBllRole();
         }
 
@@ -31,25 +34,37 @@ namespace BLL.Services
 
         public void Create(RoleEntity role)
         {
+            if (ReferenceEquals(role, null))
+                throw new ArgumentNullException();
+
             roleRepository.Create(role.ToBllRole());
             uow.Commit();
         }
 
         public void Delete(RoleEntity role)
         {
+            if (ReferenceEquals(role, null))
+                throw new ArgumentNullException();
+
             roleRepository.Delete(role.ToBllRole());
             uow.Commit();
         }
 
         public void Update(RoleEntity item)
         {
+            if (ReferenceEquals(item, null))
+                throw new ArgumentNullException();
+
             roleRepository.Update(item.ToBllRole());
             uow.Commit();
         }
 
         public RoleEntity GetRoleByName(string name)
         {
-            return roleRepository.GetRoleByName(name).ToBllRole();
+            var role = roleRepository.GetRoleByName(name);
+            if (ReferenceEquals(role, null))
+                return null;
+            return role.ToBllRole();
         }
     }
 }

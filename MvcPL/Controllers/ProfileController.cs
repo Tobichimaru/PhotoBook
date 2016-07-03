@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models;
@@ -17,17 +16,17 @@ namespace MvcPL.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly IProfileService _Service;
+        private readonly IProfileService _service;
 
-        public ProfileController(IProfileService Service)
+        public ProfileController(IProfileService service)
         {
-            _Service = Service;
+            _service = service;
         }
 
         [Route("user/{name}")]
         public ActionResult UserPage(string name)
         {
-            var profile = _Service.GetProfileByName(name);
+            var profile = _service.GetProfileByName(name);
             if (profile == null)
             {
                 return RedirectToAction("NotFound", "Error");
@@ -35,9 +34,9 @@ namespace MvcPL.Controllers
 
             var records = new PagedList<PhotoViewModel>();
             records.Content = new List<PhotoViewModel>();
-            foreach (var item in _Service.GetProfileByName(name).Photos)
+            foreach (var item in _service.GetProfileByName(name).Photos)
             {
-                records.Content.Add(item.ToMvcPhoto(null));
+                records.Content.Add(item.ToMvcPhoto());
             }
             records.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
 
@@ -65,7 +64,7 @@ namespace MvcPL.Controllers
         [HttpPost]
         public ActionResult ProfileEdit(ProfileEditModel viewModel, HttpPostedFileBase file)
         {
-            var profile = _Service.GetProfileByName(User.Identity.Name);
+            var profile = _service.GetProfileByName(User.Identity.Name);
             if (file != null && file.ContentLength > 0)
             {
                 var target = new MemoryStream();
@@ -83,7 +82,7 @@ namespace MvcPL.Controllers
             profile.LastName = viewModel.LastName ?? profile.LastName;
             profile.Age = viewModel.Age == 0 ? profile.Age : viewModel.Age;
 
-            _Service.Update(profile);
+            _service.Update(profile);
             return RedirectToAction("UserPage", new {name = profile.UserName});
         }
 
@@ -110,7 +109,7 @@ namespace MvcPL.Controllers
             photo.Tags = photo.Tags.Trim();
 
             var model = new PhotoViewModel();
-            var profile = _Service.GetProfileByName(User.Identity.Name);
+            var profile = _service.GetProfileByName(User.Identity.Name);
 
             foreach (var file in httpPostedFileBases)
             {
@@ -128,6 +127,7 @@ namespace MvcPL.Controllers
                 // Save record to database
                 model.CreatedOn = DateTime.Now;
                 model.Description = photo.Description;
+                model.UserName = User.Identity.Name;
 
                 var tags = photo.Tags.Split(' ');
                 model.Tags = new List<TagModel>();
@@ -142,40 +142,10 @@ namespace MvcPL.Controllers
 
                 profile.Photos.Add(model.ToPhotoEntity());
             }
-            _Service.Update(profile);
+            _service.Update(profile);
             return RedirectToAction("UserPage", new {name = profile.UserName});
         }
 
-        [Authorize(Roles = "Admin")]
-        public ActionResult DeletePhoto(string name, int photoId)
-        {
-            var profile = _Service.GetProfileByName(name);
-            _Service.DeletePhoto(profile, photoId);
-            return RedirectToAction("Index", "Home", new {name});
-        }
-
-         public ActionResult Like(int photoId, string name)
-        {
-            var profile = _Service.GetProfileByName(name);
-            var photo = profile.Photos.First(p => p.Id == photoId);
-             if (photo.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) != null)
-             {
-                 _Service.RemoveLike(profile, new LikeEntity
-                 {
-                     PhotoId = photoId,
-                     UserName = User.Identity.Name
-                 });
-             }
-             else
-             {
-                 _Service.AddLike(profile, new LikeEntity
-                 {
-                     PhotoId = photoId,
-                     UserName = User.Identity.Name
-                 });
-             }
-            photo = _Service.GetProfileByName(name).Photos.First(p => p.Id == photoId);
-            return PartialView("Like", photo.ToMvcPhoto(name));
-        }
+        
     }
 }

@@ -56,8 +56,9 @@
     <Compile Include="Repository\ModelRepos\IPhotoRepository.cs" />
     <Compile Include="Repository\ModelRepos\IProfileRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\ModelRepos\IRoleRepository.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />
+    <Compile Include="Repository\ModelRepos\IRoleRepository.cs" />
+    <Compile Include="Repository\ModelRepos\ITagRepository.cs" />
     <Compile Include="Repository\ModelRepos\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

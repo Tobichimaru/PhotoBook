@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
@@ -21,7 +22,12 @@ namespace BLL.Services
 
         public PhotoEntity GetById(int id)
         {
-            return photoRepository.GetById(id).ToBllPhoto();
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException();
+            var photo = photoRepository.GetById(id);
+            if (ReferenceEquals(photo, null))
+                return null;
+            return photo.ToBllPhoto();
         }
 
         public IEnumerable<PhotoEntity> GetAllEntities()
@@ -31,19 +37,46 @@ namespace BLL.Services
 
         public void Create(PhotoEntity item)
         {
+            if (ReferenceEquals(item, null))
+                throw new ArgumentNullException();
+
             photoRepository.Create(item.ToDalPhoto());
             uow.Commit();
         }
 
         public void Delete(PhotoEntity item)
         {
+            if (ReferenceEquals(item, null))
+                throw new ArgumentNullException();
+
             photoRepository.Delete(item.ToDalPhoto());
             uow.Commit();
         }
 
         public void Update(PhotoEntity item)
         {
+            if (ReferenceEquals(item, null))
+                throw new ArgumentNullException();
+
             photoRepository.Update(item.ToDalPhoto());
+            uow.Commit();
+        }
+
+        public void RemoveLike(LikeEntity likeEntity)
+        {
+            if (ReferenceEquals(likeEntity, null))
+                throw new ArgumentNullException();
+
+            photoRepository.RemoveLike(likeEntity.ToDalLike());
+            uow.Commit();
+        }
+
+        public void AddLike(LikeEntity likeEntity)
+        {
+            if (ReferenceEquals(likeEntity, null))
+                throw new ArgumentNullException();
+
+            photoRepository.AddLike(likeEntity.ToDalLike());
             uow.Commit();
         }
     }

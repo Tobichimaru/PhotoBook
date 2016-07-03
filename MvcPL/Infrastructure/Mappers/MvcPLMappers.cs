@@ -109,13 +109,14 @@ namespace MvcPL.Infrastructure.Mappers
                 CreatedOn = photo.CreatedOn,
                 Picture = photo.Picture,
                 FullSize = photo.FullSize,
+                UserName = photo.UserName,
                 Description = photo.Description,
                 Tags = photo.Tags.ToTagEntitys(),
                 Likes = photo.Likes.ToLikeEntitys()
             };
         }
 
-        public static PhotoViewModel ToMvcPhoto(this PhotoEntity photo, string name)
+        public static PhotoViewModel ToMvcPhoto(this PhotoEntity photo)
         {
             return new PhotoViewModel
             {
@@ -124,7 +125,7 @@ namespace MvcPL.Infrastructure.Mappers
                 Picture = photo.Picture,
                 FullSize = photo.FullSize,
                 Description = photo.Description,
-                UserName = name,
+                UserName = photo.UserName,
                 Tags = photo.Tags.ToMvcTags(),
                 Likes = new List<LikeModel>(photo.Likes.ToMvcLikes())
             };

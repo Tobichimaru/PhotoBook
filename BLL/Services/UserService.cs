@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
@@ -21,17 +22,25 @@ namespace BLL.Services
 
         public UserEntity GetById(int id)
         {
+            if (id <= 0)
+                throw new ArgumentOutOfRangeException();
             return userRepository.GetById(id).ToBllUser();
         }
 
         public UserEntity GetUserByEmail(string email)
         {
-            return userRepository.GetByEmail(email).ToBllUser();
+            var user = userRepository.GetByEmail(email);
+            if (ReferenceEquals(user, null))
+                return null;
+            return user.ToBllUser();
         }
 
         public UserEntity GetUserByName(string name)
         {
-            return userRepository.GetByName(name).ToBllUser();
+            var user = userRepository.GetByName(name);
+            if (ReferenceEquals(user, null))
+                return null;
+            return user.ToBllUser();
         }
 
         public IEnumerable<UserEntity> GetAllEntities()
@@ -41,18 +50,27 @@ namespace BLL.Services
 
         public void Create(UserEntity user)
         {
+            if (ReferenceEquals(user, null))
+                throw new ArgumentNullException();
+
             userRepository.Create(user.ToDalUser());
             uow.Commit();
         }
 
         public void Delete(UserEntity user)
         {
+            if (ReferenceEquals(user, null))
+                throw new ArgumentNullException();
+
             userRepository.Delete(user.ToDalUser());
             uow.Commit();
         }
 
         public void Update(UserEntity item)
         {
+            if (ReferenceEquals(item, null))
+                throw new ArgumentNullException();
+
             userRepository.Update(item.ToDalUser());
             uow.Commit();
         }

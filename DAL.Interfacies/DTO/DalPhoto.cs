@@ -22,5 +22,6 @@ namespace DAL.Interfacies.DTO
         public virtual ICollection<DalLike> Likes { get; set; }
 
         public int Id { get; set; }
+        public string UserName { get; set; }
     }
 }

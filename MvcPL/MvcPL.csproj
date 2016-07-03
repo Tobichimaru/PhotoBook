@@ -192,7 +192,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -289,11 +291,14 @@
     <Content Include="Views\Profile\UserPage.cshtml" />
     <Content Include="Views\Profile\ProfileEdit.cshtml" />
     <Content Include="Views\Shared\Links.cshtml" />
-    <Content Include="Views\Home\TagSearch.cshtml" />
+    <Content Include="Views\Tag\TagSearch.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\Like.cshtml" />
+    <Content Include="Views\Home\Explore.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Photo\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

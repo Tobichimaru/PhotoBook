@@ -21,5 +21,6 @@ namespace BLL.Interfacies.Entities
 
         public virtual ICollection<TagEntity> Tags { get; set; }
         public virtual ICollection<LikeEntity> Likes { get; set; }
+        public string UserName { get; set; }
     }
 }

@@ -8,25 +8,25 @@ namespace ORM
     {
         protected override void Seed(EntityModel context)
         {
-            //initialize roles
+            #region Roles initializing
             var role = new Role
             {
                 Name = "User"
             };
-            context.Roles.Add(role);
-
             var adminRole = new Role
             {
                 Name = "Admin"
             };
-            context.Roles.Add(adminRole);
             context.Roles.Add(new Role
             {
                 Name = "Moderator"
             });
+            context.Roles.Add(role);
+            context.Roles.Add(adminRole);
             context.SaveChanges();
+            #endregion
 
-            //initialize Users
+            #region Users initializing
             var user1 = new User
             {
                 Email = "arya.stark@gmail.com",
@@ -51,8 +51,9 @@ namespace ORM
                 RoleId = adminRole.RoleId,
                 UserName = "admin"
             };
+            #endregion
 
-            //initialize profiles
+            #region Profiles initializing
             var profile1 = new Profile
             {
                 Age = 12,
@@ -76,6 +77,7 @@ namespace ORM
             context.Profiles.Add(profile2);
             context.Profiles.Add(profile);
             context.SaveChanges();
+            #endregion
 
             user1.UserProfile = profile1;
             user1.UserProfileId = profile1.Id;

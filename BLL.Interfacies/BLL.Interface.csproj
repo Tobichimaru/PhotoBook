@@ -56,6 +56,7 @@
     <Compile Include="Services\IProfileService.cs" />
     <Compile Include="Services\IRoleService.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\ITagService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

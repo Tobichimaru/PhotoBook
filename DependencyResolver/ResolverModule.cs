@@ -47,6 +47,9 @@ namespace DependencyResolver
 
             kernel.Bind<IPhotoService>().To<PhotoService>();
             kernel.Bind<IPhotoRepository>().To<PhotoRepository>();
+
+            kernel.Bind<ITagService>().To<TagService>();
+            kernel.Bind<ITagRepository>().To<TagRepository>();
         }
     }
 }

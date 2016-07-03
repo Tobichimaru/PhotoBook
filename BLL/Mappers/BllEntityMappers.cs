@@ -145,6 +145,7 @@ namespace BLL.Mappers
                 FullSize = photo.FullSize,
                 Description = photo.Description,
                 Id = photo.Id,
+                UserName = photo.UserName,
                 Picture = photo.Picture,
                 ProfileId = photo.ProfileId,
                 Likes = photo.Likes.Select(l => new LikeEntity
@@ -168,6 +169,7 @@ namespace BLL.Mappers
                 CreatedOn = photo.CreatedOn,
                 FullSize = photo.FullSize,
                 ProfileId = photo.ProfileId,
+                UserName = photo.UserName,
                 Description = photo.Description,
                 Id = photo.Id,
                 Picture = photo.Picture,

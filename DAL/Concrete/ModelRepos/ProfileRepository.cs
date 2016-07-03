@@ -11,7 +11,7 @@ namespace DAL.Concrete.ModelRepos
 {
     public class ProfileRepository : IProfileRepository
     {
-        private readonly UnitOfWork _unitOfWork; //not interface
+        private readonly UnitOfWork _unitOfWork; 
 
         public ProfileRepository(UnitOfWork uow)
         {
@@ -32,6 +32,8 @@ namespace DAL.Concrete.ModelRepos
                     Id = p.PhotoId,
                     CreatedOn = p.CreatedOn,
                     Picture = p.Picture,
+                    UserName = p.UserName,
+                    Description = p.Description,
                     FullSize = p.FullSize,
                     Likes = p.Likes.Select(l => new DalLike
                     {
@@ -66,50 +68,17 @@ namespace DAL.Concrete.ModelRepos
             return null;
         }
 
-        public void Create(DalProfile e)
+        public void Create(DalProfile dalprofile)
         {
-            var profile = e.ToOrmProfile();
+            var profile = dalprofile.ToOrmProfile();
             _unitOfWork.Context.Set<Profile>().Add(profile);
             _unitOfWork.Commit();
         }
 
-        public void Delete(DalProfile e)
+        public void Delete(DalProfile dalprofile)
         {
-            var profile = _unitOfWork.Context.Set<Profile>().Single(u => u.Id == e.Id);
-
+            var profile = _unitOfWork.Context.Set<Profile>().Single(u => u.Id == dalprofile.Id);
             _unitOfWork.Context.Set<Profile>().Remove(profile);
-            _unitOfWork.Commit();
-        }
-
-        public void DeletePhoto(DalProfile entity, int id)
-        {
-            var profile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == entity.UserName);
-            _unitOfWork.Context.Set<Profile>().Attach(profile);
-            var photo = profile.Photos.First(p => p.PhotoId == id);
-            profile.Photos.Remove(photo);
-            var bdphoto = _unitOfWork.Context.Set<Photo>().First(p => p.PhotoId == id);
-            _unitOfWork.Context.Set<Photo>().Remove(bdphoto);
-            _unitOfWork.Commit();
-        }
-
-        public void AddLike(DalProfile profile, DalLike like)
-        {
-            var dalprofile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == profile.UserName);
-            _unitOfWork.Context.Set<Profile>().Attach(dalprofile);
-            var photo = dalprofile.Photos.First(p => p.PhotoId == like.PhotoId);
-            photo.Likes.Add(like.ToOrmLike());
-            _unitOfWork.Commit();
-        }
-
-        public void RemoveLike(DalProfile profile, DalLike like)
-        {
-            var dalprofile = _unitOfWork.Context.Set<Profile>().First(p => p.UserName == profile.UserName);
-            _unitOfWork.Context.Set<Profile>().Attach(dalprofile);
-            var photo = dalprofile.Photos.First(p => p.PhotoId == like.PhotoId);
-            photo.Likes.Remove(like.ToOrmLike());
-            var dblike =
-                _unitOfWork.Context.Set<Like>().First(l => l.UserName == like.UserName && l.PhotoId == like.PhotoId);
-            _unitOfWork.Context.Set<Like>().Remove(dblike);
             _unitOfWork.Commit();
         }
 
@@ -150,9 +119,19 @@ namespace DAL.Concrete.ModelRepos
             _unitOfWork.Commit();
         }
 
-        public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> f)
+        public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> predicate)
         {
-            throw new NotImplementedException();
+            ParameterExpression param = predicate.Parameters[0];
+            BinaryExpression operation = (BinaryExpression)predicate.Body;
+            MemberExpression left = (MemberExpression)operation.Left;
+            ParameterExpression newParam = Expression.Parameter(typeof(Profile), param.Name);
+            MemberExpression prop = Expression.Property(newParam, left.Member.Name);
+            BinaryExpression newOperation = Expression.MakeBinary(operation.NodeType, prop, operation.Right);
+            Expression<Func<Profile, bool>> func = Expression.Lambda<Func<Profile, bool>>(newOperation, newParam);
+            var profile = _unitOfWork.Context.Set<Profile>().FirstOrDefault(func);
+            if (ReferenceEquals(profile, null))
+                return null;
+            return profile.ToDalProfile();
         }
     }
 }

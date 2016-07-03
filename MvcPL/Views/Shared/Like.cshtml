@@ -1,6 +1,6 @@
 ﻿@model MvcPL.Models.Photo.PhotoViewModel
 <div id=@Model.Id.ToString()>
-    @using (Ajax.BeginForm("Like", "Profile", new { photoId = Model.Id, name = Model.UserName },
+    @using (Ajax.BeginForm("Like", "Photo", new { photoId = Model.Id, name = Model.UserName },
             new AjaxOptions { UpdateTargetId = Model.Id.ToString(), InsertionMode = InsertionMode.ReplaceWith }))
     {
         if (Model.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) == null)

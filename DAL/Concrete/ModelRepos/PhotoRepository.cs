@@ -21,7 +21,27 @@ namespace DAL.Concrete.ModelRepos
 
         public IEnumerable<DalPhoto> GetAll()
         {
-            return _unitOfWork.Context.Set<Photo>().Select(photo => photo.ToDalPhoto());
+            return _unitOfWork.Context.Set<Photo>().Select(photo => new DalPhoto
+            {
+                Id = photo.PhotoId,
+                CreatedOn = photo.CreatedOn,
+                Picture = photo.Picture,
+                FullSize = photo.FullSize,
+                ProfileId = photo.ProfileId,
+                Description = photo.Description,
+                UserName = photo.UserName,
+                Likes = photo.Likes.Select(l => new DalLike
+                {
+                    Id = l.LikeId,
+                    PhotoId = l.PhotoId,
+                    UserName = l.UserName
+                }).ToList(),
+                Tags = photo.Tags.Select(t => new DalTag
+                {
+                    Id = t.TagId,
+                    Name = t.Name
+                }).ToList()
+            });
         }
 
         public DalPhoto GetById(int key)
@@ -56,9 +76,37 @@ namespace DAL.Concrete.ModelRepos
             _unitOfWork.Commit();
         }
 
-        public DalPhoto GetByPredicate(Expression<Func<DalPhoto, bool>> f)
+        public DalPhoto GetByPredicate(Expression<Func<DalPhoto, bool>> predicate)
         {
-            throw new NotImplementedException();
+            ParameterExpression param = predicate.Parameters[0];
+            BinaryExpression operation = (BinaryExpression)predicate.Body;
+            MemberExpression left = (MemberExpression)operation.Left;
+            ParameterExpression newParam = Expression.Parameter(typeof(Photo), param.Name);
+            MemberExpression prop = Expression.Property(newParam, left.Member.Name);
+            BinaryExpression newOperation = Expression.MakeBinary(operation.NodeType, prop, operation.Right);
+            Expression<Func<Photo, bool>> func = Expression.Lambda<Func<Photo, bool>>(newOperation, newParam);
+            var photo = _unitOfWork.Context.Set<Photo>().FirstOrDefault(func);
+            if (ReferenceEquals(photo, null))
+                return null;
+            return photo.ToDalPhoto();
+        }
+
+        public void RemoveLike(DalLike like)
+        {
+            var photo = _unitOfWork.Context.Set<Photo>().First(p => p.PhotoId == like.PhotoId);
+            photo.Likes.Remove(like.ToOrmLike());
+            var dblike =
+                _unitOfWork.Context.Set<Like>().First(l => l.UserName == like.UserName && l.PhotoId == like.PhotoId);
+            _unitOfWork.Context.Set<Like>().Remove(dblike);
+            _unitOfWork.Commit();
+        }
+
+        public void AddLike(DalLike like)
+        {
+            var photo = _unitOfWork.Context.Set<Photo>().First(p => p.PhotoId == like.PhotoId);
+            _unitOfWork.Context.Set<Photo>().Attach(photo);
+            photo.Likes.Add(like.ToOrmLike());
+            _unitOfWork.Commit();
         }
     }
 }

@@ -1,6 +1,15 @@
 ﻿/* Set padding to keep content from hitting the edges */
 .gallery-image { padding: 15px 15px 0 15px; }
 
+.tag1{font-size: 0.8 em}
+.tag2{font-size: 0.9em}
+.tag3{font-size: 1em}
+.tag4{font-size: 1.2em}
+.tag5{font-size: 1.4em}
+.tag6{font-size: 1.7em}
+.tag7{font-size: 2.0em}
+
+
 .user-page-column {
     float: left;
     padding: 10px;

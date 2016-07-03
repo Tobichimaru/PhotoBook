@@ -17,6 +17,7 @@
                 <p style="font-size: 10px;">
                     @item.CreatedOn.ToString("F")
                 </p>
+
                 @if (item.UserName != null)
                 {
                     <p style="font-size: 10px; margin-top: -7px;">
@@ -24,27 +25,26 @@
                         <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})"> @item.UserName</a>
                     </p>
                 }
-                <br/>
-                
+                @if (User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("DeletePhoto", "Photo", new {name = item.UserName, photoId = item.Id})">
+                        <img src="~/Content/Images/trashCan.ico" style="zoom: 50%; padding-left: 5px" />
+                    </a>
+                }
             </div>
             <div>
                 @foreach (var tag in item.Tags)
                 {
                     if (Model.pageName.Substring(3) == tag.Name && Model.pageName.StartsWith("Tag"))
                     {
-                        <a class="btn btn-primary btn-xs" href="@Url.Action("TagSearch", "Home", new {name = tag.Name})">@tag.Name</a>
+                        <a class="btn btn-primary btn-xs" href="@Url.Action("TagSearch", "Tag", new {name = tag.Name})">@tag.Name</a>
                     }
                     else
                     {
-                        <a class="btn btn-default btn-xs" href="@Url.Action("TagSearch", "Home", new {name = tag.Name})">@tag.Name</a>
+                        <a class="btn btn-default btn-xs" href="@Url.Action("TagSearch", "Tag", new {name = tag.Name})">@tag.Name</a>
                     }
                 }
-                @if (User.IsInRole("Admin"))
-                {
-                    <a href="@Url.Action("DeletePhoto", "Profile", new {name = item.UserName, photoId = item.Id})">
-                        <img src="~/Content/Images/trashCan.ico" style="zoom: 50%; padding-left: 5px" />
-                    </a>
-                }
+                
                 <div id=@item.Id.ToString()>
                     @{
                         Html.RenderPartial( "Like", item);

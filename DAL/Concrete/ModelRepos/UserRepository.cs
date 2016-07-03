@@ -45,6 +45,7 @@ namespace DAL.Concrete.ModelRepos
                         FullSize = p.FullSize,
                         ProfileId = p.ProfileId,
                         Description = p.Description,
+                        UserName = p.UserName,
                         Likes = p.Likes.Select(l => new DalLike
                         {
                             Id = l.LikeId,
@@ -89,10 +90,19 @@ namespace DAL.Concrete.ModelRepos
             return null;
         }
 
-        public DalUser GetByPredicate(Expression<Func<DalUser, bool>> f)
+        public DalUser GetByPredicate(Expression<Func<DalUser, bool>> predicate)
         {
-            //Expression<Func<DalUser, bool>> -> Expression<Func<User, bool>> (!)
-            throw new NotImplementedException();
+            ParameterExpression param = predicate.Parameters[0];
+            BinaryExpression operation = (BinaryExpression)predicate.Body;
+            MemberExpression left = (MemberExpression)operation.Left;
+            ParameterExpression newParam = Expression.Parameter(typeof(User), param.Name);
+            MemberExpression prop = Expression.Property(newParam, left.Member.Name);
+            BinaryExpression newOperation = Expression.MakeBinary(operation.NodeType, prop, operation.Right);
+            Expression<Func<User, bool>> func = Expression.Lambda<Func<User, bool>>(newOperation, newParam);
+            var user = _unitOfWork.Context.Set<User>().FirstOrDefault(func);
+            if (ReferenceEquals(user, null))
+                return null;
+            return user.ToDalUser();
         }
 
         public void Create(DalUser e)
@@ -116,7 +126,7 @@ namespace DAL.Concrete.ModelRepos
             _unitOfWork.Commit();
         }
 
-        public void Delete(DalUser e) //implement 
+        public void Delete(DalUser e)
         {
             var user = _unitOfWork.Context.Set<User>().Single(u => u.UserId == e.Id);
             _unitOfWork.Context.Set<Photo>().RemoveRange(user.UserProfile.Photos);

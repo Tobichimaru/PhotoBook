@@ -32,5 +32,6 @@ namespace ORM.Models
 
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Like> Likes { get; set; }
+        public string UserName { get; set; }
     }
 }
