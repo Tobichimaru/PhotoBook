@@ -1,0 +1,1 @@
+D:\github\PhotoBook\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache

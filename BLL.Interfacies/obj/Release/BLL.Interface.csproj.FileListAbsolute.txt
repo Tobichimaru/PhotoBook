@@ -1,0 +1,9 @@
+D:\github\PhotoBook\BLL.Interfacies\bin\Release\BLL.Interfacies.dll.config
+D:\github\PhotoBook\BLL.Interfacies\bin\Release\BLL.Interfacies.dll
+D:\github\PhotoBook\BLL.Interfacies\bin\Release\BLL.Interfacies.pdb
+D:\github\PhotoBook\BLL.Interfacies\bin\Release\EntityFramework.dll
+D:\github\PhotoBook\BLL.Interfacies\bin\Release\EntityFramework.SqlServer.dll
+D:\github\PhotoBook\BLL.Interfacies\bin\Release\EntityFramework.xml
+D:\github\PhotoBook\BLL.Interfacies\bin\Release\EntityFramework.SqlServer.xml
+D:\github\PhotoBook\BLL.Interfacies\obj\Release\BLL.Interfacies.dll
+D:\github\PhotoBook\BLL.Interfacies\obj\Release\BLL.Interfacies.pdb

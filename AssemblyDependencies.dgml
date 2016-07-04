@@ -1,54 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph DataVirtualized="True" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="@10" Category="CodeSchema_Assembly" AssemblyTimestamp="06/29/2016 11:05:40" Bounds="131.995,332.212622405594,186.453333333333,25" CodeSchemaProperty_StrongName="DependencyResolver, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(dfbef70e-859f-4567-9297-5168727f050d.OutputPath)" Group="Collapsed" Label="DependencyResolver.dll" UseManualLocation="True">
+    <Node Id="@10" Category="CodeSchema_Assembly" AssemblyTimestamp="07/04/2016 16:25:41" Bounds="101.995,325.837762621374,186.453333333333,25" CodeSchemaProperty_StrongName="DependencyResolver, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(dfbef70e-859f-4567-9297-5168727f050d.OutputPath)" Group="Collapsed" Label="DependencyResolver.dll" UseManualLocation="True">
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
-    <Node Id="@12" Category="CodeSchema_Assembly" AssemblyTimestamp="06/29/2016 11:05:36" Bounds="222.188333333334,165,154.066666666667,25" CodeSchemaProperty_StrongName="DAL.Interfacies, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(06204c03-41a1-4567-8edd-88ae0fc4391b.OutputPath)" Group="Collapsed" Label="DAL.Interfacies.dll" UseManualLocation="True">
+    <Node Id="@12" Category="CodeSchema_Assembly" AssemblyTimestamp="07/04/2016 16:25:18" Bounds="212.188333333333,165,154.066666666667,25" CodeSchemaProperty_StrongName="DAL.Interfacies, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(06204c03-41a1-4567-8edd-88ae0fc4391b.OutputPath)" Group="Collapsed" Label="DAL.Interfacies.dll">
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
-    <Node Id="@14" Category="CodeSchema_Assembly" AssemblyTimestamp="06/29/2016 11:05:35" Bounds="14,173.358798640327,150.443333333333,25" CodeSchemaProperty_StrongName="BLL.Interfacies, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(7fa5f436-290d-46bf-aa16-33d0bfb5e45d.OutputPath)" Group="Collapsed" Label="BLL.Interfacies.dll" UseManualLocation="True">
+    <Node Id="@14" Category="CodeSchema_Assembly" AssemblyTimestamp="07/04/2016 16:10:10" Bounds="0,165,150.443333333333,25" CodeSchemaProperty_StrongName="BLL.Interfacies, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(7fa5f436-290d-46bf-aa16-33d0bfb5e45d.OutputPath)" Group="Collapsed" Label="BLL.Interfacies.dll">
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
-    <Node Id="@2" Category="CodeSchema_Assembly" AssemblyTimestamp="06/29/2016 11:05:38" Bounds="348.58,110,97.2833333333334,25" CodeSchemaProperty_StrongName="DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(bb36f59d-3f3c-4594-944c-a0d271591a97.OutputPath)" Group="Collapsed" Label="DAL.dll">
+    <Node Id="@2" Category="CodeSchema_Assembly" AssemblyTimestamp="07/04/2016 16:25:19" Bounds="348.58,110,97.2833333333334,25" CodeSchemaProperty_StrongName="DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(bb36f59d-3f3c-4594-944c-a0d271591a97.OutputPath)" Group="Collapsed" Label="DAL.dll">
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
-    <Node Id="@4" Category="CodeSchema_Assembly" AssemblyTimestamp="06/29/2016 11:05:39" Bounds="138.391666666667,110,93.66,25" CodeSchemaProperty_StrongName="BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(8655463e-8154-4971-b49c-c2fecff2870f.OutputPath)" Group="Collapsed" Label="BLL.dll">
+    <Node Id="@4" Category="CodeSchema_Assembly" AssemblyTimestamp="07/04/2016 16:25:40" Bounds="138.391666666667,110,93.66,25" CodeSchemaProperty_StrongName="BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(8655463e-8154-4971-b49c-c2fecff2870f.OutputPath)" Group="Collapsed" Label="BLL.dll">
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
-    <Node Id="@6" Category="CodeSchema_Assembly" AssemblyTimestamp="06/29/2016 11:05:40" Bounds="-83.7366666666667,115.358698640327,109.916666666667,25" CodeSchemaProperty_StrongName="MvcPL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(cb3a6b50-1859-45d0-905a-b857e31b20dd.OutputPath)" Group="Collapsed" Label="MvcPL.dll" UseManualLocation="True">
+    <Node Id="@6" Category="CodeSchema_Assembly" AssemblyTimestamp="07/04/2016 16:25:42" Bounds="-97.7366666666666,107,109.916666666667,25" CodeSchemaProperty_StrongName="MvcPL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(cb3a6b50-1859-45d0-905a-b857e31b20dd.OutputPath)" Group="Collapsed" Label="MvcPL.dll" UseManualLocation="True">
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
-    <Node Id="@8" Category="CodeSchema_Assembly" AssemblyTimestamp="06/29/2016 11:05:35" Bounds="449.981666666667,166,102.48,25" CodeSchemaProperty_StrongName="ORM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(d71694fd-4657-4726-844c-1ee631281e9f.OutputPath)" Group="Collapsed" Label="ORM.dll" UseManualLocation="True">
+    <Node Id="@8" Category="CodeSchema_Assembly" AssemblyTimestamp="07/04/2016 16:10:10" Bounds="427.981666666667,165,102.48,25" CodeSchemaProperty_StrongName="ORM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="NotFetched" DelayedCrossGroupLinksState="Fetched" FilePath="$(d71694fd-4657-4726-844c-1ee631281e9f.OutputPath)" Group="Collapsed" Label="ORM.dll">
       <Category Ref="FileSystem.Category.FileOfType.dll" />
     </Node>
   </Nodes>
   <Links>
-    <Link Source="@10" Target="@12" Category="References" Bounds="230.753547354181,198.230128756221,59.294013526712,133.982493649373" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="10" />
-    <Link Source="@10" Target="@14" Category="References" Bounds="105.776470445165,205.195518360166,108.743533776712,127.017104045428" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="8" />
-    <Link Source="@10" Target="@2" Category="References" Bounds="239.15592956543,143.913650512695,155.077835083008,188.298965454102" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="7" />
-    <Link Source="@10" Target="@4" Category="References" Bounds="189.066206717023,143.857587969002,33.9053632535947,188.355034436592" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="4" />
-    <Link Source="@10" Target="@8" Category="References" Bounds="245.978213011151,195.643038878173,226.777031178707,136.56958352742" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="3" />
-    <Link Source="@2" Target="@12" Category="References" Bounds="329.342847691856,135,45.6060917020833,25.5952555470876" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="185">
+    <Link Source="@10" Target="@12" Category="References" Bounds="202.526094070891,197.770555306466,74.8503886214247,128.090787407476" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="14" />
+    <Link Source="@10" Target="@14" Category="References" Bounds="89.9279126164156,197.213931120382,95.9689502102905,128.647411593561" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="12" />
+    <Link Source="@10" Target="@2" Category="References" Bounds="211.604797363281,143.692428588867,179.930053710938,182.168899536133" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="9" />
+    <Link Source="@10" Target="@4" Category="References" Bounds="186.217229504205,143.990308064516,8.42536186590996,181.871034649426" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="6" />
+    <Link Source="@10" Target="@8" Category="References" Bounds="217.290369087907,194.435659439981,232.031543574497,131.425683273961" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="3" />
+    <Link Source="@2" Target="@12" Category="References" Bounds="321.78701949007,134.99995,50.8892149451718,25.9158274670851" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="271">
       <Category Ref="CodeSchema_Calls" />
       <Category Ref="CodeSchema_ReturnTypeLink" />
       <Category Ref="Implements" />
     </Link>
-    <Link Source="@2" Target="@8" Category="References" Bounds="420.435952380953,135,49.6471886721289,26.7331015926848" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="207">
+    <Link Source="@2" Target="@8" Category="References" Bounds="415.857996418795,134.99995,37.2529448710431,24.9867767463642" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="307">
       <Category Ref="CodeSchema_Calls" />
       <Category Ref="CodeSchema_ReturnTypeLink" />
     </Link>
-    <Link Source="@4" Target="@12" Category="References" Bounds="211.130757575758,135,54.0758937520727,26.0892469856491" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="183">
+    <Link Source="@4" Target="@12" Category="References" Bounds="208.858008815447,134.99995,48.7713660132216,25.7925727816873" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="257">
       <Category Ref="CodeSchema_Calls" />
       <Category Ref="CodeSchema_ReturnTypeLink" />
     </Link>
-    <Link Source="@4" Target="@14" Category="References" Bounds="115.672947594316,135,50.608966019075,33.4012842437263" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="147">
+    <Link Source="@4" Target="@14" Category="References" Bounds="108.271511385666,135,51.9501552810008,25.9750776405004" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="205">
       <Category Ref="CodeSchema_Calls" />
       <Category Ref="CodeSchema_ReturnTypeLink" />
       <Category Ref="Implements" />
     </Link>
-    <Link Source="@6" Target="@10" Category="CodeSchema_Calls" Bounds="-23.8415908813477,140.358703613281,220.933235168457,187.160247802734" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
-    <Link Source="@6" Target="@14" Category="References" Bounds="-3.34734269711031,140.358698640327,59.0609831825747,29.030024836336" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="194">
+    <Link Source="@6" Target="@10" Category="CodeSchema_Calls" Bounds="-37.7178115844727,132,206.902778625488,188.835784912109" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="1" />
+    <Link Source="@6" Target="@14" Category="References" Bounds="-17.3473207738614,132,59.0609379811819,29.0299775928428" IsSourceVirtualized="True" IsTargetVirtualized="True" Weight="204">
       <Category Ref="CodeSchema_Calls" />
       <Category Ref="CodeSchema_ReturnTypeLink" />
     </Link>

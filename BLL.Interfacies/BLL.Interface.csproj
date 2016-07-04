@@ -46,12 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ExceptionDetailsEntity.cs" />
     <Compile Include="Entities\LikeEntity.cs" />
     <Compile Include="Entities\PhotoEntity.cs" />
     <Compile Include="Entities\ProfileEntity.cs" />
     <Compile Include="Entities\RoleEntity.cs" />
     <Compile Include="Entities\TagEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Services\IExceptionDetailsService.cs" />
     <Compile Include="Services\IPhotoService.cs" />
     <Compile Include="Services\IProfileService.cs" />
     <Compile Include="Services\IRoleService.cs" />

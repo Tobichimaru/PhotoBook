@@ -21,5 +21,7 @@ namespace ORM
         public virtual DbSet<Like> Likes { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<ExceptionDetail> ExceptionDetails { get; set; }
+
     }
 }

@@ -1,6 +1,4 @@
 ﻿@model IEnumerable<MvcPL.Models.User.UserViewModel>
-
-
 <table class="table">
 
     <tr>
@@ -22,22 +20,19 @@
         <tr>
 
             <td>
-
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
 
             <td>
-
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
 
             <td>
                 <a href="@Url.Action("UserPage", "Profile", new {name = item.Name})">User Page</a> |
-                @Html.ActionLink("Delete", "Delete", new {name = item.Name})
+                @Html.ActionLink("Delete", "Delete", new {name = item.Name}) 
+                
             </td>
 
         </tr>
     }
-
-
 </table>

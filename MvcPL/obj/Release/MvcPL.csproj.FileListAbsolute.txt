@@ -1,0 +1,1 @@
+D:\github\PhotoBook\MvcPL\obj\Release\MvcPL.csprojResolveAssemblyReference.cache

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Mappers\BllEntityMappers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ExceptionDetailsService .cs" />
     <Compile Include="Services\PhotoService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\RoleService.cs" />

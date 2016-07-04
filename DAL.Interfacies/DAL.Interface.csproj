@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\DalExceptionDetail.cs" />
     <Compile Include="DTO\DalLike.cs" />
     <Compile Include="DTO\DalPhoto.cs" />
     <Compile Include="DTO\DalProfile.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="DTO\DalTag.cs" />
     <Compile Include="DTO\DalUser.cs" />
     <Compile Include="DTO\IEntity.cs" />
+    <Compile Include="Repository\ModelRepos\IExceptionDetailsRepository.cs" />
     <Compile Include="Repository\ModelRepos\IPhotoRepository.cs" />
     <Compile Include="Repository\ModelRepos\IProfileRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />

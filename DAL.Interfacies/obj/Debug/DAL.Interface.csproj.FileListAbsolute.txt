@@ -36,6 +36,7 @@ D:\github\epam\PhotoBook\DAL.Interfacies\bin\Debug\EntityFramework.xml
 D:\github\epam\PhotoBook\DAL.Interfacies\bin\Debug\EntityFramework.SqlServer.xml
 D:\github\epam\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interfacies.dll
 D:\github\epam\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interfacies.pdb
+D:\github\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interface.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\DAL.Interfacies\bin\Debug\DAL.Interfacies.dll.config
 D:\github\PhotoBook\DAL.Interfacies\bin\Debug\DAL.Interfacies.dll
 D:\github\PhotoBook\DAL.Interfacies\bin\Debug\DAL.Interfacies.pdb
@@ -53,6 +54,5 @@ D:\github\PhotoBook\DAL.Interfacies\bin\Debug\System.Web.Helpers.xml
 D:\github\PhotoBook\DAL.Interfacies\bin\Debug\System.Web.WebPages.xml
 D:\github\PhotoBook\DAL.Interfacies\bin\Debug\System.Web.Razor.xml
 D:\github\PhotoBook\DAL.Interfacies\bin\Debug\System.Web.WebPages.Deployment.xml
-D:\github\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interface.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interfacies.dll
 D:\github\PhotoBook\DAL.Interfacies\obj\Debug\DAL.Interfacies.pdb

@@ -220,5 +220,34 @@ namespace BLL.Mappers
         }
 
         #endregion
+
+        #region Exception Details
+
+        public static DalExceptionDetail ToDalExceptionDetail(this ExceptionDetailsEntity exception)
+        {
+            return new DalExceptionDetail
+            {
+                ActionName = exception.ActionName,
+                ControllerName = exception.ControllerName,
+                Date = exception.Date,
+                ExceptionMessage = exception.ExceptionMessage,
+                Id = exception.Id,
+                StackTrace = exception.StackTrace
+            };
+        }
+
+        public static ExceptionDetailsEntity ToBllExceptionDetail(this DalExceptionDetail exception)
+        {
+            return new ExceptionDetailsEntity
+            {
+                ActionName = exception.ActionName,
+                ControllerName = exception.ControllerName,
+                Date = exception.Date,
+                ExceptionMessage = exception.ExceptionMessage,
+                Id = exception.Id,
+                StackTrace = exception.StackTrace
+            };
+        }
+        #endregion
     }
 }

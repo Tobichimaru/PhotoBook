@@ -1,0 +1,1 @@
+D:\github\PhotoBook\DAL.Interfacies\obj\Release\DAL.Interface.csprojResolveAssemblyReference.cache

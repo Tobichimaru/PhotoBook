@@ -219,5 +219,34 @@ namespace DAL.Mappers
         }
 
         #endregion
+
+        #region Exception Details
+
+        public static DalExceptionDetail ToDalExceptionDetail(this ExceptionDetail exception)
+        {
+            return new DalExceptionDetail
+            {
+                ActionName = exception.ActionName,
+                ControllerName = exception.ControllerName,
+                Date = exception.Date,
+                ExceptionMessage = exception.ExceptionMessage,
+                Id = exception.Id,
+                StackTrace = exception.StackTrace
+            };
+        }
+
+        public static ExceptionDetail ToExceptionDetail(this DalExceptionDetail exception)
+        {
+            return new ExceptionDetail
+            {
+                ActionName = exception.ActionName,
+                ControllerName = exception.ControllerName,
+                Date = exception.Date,
+                ExceptionMessage = exception.ExceptionMessage,
+                Id = exception.Id,
+                StackTrace = exception.StackTrace
+            };
+        }
+        #endregion
     }
 }

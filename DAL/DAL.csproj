@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\ModelRepos\ExceptionDetailsRepository.cs" />
     <Compile Include="Concrete\ModelRepos\PhotoRepository.cs" />
     <Compile Include="Concrete\ModelRepos\ProfileRepository.cs" />
     <Compile Include="Concrete\ModelRepos\RoleRepository.cs" />

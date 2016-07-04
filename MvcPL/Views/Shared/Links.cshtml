@@ -25,7 +25,7 @@
                         <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})"> @item.UserName</a>
                     </p>
                 }
-                @if (User.IsInRole("Admin"))
+                @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
                     <a href="@Url.Action("DeletePhoto", "Photo", new {name = item.UserName, photoId = item.Id})">
                         <img src="~/Content/Images/trashCan.ico" style="zoom: 50%; padding-left: 5px" />

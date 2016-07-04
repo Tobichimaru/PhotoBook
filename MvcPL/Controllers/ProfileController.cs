@@ -106,7 +106,8 @@ namespace MvcPL.Controllers
                 return View(photo);
             }
 
-            photo.Tags = photo.Tags.Trim();
+            if (photo.Tags != null)
+                photo.Tags = photo.Tags.Trim();
 
             var model = new PhotoViewModel();
             var profile = _service.GetProfileByName(User.Identity.Name);
@@ -129,7 +130,8 @@ namespace MvcPL.Controllers
                 model.Description = photo.Description;
                 model.UserName = User.Identity.Name;
 
-                var tags = photo.Tags.Split(' ');
+                var tags = photo.Tags != null ? photo.Tags.Split(' ') : new string[0];
+
                 model.Tags = new List<TagModel>();
                 foreach (var tag in tags)
                 {
@@ -138,7 +140,6 @@ namespace MvcPL.Controllers
                         Name = tag
                     });
                 }
-
 
                 profile.Photos.Add(model.ToPhotoEntity());
             }

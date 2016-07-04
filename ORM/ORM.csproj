@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="DbInitializer.cs" />
     <Compile Include="EntityModel.cs" />
+    <Compile Include="Models\ExceptionDetail.cs" />
     <Compile Include="Models\Like.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\PhotoTag.cs" />

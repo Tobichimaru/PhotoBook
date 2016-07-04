@@ -17,11 +17,12 @@ namespace ORM
             {
                 Name = "Admin"
             };
-            context.Roles.Add(new Role
+            var moderRole = new Role()
             {
                 Name = "Moderator"
-            });
+            };
             context.Roles.Add(role);
+            context.Roles.Add(moderRole);
             context.Roles.Add(adminRole);
             context.SaveChanges();
             #endregion
@@ -40,15 +41,20 @@ namespace ORM
                 Email = "sansa.stark@gmail.com",
                 Password = Crypto.HashPassword("qwerty"),
                 Role = role,
-                RoleId = role.RoleId,
                 UserName = "sansa_stark"
+            };
+            var user3 = new User
+            {
+                Email = "moderator@gmail.com",
+                Password = Crypto.HashPassword("qwerty"),
+                Role = moderRole,
+                UserName = "moderator"
             };
             var user = new User
             {
                 Email = "admin@gmail.com",
                 Password = Crypto.HashPassword("qwerty"),
                 Role = adminRole,
-                RoleId = adminRole.RoleId,
                 UserName = "admin"
             };
             #endregion
@@ -68,6 +74,10 @@ namespace ORM
                 LastName = "Stark",
                 UserName = user2.UserName
             };
+            var profile3 = new Profile
+            {
+                UserName = user3.UserName
+            };
             var profile = new Profile
             {
                 UserName = user.UserName
@@ -75,19 +85,19 @@ namespace ORM
 
             context.Profiles.Add(profile1);
             context.Profiles.Add(profile2);
+            context.Profiles.Add(profile3);
             context.Profiles.Add(profile);
             context.SaveChanges();
             #endregion
 
             user1.UserProfile = profile1;
-            user1.UserProfileId = profile1.Id;
             user2.UserProfile = profile2;
-            user2.UserProfileId = profile2.Id;
+            user3.UserProfile = profile3;
             user.UserProfile = profile;
-            user.UserProfileId = profile.Id;
 
             context.Users.Add(user1);
             context.Users.Add(user2);
+            context.Users.Add(user3);
             context.Users.Add(user);
             context.SaveChanges();
         }

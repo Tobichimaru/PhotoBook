@@ -50,6 +50,9 @@ namespace DependencyResolver
 
             kernel.Bind<ITagService>().To<TagService>();
             kernel.Bind<ITagRepository>().To<TagRepository>();
+
+            kernel.Bind<IExceptionDetailsService>().To<ExceptionDetailsService>();
+            kernel.Bind<IExceptionDetailsRepository>().To<ExceptionDetailsRepository>();
         }
     }
 }
