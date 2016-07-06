@@ -52,6 +52,12 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Samples.ImageOptimizationFramework">
+      <HintPath>..\packages\AspNetSprites-Core.0.4\lib\Microsoft.Web.Samples.ImageOptimizationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Samples.SpriteHelper">
+      <HintPath>..\packages\AspNetSprites-MvcAndRazorHelper.0.4\lib\Microsoft.Web.Samples.SpriteHelper.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -150,6 +156,13 @@
     <Content Include="App_Data\PhotoBook_log.ldf">
       <DependentUpon>PhotoBook.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="App_Sprites\photo.png" />
+    <Content Include="App_Sprites\quit.png" />
+    <Content Include="App_Sprites\README.txt" />
+    <Content Include="App_Sprites\trashCan.png" />
+    <Content Include="App_Sprites\user.png" />
+    <Content Include="App_Sprites\UserEdit.png" />
     <Content Include="Content\blueimp-gallery2\ans-blueimp-gallery2.js" />
     <Content Include="Content\blueimp-gallery2\ans-blueimp-gallery2.min.js" />
     <Content Include="Content\blueimp-gallery2\css\blueimp-gallery-indicator.css" />
@@ -178,15 +191,9 @@
     <Content Include="Content\blueimp-gallery2\js\vendor\jquery.js" />
     <Content Include="Content\blueimp-gallery2\___install.txt" />
     <Content Include="Content\blueimp-gallery2\___version.txt" />
-    <Content Include="Content\Images\avatar.png" />
+    <Content Include="App_Sprites\avatar.png" />
     <Content Include="Content\Images\loading.gif" />
-    <Content Include="Content\Images\logo.ico" />
-    <Content Include="Content\Images\photo.ico" />
-    <Content Include="Content\Images\quit.ico" />
-    <Content Include="Content\Images\sadcat.png" />
-    <Content Include="Content\Images\trashCan.ico" />
-    <Content Include="Content\Images\user.ico" />
-    <Content Include="Content\Images\UserEdit.ico" />
+    <Content Include="App_Sprites\sadcat.png" />
     <Content Include="Content\jquery.Jcrop.css" />
     <Content Include="Content\jquery.Jcrop.min.css" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -219,10 +226,10 @@
     <Compile Include="Providers\CustomRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\bootstrap.css" />
+    <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -230,42 +237,42 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\bootstrap\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap\bootstrap.css.map" />
     <Content Include="Content\blueimp-gallery2\js\jquery.blueimp-gallery.min.js.map" />
     <Content Include="Content\blueimp-gallery2\js\blueimp-gallery.min.js.map" />
     <Content Include="Content\blueimp-gallery2\css\blueimp-gallery.min.css.map" />
     <Content Include="Content\blueimp-gallery2\css\blueimp-gallery.less" />
-    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.map" />
-    <Content Include="Scripts\jquery.form.min.js.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
-    <Content Include="Scripts\jquery.form.js" />
-    <Content Include="Scripts\jquery.form.min.js" />
-    <Content Include="Scripts\jquery.Jcrop.js" />
-    <Content Include="Scripts\jquery.Jcrop.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <None Include="Scripts\jquery\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\jquery\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\jquery\jquery-2.2.3.min.map" />
+    <Content Include="Scripts\jquery\jquery.form.min.js.map" />
+    <None Include="Scripts\jquery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery\jquery.form.js" />
+    <Content Include="Scripts\jquery\jquery.form.min.js" />
+    <Content Include="Scripts\jquery\jquery.Jcrop.js" />
+    <Content Include="Scripts\jquery\jquery.Jcrop.min.js" />
+    <Content Include="Scripts\jquery\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery\jquery.validate.js" />
+    <Content Include="Scripts\jquery\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\LazyLoad.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\respond\respond.js" />
+    <Content Include="Scripts\respond\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond\respond.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -295,7 +302,7 @@
     <Content Include="Views\Tag\TagSearch.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\Like.cshtml" />
-    <Content Include="Views\Home\Explore.cshtml" />
+    <Content Include="Views\Shared\ImageContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Photo\" />

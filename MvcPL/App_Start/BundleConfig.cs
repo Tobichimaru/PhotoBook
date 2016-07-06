@@ -8,44 +8,38 @@ namespace MvcPL
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-{version}.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                "~/Scripts/jquery.validate*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryuno").Include(
-                "~/Scripts/jquery.unobtrusive-*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                "~/Scripts/modernizr-*"));
+                "~/Scripts/jquery/jquery-2.2.3.min.js",
+                "~/Scripts/jquery/jquery.unobtrusive-ajax.min.js",
+                "~/Scripts/jquery/jquery.validate.min.js",
+                "~/Scripts/jquery/jquery.validate.unobtrusive.min.js",
+                "~/Scripts/jquery/jquery.Jcrop.min.js",
+                "~/Scripts/jquery/jquery.form.min.js",
+                "~/Scripts/modernizr-2.6.2.js"
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/respond.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jcrop").Include(
-                "~/Scripts/jquery.Jcrop.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jqueryform").Include(
-                "~/Scripts/jquery.form.js"));
+                "~/Scripts/bootstrap/bootstrap.min.js",
+                "~/Scripts/respond/respond.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/blueimp").Include(
-                "~/Content/blueimp-gallery2/js/blueimp-*"));
+                "~/Content/blueimp-gallery2/js/blueimp-gallery.min.js",
+                "~/Content/blueimp-gallery2/js/jquery.blueimp-gallery.min.js"
+            ));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery-blueimp").Include(
-                "~/Content/blueimp-gallery2/js/jquery.*"));
+            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+                "~/Scripts/LazyLoad.js"
+            ));
 
 
-            bundles.Add(new StyleBundle("~/Content/blueimp").Include(
-                "~/Content/blueimp-gallery2/css/blueimp-*"));
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
+                "~/Content/blueimp-gallery2/css/blueimp-gallery.min.css",
+                "~/Content/jquery.Jcrop.min.css",
+                "~/Content/Site.css"
+                ));
 
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.*",
-                "~/Content/site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/jcrop").Include(
-                "~/Content/jquery.Jcrop.css"));
+            bundles.Add(new StyleBundle("~/bundles/bootstrap_css").Include(
+                "~/Content/bootstrap/bootstrap-theme.min.css",
+                "~/Content/bootstrap/bootstrap.min.css"));
         }
     }
 }

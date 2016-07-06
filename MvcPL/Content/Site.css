@@ -1,14 +1,10 @@
 ﻿/* Set padding to keep content from hitting the edges */
 .gallery-image { padding: 15px 15px 0 15px; }
 
-.tag1{font-size: 0.8 em}
-.tag2{font-size: 0.9em}
-.tag3{font-size: 1em}
-.tag4{font-size: 1.2em}
-.tag5{font-size: 1.4em}
-.tag6{font-size: 1.7em}
-.tag7{font-size: 2.0em}
-
+.loading-image {
+  width: 300px;
+  height: 300px;
+}
 
 .user-page-column {
     float: left;
@@ -74,6 +70,61 @@
     }
 }
 
+.modal-body {
+    max-height: 500px; 
+    min-height: 400px;
+}
+
+.gallery-image {
+    margin-bottom: 7px; 
+    display: none;
+}
+
+.image-container {
+    display: inline-block; 
+    width: 330px;
+}
+
+.image-info-container {
+    padding: 0 15px;
+}
+
+.image-info-description {
+    width: 150px; 
+    float: left;
+}
+
+.image-description {
+    font-family: 'Times New Roman'; 
+    font-weight: bold;
+}
+
+.image-data {
+    font-size: 10px;
+}
+
+.image-author {
+    font-size: 10px; 
+    margin-top: -7px;
+}
+
+.trash-icon {
+    zoom: 50%;
+    padding-left: 5px;
+}
+
+.like-button-style {
+    margin-top: 5px; 
+    float: left;
+}
+
+.likes-count {
+    padding-top: 15px;
+}
+
+#links-container {
+    margin-top: 17px;
+}
 
 .navbar-collapse.collapse { display: block !important; }
 
@@ -82,8 +133,6 @@
 .navbar-nav.navbar-right:last-child { margin-right: -15px !important; }
 
 .navbar-right { float: right !important; }
-
-/* Set width on the form input elements since they're 100% wide by default */
 
 input,
 select,
@@ -102,13 +151,3 @@ input[type="checkbox"].input-validation-error { border: 0 none; }
 .validation-summary-errors { color: #b94a48; }
 
 .validation-summary-valid { display: none; }
-
-.blueimp-gallery > .description, .blueimp-gallery > .example {
-    color: #fff;
-    display: none;
-    left: 15px;
-    position: absolute;
-    top: 30px;
-}
-
-.blueimp-gallery-controls > .description, .blueimp-gallery-controls > .example { display: block; }

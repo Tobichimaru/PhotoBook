@@ -1,34 +1,32 @@
-﻿@using MvcPL.Models
+﻿@using Microsoft.Web.Samples
 @model MvcPL.Models.Helpers.GalleryLinksModel
+
 @foreach (var item in Model.photos)
 {
-    var base64 = Convert.ToBase64String(item.Picture);
-    var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
-
-    var fullbase64 = Convert.ToBase64String(item.FullSize);
-    var fullimgSrc = string.Format("data:image/gif;base64,{0}", fullbase64);
-    <div style="display: inline-block; width: 330px;">
-        <a href="@fullimgSrc" class="gallery-link" data-gallery>
-            <img src="@imgSrc" class="gallery-image" style="margin-bottom: 7px;"/>
+    <div class="image-container">
+        <a href="" class="gallery-link" data-gallery>
+            <img class="gallery-image"
+                 id="@(item.Id + "photo")"
+                 onload="ImageHide(@item.Id)"
+                 src=@Url.Action("Show", "Photo", new {photoId = item.Id}) />
+            <img class="loading-image" id=@(item.Id + "image") src="~/Content/Images/loading.gif" alt="Loading..." />
         </a>
-        <div style="padding: 0 15px">
-            <div style="width: 150px; float: left;">
-                <p style="font-family: 'Times New Roman'; font-weight: bold;">@item.Description</p>
-                <p style="font-size: 10px;">
-                    @item.CreatedOn.ToString("F")
-                </p>
+
+        <div class="image-info-container">
+            <div class="image-info-description">
+                <p class="image-description">@item.Description</p>
+                <p class="image-data">@item.CreatedOn.ToString("F")</p>
 
                 @if (item.UserName != null)
                 {
-                    <p style="font-size: 10px; margin-top: -7px;">
-                        Posted by
-                        <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})"> @item.UserName</a>
+                    <p class="image-author">
+                        Posted by <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})"> @item.UserName</a>
                     </p>
                 }
-                @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+               @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
                     <a href="@Url.Action("DeletePhoto", "Photo", new {name = item.UserName, photoId = item.Id})">
-                        <img src="~/Content/Images/trashCan.ico" style="zoom: 50%; padding-left: 5px" />
+                        @Sprite.Image("~/App_Sprites/trashCan.png", new { @class = "likes-count" })
                     </a>
                 }
             </div>
@@ -44,22 +42,17 @@
                         <a class="btn btn-default btn-xs" href="@Url.Action("TagSearch", "Tag", new {name = tag.Name})">@tag.Name</a>
                     }
                 }
-                
-                <div id=@item.Id.ToString()>
-                    @{
-                        Html.RenderPartial( "Like", item);
-                    }
-                </div>
 
+                <div id=@item.Id.ToString()> @{Html.RenderPartial("Like", item); } </div>
             </div>
         </div>
     </div>
 }
 <div style="padding: 15px; text-align: center;">
-    @if (Model.pageSize*Model.page <= Model.count)
+    @if (Model.pageSize * Model.page <= Model.count)
     {
-        using (Ajax.BeginForm("LinksView", "Home", new {page = ++Model.page, Model.pageName},
-            new AjaxOptions {UpdateTargetId = "links", InsertionMode = InsertionMode.InsertAfter}))
+        using (Ajax.BeginForm("LinksView", "Home", new { page = ++Model.page, Model.pageName },
+            new AjaxOptions { UpdateTargetId = "links", InsertionMode = InsertionMode.InsertAfter }))
         {
             <input type="submit" value="Show more" onclick="hideshow(this)" class="btn btn-default btn-circle"/>
         }

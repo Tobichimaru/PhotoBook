@@ -2,15 +2,15 @@
 <div id=@Model.Id.ToString()>
     @using (Ajax.BeginForm("Like", "Photo", new { photoId = Model.Id, name = Model.UserName },
             new AjaxOptions { UpdateTargetId = Model.Id.ToString(), InsertionMode = InsertionMode.ReplaceWith }))
+{
+    if (Model.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) == null)
     {
-        if (Model.Likes.FirstOrDefault(l => l.UserName == User.Identity.Name) == null)
-        {
-            <input style="margin-top: 5px; float: left" type="submit" value="Like!" class="btn btn-lg btn-default"/>
-        }  
-        else
-        {
-            <input style="margin-top: 5px; float: left" type="submit" value="Like!" class="btn btn-lg btn-danger"/>
-        }
-        <p style="padding-top: 15px;">&nbsp @Model.Likes.Count liked this</p>
+        <input type="submit" value="Like!" class="btn btn-lg btn-default like-button-style" />
     }
+    else
+    {
+        <input type="submit" value="Like!" class="btn btn-lg btn-danger like-button-style" />
+    }
+    <p class="likes-count">&nbsp @Model.Likes.Count liked this</p>
+}
 </div>

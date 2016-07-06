@@ -1,4 +1,5 @@
-﻿@if (Request.IsAuthenticated)
+﻿@using Microsoft.Web.Samples
+@if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
     {
@@ -7,17 +8,17 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a href='@Url.Action("Create", "Profile")'>
-                    <img src='@Url.Content("~/Content/Images/photo.ico")'/>
+                    @Sprite.Image("~/App_Sprites/photo.png")
                 </a>
             </li>
             <li>
                 <a href='@Url.Action("UserPage", "Profile", new {name = User.Identity.Name})'>
-                    <img src='@Url.Content("~/Content/Images/user.ico")'/>
+                    @Sprite.Image("~/App_Sprites/user.png")
                 </a>
             </li>
             <li>
                 <a href="javascript:document.getElementById('logoutForm').submit()">
-                    <img src='@Url.Content("~/Content/Images/quit.ico")'/>
+                    @Sprite.Image("~/App_Sprites/quit.png")
                 </a>
             </li>
         </ul>

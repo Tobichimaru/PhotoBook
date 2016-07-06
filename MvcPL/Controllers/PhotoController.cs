@@ -15,6 +15,12 @@ namespace MvcPL.Controllers
             _service = service;
         }
 
+        public ActionResult Show(int photoId)
+        {
+            var photo = _service.GetById(photoId);
+            return File(photo.Picture, "image/jpeg");
+        }
+
         [Authorize(Roles = "Admin")]
         public ActionResult DeletePhoto(string name, int photoId)
         {
