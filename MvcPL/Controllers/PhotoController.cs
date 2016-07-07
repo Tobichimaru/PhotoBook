@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
@@ -15,10 +16,10 @@ namespace MvcPL.Controllers
             _service = service;
         }
 
-        public ActionResult Show(int photoId)
+        public ActionResult Show(string photoId)
         {
-            var photo = _service.GetById(photoId);
-            return File(photo.Picture, "image/jpeg");
+            var photo = _service.GetById(Convert.ToInt32(photoId));
+            return PartialView("ImageContent", photo.ToMvcPhoto());
         }
 
         [Authorize(Roles = "Admin")]

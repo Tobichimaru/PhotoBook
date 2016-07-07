@@ -4,13 +4,9 @@
 @foreach (var item in Model.photos)
 {
     <div class="image-container">
-        <a href="" class="gallery-link" data-gallery>
-            <img class="gallery-image"
-                 id="@(item.Id + "photo")"
-                 onload="ImageHide(@item.Id)"
-                 src=@Url.Action("Show", "Photo", new {photoId = item.Id}) />
-            <img class="loading-image" id=@(item.Id + "image") src="~/Content/Images/loading.gif" alt="Loading..." />
-        </a>
+        <div class="image-updater" data-url="/photo/show" value="@item.Id">
+            <img class="loading-image" src="~/Content/Images/loading.gif" />
+        </div>
 
         <div class="image-info-container">
             <div class="image-info-description">
@@ -23,10 +19,10 @@
                         Posted by <a href="@Url.Action("UserPage", "Profile", new {name = item.UserName})"> @item.UserName</a>
                     </p>
                 }
-               @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
                     <a href="@Url.Action("DeletePhoto", "Photo", new {name = item.UserName, photoId = item.Id})">
-                        @Sprite.Image("~/App_Sprites/trashCan.png", new { @class = "likes-count" })
+                        @Sprite.Image("~/App_Sprites/trashCan.png", new {@class = "likes-count"})
                     </a>
                 }
             </div>
@@ -49,10 +45,10 @@
     </div>
 }
 <div style="padding: 15px; text-align: center;">
-    @if (Model.pageSize * Model.page <= Model.count)
+    @if (Model.pageSize*Model.page <= Model.count)
     {
-        using (Ajax.BeginForm("LinksView", "Home", new { page = ++Model.page, Model.pageName },
-            new AjaxOptions { UpdateTargetId = "links", InsertionMode = InsertionMode.InsertAfter }))
+        using (Ajax.BeginForm("LinksView", "Home", new {page = ++Model.page, Model.pageName},
+            new AjaxOptions {UpdateTargetId = "links", InsertionMode = InsertionMode.InsertAfter, OnSuccess = "execute"}))
         {
             <input type="submit" value="Show more" onclick="hideshow(this)" class="btn btn-default btn-circle"/>
         }

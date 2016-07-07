@@ -73,5 +73,6 @@ D:\github\PhotoBook\ORM\bin\Debug\System.Web.Razor.xml
 D:\github\PhotoBook\ORM\bin\Debug\System.Web.WebPages.xml
 D:\github\PhotoBook\ORM\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\github\PhotoBook\ORM\bin\Debug\System.Web.WebPages.Razor.xml
+D:\github\PhotoBook\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
 D:\github\PhotoBook\ORM\obj\Debug\ORM.dll
 D:\github\PhotoBook\ORM\obj\Debug\ORM.pdb
