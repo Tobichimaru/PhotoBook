@@ -87,7 +87,7 @@ namespace MvcPL.Controllers
                 if (membershipUser != null)
                 {
                     FormsAuthentication.SetAuthCookie(viewModel.Name, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Photo");
                 }
                 ModelState.AddModelError("", "Error registration.");
             }

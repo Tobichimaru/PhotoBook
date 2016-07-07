@@ -16,7 +16,7 @@ namespace DAL.Concrete.ModelRepos
         {
             _unitOfWork = uow;
         }
-
+        
         public void Create(DalExceptionDetail entity)
         {
             ExceptionDetail exceptionDetail = new ExceptionDetail
@@ -42,12 +42,16 @@ namespace DAL.Concrete.ModelRepos
             throw new NotImplementedException();
         }
 
-        public DalExceptionDetail GetByPredicate(Expression<Func<DalExceptionDetail, bool>> predicate)
+        public IEnumerable<DalExceptionDetail> GetAllByPredicate(Expression<Func<DalExceptionDetail, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-
+        public DalExceptionDetail GetOneByPredicate(Expression<Func<DalExceptionDetail, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+        
         public void Delete(DalExceptionDetail entity)
         {
             throw new NotImplementedException();

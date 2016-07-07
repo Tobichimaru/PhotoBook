@@ -22,7 +22,7 @@ namespace MvcPL
                 "~/Scripts/respond/respond.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/blueimp").Include(
-                "~/Content/blueimp-gallery2/js/blueimp-*",
+                "~/Content/blueimp-gallery2/js/blueimp-gallery.min.js",
                 "~/Content/blueimp-gallery2/js/jquery.blueimp-gallery.min.js"
             ));
 

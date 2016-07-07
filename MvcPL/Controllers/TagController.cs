@@ -21,19 +21,37 @@ namespace MvcPL.Controllers
         public ActionResult TagSearch(string name)
         {
             var tag = _service.GetTagByName(name);
+            if (tag == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
             PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
             {
-                Content = new List<PhotoViewModel>(tag.Photos.Select(p => p.ToMvcPhoto())),
-                PageSize = GalleryHelper.PageSize,
-                CurrentPage = 1
+                Content = new List<PhotoViewModel>(tag.Photos.Take(GalleryHelper.PageSize).Select(p => p.ToMvcPhoto())),
+                CurrentPage = 1,
+                Count = tag.Photos.Count,
+                PageName = "Tag" + name
             };
-
-            photos.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
-            photos.PageName = "Tag" + name;
-
-            HttpContext.Session[User.Identity.Name + photos.PageName] = photos;
 
             return View(photos);
         }
+
+        public ActionResult TagSearchLinks(string name, int page)
+        {
+            var tag = _service.GetTagByName(name);
+            if (tag == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+            PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
+            {
+                CurrentPage = page,
+                PageName = "Tag" + name,
+                Content = new List<PhotoViewModel>(tag.Photos.Select(p => p.ToMvcPhoto()))
+            };
+            return PartialView("Links", photos);
+        }
+
+
 	}
 }

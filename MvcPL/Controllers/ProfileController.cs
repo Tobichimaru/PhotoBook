@@ -32,27 +32,38 @@ namespace MvcPL.Controllers
                 return RedirectToAction("NotFound", "Error");
             }
 
-            var records = new PagedList<PhotoViewModel>();
-            records.Content = new List<PhotoViewModel>();
-            foreach (var item in _service.GetProfileByName(name).Photos)
+            var records = new PagedList<PhotoViewModel>
             {
-                records.Content.Add(item.ToMvcPhoto());
-            }
-            records.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
-
-            // Count
-            records.CurrentPage = 1;
-            records.PageSize = GalleryHelper.PageSize;
-            records.PageName = "Profile";
-
-            HttpContext.Session[User.Identity.Name + records.PageName] = records;
+                Content =
+                    new List<PhotoViewModel>(profile.Photos
+                        .Select(photo => photo.ToMvcPhoto())),
+                CurrentPage = 1,
+                Count = profile.Photos.Count,
+                PageName = "Profile" + name
+            };
 
             var model = new UserPageModel
             {
-                photos = records,
-                profile = profile.ToMvcProfile()
+                Photos = records,
+                Profile = profile.ToMvcProfile()
             };
             return View(model);
+        }
+
+        public ActionResult UserPageLinks(int page, string username)
+        {
+            var profile = _service.GetProfileByName(username);
+            if (profile == null)
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+            var photos = new PagedList<PhotoViewModel>
+            {
+                Content = new List<PhotoViewModel>(profile.Photos.Take(GalleryHelper.PageSize).Select(photo => photo.ToMvcPhoto())),
+                CurrentPage = page,
+                PageName = "Profile" + username
+            };
+            return PartialView("Links", photos);
         }
 
         [HttpGet]

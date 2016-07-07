@@ -209,7 +209,6 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMappers.cs" />
     <Compile Include="Models\Helpers\GalleryHelper.cs" />
-    <Compile Include="Models\Helpers\GalleryLinksModel.cs" />
     <Compile Include="Models\LikeModel.cs" />
     <Compile Include="Models\Photo\CreatePhotoModel.cs" />
     <Compile Include="Models\TagModel.cs" />
@@ -288,7 +287,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Photo\Index.cshtml" />
     <Content Include="Views\Home\UsersEdit.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -304,9 +303,7 @@
     <Content Include="Views\Shared\Like.cshtml" />
     <Content Include="Views\Shared\ImageContent.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Photo\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

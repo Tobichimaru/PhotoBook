@@ -54,6 +54,7 @@
     <Compile Include="DTO\DalTag.cs" />
     <Compile Include="DTO\DalUser.cs" />
     <Compile Include="DTO\IEntity.cs" />
+    <Compile Include="Helper\PredicateExpressionVisitor.cs" />
     <Compile Include="Repository\ModelRepos\IExceptionDetailsRepository.cs" />
     <Compile Include="Repository\ModelRepos\IPhotoRepository.cs" />
     <Compile Include="Repository\ModelRepos\IProfileRepository.cs" />

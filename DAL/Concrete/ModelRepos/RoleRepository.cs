@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
+using DAL.Interfacies.Helper;
 using DAL.Interfacies.Repository.ModelRepos;
 using DAL.Mappers;
 using ORM.Models;
@@ -33,19 +34,17 @@ namespace DAL.Concrete.ModelRepos
             return null;
         }
 
-        public DalRole GetByPredicate(Expression<Func<DalRole, bool>> predicate)
+        public DalRole GetOneByPredicate(Expression<Func<DalRole, bool>> predicate)
         {
-            ParameterExpression param = predicate.Parameters[0];
-            BinaryExpression operation = (BinaryExpression)predicate.Body;
-            MemberExpression left = (MemberExpression)operation.Left;
-            ParameterExpression newParam = Expression.Parameter(typeof(Role), param.Name);
-            MemberExpression prop = Expression.Property(newParam, left.Member.Name);
-            BinaryExpression newOperation = Expression.MakeBinary(operation.NodeType, prop, operation.Right);
-            Expression<Func<Role, bool>> func = Expression.Lambda<Func<Role, bool>>(newOperation, newParam);
-            var role = _unitOfWork.Context.Set<Role>().FirstOrDefault(func);
-            if (ReferenceEquals(role, null))
-                return null;
-            return role.ToDalRole();
+            return GetAllByPredicate(predicate).FirstOrDefault();
+        }
+
+        public IEnumerable<DalRole> GetAllByPredicate(Expression<Func<DalRole, bool>> predicate)
+        {
+            var visitor = new PredicateExpressionVisitor<DalRole, Role>(Expression.Parameter(typeof(Role), predicate.Parameters[0].Name));
+            var express = Expression.Lambda<Func<Role, bool>>(visitor.Visit(predicate.Body), visitor.NewParameterExp);
+            var final = _unitOfWork.Context.Set<Role>().Where(express).ToList();
+            return final.Select(role => role.ToDalRole());
         }
 
         public void Create(DalRole e)

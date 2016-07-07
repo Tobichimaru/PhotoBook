@@ -20,26 +20,6 @@ namespace MvcPL.Controllers
             _service = service;
         }
 
-        public ActionResult Index(string filter = null)
-        {
-            ViewBag.filter = filter;
-            PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
-            {
-                Content = new List<PhotoViewModel>(),
-                PageSize = GalleryHelper.PageSize,
-                CurrentPage = 1
-            };
-
-            _service.GetAllEntities().ForEach(u => u.Profile.Photos.ForEach(p => photos.Content.Add(p.ToMvcPhoto())));
-            photos.Content.Sort((viewModel, photoViewModel) => -viewModel.CreatedOn.CompareTo(photoViewModel.CreatedOn));
-            photos.PageName = "Index";
-            photos.Content = photos.Content.Where(x => filter == null || (x.Description.Contains(filter))).ToList();
-
-            HttpContext.Session[User.Identity.Name + photos.PageName] = photos;
-
-            return View(photos);
-        }
-
 
         [Authorize(Roles = "Admin")]
         public ActionResult UsersEdit()
@@ -61,26 +41,5 @@ namespace MvcPL.Controllers
             return RedirectToAction("UsersEdit");
         }
 
-
-        [HttpPost]
-        public ActionResult LinksView(int page, string pageName)
-        {
-            PagedList<PhotoViewModel> photos =
-                (PagedList<PhotoViewModel>) HttpContext.Session[User.Identity.Name + pageName];
-            photos.CurrentPage = page;
-
-            List<PhotoViewModel> result =
-                new List<PhotoViewModel>(
-                    photos.Content.Skip(photos.PageSize*(photos.CurrentPage - 1)).Take(photos.PageSize));
-
-            return PartialView("Links", new GalleryLinksModel
-            {
-                photos = result,
-                page = page,
-                count = photos.Content.Count,
-                pageSize = photos.PageSize,
-                pageName = pageName
-            });
-        }
     }
 }

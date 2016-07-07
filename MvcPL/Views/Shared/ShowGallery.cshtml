@@ -38,24 +38,7 @@
 <div id="links-container">
     <div id="links">
         @{
-            Html.RenderPartial("Links", new GalleryLinksModel
-            {
-                page = 1,
-                count = Model.Content.Count,
-                pageSize = Model.PageSize,
-                pageName = Model.PageName,
-                photos = new List<PhotoViewModel>(Model.Content.Take(Model.PageSize))
-            });
+            Html.RenderPartial("Links", Model);
         }
     </div>
 </div>
-@*<script type="text/javascript">
-    document.getElementById('links').onclick = function (event) {
-        event = event || window.event;
-        var target = event.target || event.srcElement,
-            link = target.src ? target.parentNode : target,
-            options = { index: link, event: event },
-            links = this.getElementsByClassName('gallery-lin');
-        blueimp.Gallery(links, options);
-    };
-</script>*@

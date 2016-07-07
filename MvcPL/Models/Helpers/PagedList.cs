@@ -6,8 +6,7 @@ namespace MvcPL.Models.Helpers
     {
         public List<T> Content { get; set; }
         public int CurrentPage { get; set; }
-        public int PageSize { get; set; }
-
         public string PageName { get; set; }
+        public int Count { get; set; }
     }
 }

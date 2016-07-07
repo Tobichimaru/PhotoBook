@@ -4,6 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
+using DAL.Interfacies.Helper;
 using DAL.Interfacies.Repository.ModelRepos;
 using DAL.Mappers;
 using ORM.Models;
@@ -52,6 +53,19 @@ namespace DAL.Concrete.ModelRepos
             return null;
         }
 
+        public DalPhoto GetOneByPredicate(Expression<Func<DalPhoto, bool>> predicate)
+        {
+            return GetAllByPredicate(predicate).FirstOrDefault();
+        }
+
+        public IEnumerable<DalPhoto> GetAllByPredicate(Expression<Func<DalPhoto, bool>> predicate)
+        {
+            var visitor = new PredicateExpressionVisitor<DalPhoto, Photo>(Expression.Parameter(typeof(Photo), predicate.Parameters[0].Name));
+            var express = Expression.Lambda<Func<Photo, bool>>(visitor.Visit(predicate.Body), visitor.NewParameterExp);
+            var final = _unitOfWork.Context.Set<Photo>().Where(express).ToList();
+            return final.Select(photo => photo.ToDalPhoto());
+        }
+        
         public void Create(DalPhoto e)
         {
             var photo = e.ToOrmPhoto();
@@ -74,21 +88,6 @@ namespace DAL.Concrete.ModelRepos
             }
             _unitOfWork.Context.Set<Photo>().AddOrUpdate(photo.ToOrmPhoto());
             _unitOfWork.Commit();
-        }
-
-        public DalPhoto GetByPredicate(Expression<Func<DalPhoto, bool>> predicate)
-        {
-            ParameterExpression param = predicate.Parameters[0];
-            BinaryExpression operation = (BinaryExpression)predicate.Body;
-            MemberExpression left = (MemberExpression)operation.Left;
-            ParameterExpression newParam = Expression.Parameter(typeof(Photo), param.Name);
-            MemberExpression prop = Expression.Property(newParam, left.Member.Name);
-            BinaryExpression newOperation = Expression.MakeBinary(operation.NodeType, prop, operation.Right);
-            Expression<Func<Photo, bool>> func = Expression.Lambda<Func<Photo, bool>>(newOperation, newParam);
-            var photo = _unitOfWork.Context.Set<Photo>().FirstOrDefault(func);
-            if (ReferenceEquals(photo, null))
-                return null;
-            return photo.ToDalPhoto();
         }
 
         public void RemoveLike(DalLike like)

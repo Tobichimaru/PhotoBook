@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
+using DAL.Interfacies.Helper;
 using DAL.Interfacies.Repository.ModelRepos;
 using DAL.Mappers;
 using ORM.Models;
@@ -119,19 +120,18 @@ namespace DAL.Concrete.ModelRepos
             _unitOfWork.Commit();
         }
 
-        public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> predicate)
+
+        public DalProfile GetOneByPredicate(Expression<Func<DalProfile, bool>> predicate)
         {
-            ParameterExpression param = predicate.Parameters[0];
-            BinaryExpression operation = (BinaryExpression)predicate.Body;
-            MemberExpression left = (MemberExpression)operation.Left;
-            ParameterExpression newParam = Expression.Parameter(typeof(Profile), param.Name);
-            MemberExpression prop = Expression.Property(newParam, left.Member.Name);
-            BinaryExpression newOperation = Expression.MakeBinary(operation.NodeType, prop, operation.Right);
-            Expression<Func<Profile, bool>> func = Expression.Lambda<Func<Profile, bool>>(newOperation, newParam);
-            var profile = _unitOfWork.Context.Set<Profile>().FirstOrDefault(func);
-            if (ReferenceEquals(profile, null))
-                return null;
-            return profile.ToDalProfile();
+            return GetAllByPredicate(predicate).FirstOrDefault();
+        }
+
+        public IEnumerable<DalProfile> GetAllByPredicate(Expression<Func<DalProfile, bool>> predicate)
+        {
+            var visitor = new PredicateExpressionVisitor<DalProfile, Profile>(Expression.Parameter(typeof(Profile), predicate.Parameters[0].Name));
+            var express = Expression.Lambda<Func<Profile, bool>>(visitor.Visit(predicate.Body), visitor.NewParameterExp);
+            var final = _unitOfWork.Context.Set<Profile>().Where(express).ToList();
+            return final.Select(profile => profile.ToDalProfile());
         }
     }
 }

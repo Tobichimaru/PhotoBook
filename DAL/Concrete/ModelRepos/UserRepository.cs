@@ -4,6 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
+using DAL.Interfacies.Helper;
 using DAL.Interfacies.Repository.ModelRepos;
 using DAL.Mappers;
 using ORM.Models;
@@ -69,7 +70,7 @@ namespace DAL.Concrete.ModelRepos
                 return ormuser.ToDalUser();
             return null;
         }
-
+        
         public DalUser GetByEmail(string email)
         {
             var ormuser = _unitOfWork.Context.Set<User>().FirstOrDefault(user => user.Email == email);
@@ -90,19 +91,18 @@ namespace DAL.Concrete.ModelRepos
             return null;
         }
 
-        public DalUser GetByPredicate(Expression<Func<DalUser, bool>> predicate)
+
+        public DalUser GetOneByPredicate(Expression<Func<DalUser, bool>> predicate)
         {
-            ParameterExpression param = predicate.Parameters[0];
-            BinaryExpression operation = (BinaryExpression)predicate.Body;
-            MemberExpression left = (MemberExpression)operation.Left;
-            ParameterExpression newParam = Expression.Parameter(typeof(User), param.Name);
-            MemberExpression prop = Expression.Property(newParam, left.Member.Name);
-            BinaryExpression newOperation = Expression.MakeBinary(operation.NodeType, prop, operation.Right);
-            Expression<Func<User, bool>> func = Expression.Lambda<Func<User, bool>>(newOperation, newParam);
-            var user = _unitOfWork.Context.Set<User>().FirstOrDefault(func);
-            if (ReferenceEquals(user, null))
-                return null;
-            return user.ToDalUser();
+            return GetAllByPredicate(predicate).FirstOrDefault();
+        }
+
+        public IEnumerable<DalUser> GetAllByPredicate(Expression<Func<DalUser, bool>> predicate)
+        {
+            var visitor = new PredicateExpressionVisitor<DalUser, User>(Expression.Parameter(typeof(User), predicate.Parameters[0].Name));
+            var express = Expression.Lambda<Func<User, bool>>(visitor.Visit(predicate.Body), visitor.NewParameterExp);
+            var final = _unitOfWork.Context.Set<User>().Where(express).ToList();
+            return final.Select(user => user.ToDalUser());
         }
 
         public void Create(DalUser e)

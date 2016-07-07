@@ -5,7 +5,7 @@ namespace MvcPL.Models.Helpers
 {
     public class UserPageModel
     {
-        public ProfileViewModel profile { get; set; }
-        public PagedList<PhotoViewModel> photos { get; set; }
+        public ProfileViewModel Profile { get; set; }
+        public PagedList<PhotoViewModel> Photos { get; set; }
     }
 }

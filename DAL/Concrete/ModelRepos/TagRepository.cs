@@ -4,6 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfacies.DTO;
+using DAL.Interfacies.Helper;
 using DAL.Interfacies.Repository.ModelRepos;
 using DAL.Mappers;
 using ORM.Models;
@@ -56,19 +57,18 @@ namespace DAL.Concrete.ModelRepos
             return null;
         }
 
-        public DalTag GetByPredicate(Expression<Func<DalTag, bool>> predicate)
+
+        public DalTag GetOneByPredicate(Expression<Func<DalTag, bool>> predicate)
         {
-            ParameterExpression param = predicate.Parameters[0];
-            BinaryExpression operation = (BinaryExpression)predicate.Body;
-            MemberExpression left = (MemberExpression)operation.Left;
-            ParameterExpression newParam = Expression.Parameter(typeof(Tag), param.Name);
-            MemberExpression prop = Expression.Property(newParam, left.Member.Name);
-            BinaryExpression newOperation = Expression.MakeBinary(operation.NodeType, prop, operation.Right);
-            Expression<Func<Tag, bool>> func = Expression.Lambda<Func<Tag, bool>>(newOperation, newParam);
-            var tag = _unitOfWork.Context.Set<Tag>().FirstOrDefault(func);
-            if (ReferenceEquals(tag, null))
-                return null;
-            return tag.ToDalTag();
+            return GetAllByPredicate(predicate).FirstOrDefault();
+        }
+
+        public IEnumerable<DalTag> GetAllByPredicate(Expression<Func<DalTag, bool>> predicate)
+        {
+            var visitor = new PredicateExpressionVisitor<DalTag, Tag>(Expression.Parameter(typeof(Tag), predicate.Parameters[0].Name));
+            var express = Expression.Lambda<Func<Tag, bool>>(visitor.Visit(predicate.Body), visitor.NewParameterExp);
+            var final = _unitOfWork.Context.Set<Tag>().Where(express).ToList();
+            return final.Select(tag => tag.ToDalTag());
         }
 
         public void Create(DalTag e)
