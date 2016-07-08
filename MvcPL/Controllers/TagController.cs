@@ -36,22 +36,20 @@ namespace MvcPL.Controllers
             return View(photos);
         }
 
-        public ActionResult TagSearchLinks(string name, int page)
-        {
-            var tag = _service.GetTagByName(name);
-            if (tag == null)
-            {
-                return RedirectToAction("NotFound", "Error");
-            }
-            PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
-            {
-                CurrentPage = page,
-                PageName = "Tag" + name,
-                Content = new List<PhotoViewModel>(tag.Photos.Select(p => p.ToMvcPhoto()))
-            };
-            return PartialView("Links", photos);
-        }
-
-
+        //public ActionResult TagSearchLinks(string name, int page)
+        //{
+        //    var tag = _service.GetTagByName(name);
+        //    if (tag == null)
+        //    {
+        //        return RedirectToAction("NotFound", "Error");
+        //    }
+        //    PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
+        //    {
+        //        CurrentPage = page,
+        //        PageName = "Tag" + name,
+        //        Content = new List<PhotoViewModel>(tag.Photos.Select(p => p.ToMvcPhoto()))
+        //    };
+        //    return PartialView("Links", photos);
+        //}
 	}
 }

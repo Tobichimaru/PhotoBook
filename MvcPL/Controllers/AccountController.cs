@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
 using BLL.Interfacies.Services;
 using MvcPL.Models.User;
@@ -68,12 +67,12 @@ namespace MvcPL.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel viewModel)
         {
-            if (_model.GetAllEntities().FirstOrDefault(u => u.Email == viewModel.Email) != null)
+            if (_model.GetOneByPredicate(u => u.Email == viewModel.Email) != null)
             {
                 ModelState.AddModelError("", "User with this address already registered.");
                 return View(viewModel);
             }
-            if (_model.GetAllEntities().FirstOrDefault(u => u.UserName == viewModel.Name) != null)
+            if (_model.GetOneByPredicate(u => u.UserName == viewModel.Name) != null)
             {
                 ModelState.AddModelError("", "User with this name already registered.");
                 return View(viewModel);
@@ -87,7 +86,7 @@ namespace MvcPL.Controllers
                 if (membershipUser != null)
                 {
                     FormsAuthentication.SetAuthCookie(viewModel.Name, false);
-                    return RedirectToAction("Index", "Photo");
+                    return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Error registration.");
             }

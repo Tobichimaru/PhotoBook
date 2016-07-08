@@ -1,11 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using BLL.Interfacies.Services;
-using Microsoft.Ajax.Utilities;
-using MvcPL.Infrastructure.Mappers;
-using MvcPL.Models.Helpers;
-using MvcPL.Models.Photo;
 using MvcPL.Models.User;
 
 namespace MvcPL.Controllers
@@ -18,6 +13,11 @@ namespace MvcPL.Controllers
         public HomeController(IUserService service)
         {
             _service = service;
+        }
+
+        public ActionResult Index(string filter = null)
+        {
+            return RedirectToAction("Index", "Photo", filter);
         }
 
 

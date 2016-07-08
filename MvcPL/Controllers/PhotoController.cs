@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
-using Microsoft.Ajax.Utilities;
 using MvcPL.Infrastructure.Mappers;
 using MvcPL.Models.Helpers;
 using MvcPL.Models.Photo;
@@ -46,14 +44,13 @@ namespace MvcPL.Controllers
             {
                 string username = pageName.Substring(7);
                 photos.Content =
-                    _service.GetAllEntities().Where(p => p.UserName == username).Select(photo => photo.ToMvcPhoto()).ToList();
+                    _service.GetAllByPredicate(p => p.UserName == username).Select(photo => photo.ToMvcPhoto()).ToList();
                 //return RedirectToAction("UserPageLinks", "Profile", new { username, page });
             } else if (pageName.StartsWith("Tag"))
             {
                 string tag = pageName.Substring(3);
                 photos.Content =
-                    _service.GetAllEntities()
-                        .Where(p => p.Tags.Select(t => t.Name).Contains(tag))
+                    _service.GetAllEntities().Where(p => p.Tags.Select(t => t.Name).Contains(tag))
                         .Select(photo => photo.ToMvcPhoto()).ToList();
                 //return RedirectToAction("TagSearchLinks", "Tag", new {name = tag, page});
             }
@@ -61,8 +58,7 @@ namespace MvcPL.Controllers
             {
                 //(pageName.StartsWith("Index"))
                 string filter = pageName.Substring(5);
-                photos.Content = _service.GetAllEntities()
-                    .Where(x => x.Description.Contains(filter))
+                photos.Content = _service.GetAllByPredicate(x => x.Description.Contains(filter))
                     .Select(photo => photo.ToMvcPhoto())
                     .ToList();
             }
@@ -77,8 +73,7 @@ namespace MvcPL.Controllers
         public ActionResult Index(string filter = null)
         {
             ViewBag.filter = filter;
-            var content = _service.GetAllEntities()
-                .Where(x => filter == null || (x.Description.Contains(filter))).ToList();
+            var content = _service.GetAllByPredicate(x => filter == null || x.Description.Contains(filter)).ToList();
             PagedList<PhotoViewModel> photos = new PagedList<PhotoViewModel>
             {
                 Count = content.Count,

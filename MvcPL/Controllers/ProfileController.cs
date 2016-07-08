@@ -36,6 +36,7 @@ namespace MvcPL.Controllers
             {
                 Content =
                     new List<PhotoViewModel>(profile.Photos
+                        .Take(GalleryHelper.PageSize)
                         .Select(photo => photo.ToMvcPhoto())),
                 CurrentPage = 1,
                 Count = profile.Photos.Count,
@@ -50,21 +51,21 @@ namespace MvcPL.Controllers
             return View(model);
         }
 
-        public ActionResult UserPageLinks(int page, string username)
-        {
-            var profile = _service.GetProfileByName(username);
-            if (profile == null)
-            {
-                return RedirectToAction("NotFound", "Error");
-            }
-            var photos = new PagedList<PhotoViewModel>
-            {
-                Content = new List<PhotoViewModel>(profile.Photos.Take(GalleryHelper.PageSize).Select(photo => photo.ToMvcPhoto())),
-                CurrentPage = page,
-                PageName = "Profile" + username
-            };
-            return PartialView("Links", photos);
-        }
+        //public ActionResult UserPageLinks(int page, string username)
+        //{
+        //    var profile = _service.GetProfileByName(username);
+        //    if (profile == null)
+        //    {
+        //        return RedirectToAction("NotFound", "Error");
+        //    }
+        //    var photos = new PagedList<PhotoViewModel>
+        //    {
+        //        Content = new List<PhotoViewModel>(profile.Photos.Take(GalleryHelper.PageSize).Select(photo => photo.ToMvcPhoto())),
+        //        CurrentPage = page,
+        //        PageName = "Profile" + username
+        //    };
+        //    return PartialView("Links", photos);
+        //}
 
         [HttpGet]
         public ActionResult ProfileEdit()

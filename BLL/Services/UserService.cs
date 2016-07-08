@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Mappers;
+using DAL.Interfacies.DTO;
+using DAL.Interfacies.Helper;
 using DAL.Interfacies.Repository;
 using DAL.Interfacies.Repository.ModelRepos;
 
@@ -46,6 +49,21 @@ namespace BLL.Services
         public IEnumerable<UserEntity> GetAllEntities()
         {
             return userRepository.GetAll().Select(user => user.ToBllUser());
+        }
+
+
+        public UserEntity GetOneByPredicate(Expression<Func<UserEntity, bool>> predicates)
+        {
+            var visitor = new PredicateExpressionVisitor<UserEntity, DalUser>(Expression.Parameter(typeof(DalUser), predicates.Parameters[0].Name));
+            var exp2 = Expression.Lambda<Func<DalUser, bool>>(visitor.Visit(predicates.Body), visitor.NewParameterExp);
+            return userRepository.GetOneByPredicate(exp2).ToBllUser();
+        }
+
+        public IEnumerable<UserEntity> GetAllByPredicate(Expression<Func<UserEntity, bool>> predicates)
+        {
+            var visitor = new PredicateExpressionVisitor<UserEntity, DalUser>(Expression.Parameter(typeof(DalUser), predicates.Parameters[0].Name));
+            var exp2 = Expression.Lambda<Func<DalUser, bool>>(visitor.Visit(predicates.Body), visitor.NewParameterExp);
+            return userRepository.GetAllByPredicate(exp2).Select(user => user.ToBllUser()).ToList();
         }
 
         public void Create(UserEntity user)

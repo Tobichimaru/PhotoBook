@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Mappers;
+using DAL.Interfacies.DTO;
+using DAL.Interfacies.Helper;
 using DAL.Interfacies.Repository;
 using DAL.Interfacies.Repository.ModelRepos;
 
@@ -33,6 +36,20 @@ namespace BLL.Services
         public IEnumerable<PhotoEntity> GetAllEntities()
         {
             return photoRepository.GetAll().Select(p => p.ToBllPhoto());
+        }
+
+        public PhotoEntity GetOneByPredicate(Expression<Func<PhotoEntity, bool>> predicates)
+        {
+            var visitor = new PredicateExpressionVisitor<PhotoEntity, DalPhoto>(Expression.Parameter(typeof(DalPhoto), predicates.Parameters[0].Name));
+            var exp2 = Expression.Lambda<Func<DalPhoto, bool>>(visitor.Visit(predicates.Body), visitor.NewParameterExp);
+            return photoRepository.GetOneByPredicate(exp2).ToBllPhoto();
+        }
+
+        public IEnumerable<PhotoEntity> GetAllByPredicate(Expression<Func<PhotoEntity, bool>> predicates)
+        {
+            var visitor = new PredicateExpressionVisitor<PhotoEntity, DalPhoto>(Expression.Parameter(typeof(DalPhoto), predicates.Parameters[0].Name));
+            var exp2 = Expression.Lambda<Func<DalPhoto, bool>>(visitor.Visit(predicates.Body), visitor.NewParameterExp);
+            return photoRepository.GetAllByPredicate(exp2).Select(user => user.ToBllPhoto()).ToList();
         }
 
         public void Create(PhotoEntity item)

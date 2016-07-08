@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BLL.Interfacies.Entities;
 using BLL.Interfacies.Services;
 using BLL.Mappers;
+using DAL.Interfacies.DTO;
+using DAL.Interfacies.Helper;
 using DAL.Interfacies.Repository;
 using DAL.Interfacies.Repository.ModelRepos;
 
@@ -41,6 +44,21 @@ namespace BLL.Services
         public IEnumerable<ProfileEntity> GetAllEntities()
         {
             return profileRepository.GetAll().Select(profile => profile.ToBllProfile());
+        }
+
+
+        public ProfileEntity GetOneByPredicate(Expression<Func<ProfileEntity, bool>> predicates)
+        {
+            var visitor = new PredicateExpressionVisitor<ProfileEntity, DalProfile>(Expression.Parameter(typeof(DalProfile), predicates.Parameters[0].Name));
+            var exp2 = Expression.Lambda<Func<DalProfile, bool>>(visitor.Visit(predicates.Body), visitor.NewParameterExp);
+            return profileRepository.GetOneByPredicate(exp2).ToBllProfile();
+        }
+
+        public IEnumerable<ProfileEntity> GetAllByPredicate(Expression<Func<ProfileEntity, bool>> predicates)
+        {
+            var visitor = new PredicateExpressionVisitor<ProfileEntity, DalProfile>(Expression.Parameter(typeof(DalProfile), predicates.Parameters[0].Name));
+            var exp2 = Expression.Lambda<Func<DalProfile, bool>>(visitor.Visit(predicates.Body), visitor.NewParameterExp);
+            return profileRepository.GetAllByPredicate(exp2).Select(user => user.ToBllProfile()).ToList();
         }
 
         public void Create(ProfileEntity profile)
